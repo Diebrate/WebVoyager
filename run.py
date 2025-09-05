@@ -7,6 +7,8 @@ import os
 import shutil
 import logging
 
+from dotenv import load_dotenv
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -235,7 +237,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--test_file', type=str, default='data/test.json')
     parser.add_argument('--max_iter', type=int, default=5)
-    parser.add_argument("--api_key", default="key", type=str, help="YOUR_OPENAI_API_KEY")
+    # parser.add_argument("--api_key", default="key", type=str, help="YOUR_OPENAI_API_KEY")
     parser.add_argument("--api_model", default="gpt-4-vision-preview", type=str, help="api model name")
     parser.add_argument("--output_dir", type=str, default='results')
     parser.add_argument("--seed", type=int, default=None)
@@ -253,8 +255,11 @@ def main():
 
     args = parser.parse_args()
 
+    load_dotenv()
+    api_key = os.getenv("OPENAI_API_KEY")
+
     # OpenAI client
-    client = OpenAI(api_key=args.api_key)
+    client = OpenAI(api_key=api_key)
 
     options = driver_config(args)
 

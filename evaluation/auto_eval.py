@@ -5,6 +5,8 @@ import time
 import re
 import base64
 
+from dotenv import load_dotenv
+
 from openai import OpenAI
 
 SYSTEM_PROMPT = """As an evaluator, you will be presented with three primary components to assist you in your role:
@@ -137,12 +139,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--process_dir', type=str, default='results')
     parser.add_argument('--lesson_dir', type=str, default='results')
-    parser.add_argument("--api_key", default="key", type=str, help="YOUR_OPENAI_API_KEY")
+    # parser.add_argument("--api_key", default="key", type=str, help="YOUR_OPENAI_API_KEY")
     parser.add_argument("--api_model", default="gpt-4-vision-preview", type=str, help="api model name")
     parser.add_argument("--max_attached_imgs", type=int, default=1)
     args = parser.parse_args()
 
-    client = OpenAI(api_key=args.api_key)
+    load_dotenv()
+    api_key = os.getenv("OPENAI_API_KEY")
+
+    client = OpenAI(api_key=api_key)
     webs = ['Allrecipes', 'Amazon', 'Apple', 'ArXiv', 'BBC News', 'Booking', 'Cambridge Dictionary',
             'Coursera', 'ESPN', 'GitHub', 'Google Flights', 'Google Map', 'Google Search', 'Huggingface', 'Wolfram Alpha']
 

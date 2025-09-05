@@ -1,0 +1,135 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Browse online degrees section on Coursera and list 3 Bachelor's degree programmes.  Please interact with https://www.coursera.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I need to navigate to the online degrees section on Coursera. The current page doesn't show any navigation options to the degrees section.\n\nAction: Scroll WINDOW; down\n\nConfidence: 0.8\n\nCompletion: 0.1"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot still does not display the navigation options or links to the online degrees section. I need to explore further.\n\nAction: Scroll WINDOW; down\n\nConfidence: 0.9\n\nCompletion: 0.1"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current section is about specializations and certificates, not online degree programs. I need to navigate further down the webpage to locate the online degrees section.\n\nAction: Scroll WINDOW; down\n\nConfidence: 0.9\n\nCompletion: 0.1"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There's a search feature that might help find the degrees section directly. I will use the search bar to look for \"bachelor's degree programs.\"\n\nAction: Type [2]; \"bachelor's degree programs\"\n\nConfidence: 0.9\n\nCompletion: 0.2"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search results are still not focused on bachelor's degree programs, possibly due to input or filtering issues. A clearer approach using keywords might be needed.\n\nAction: Type [1]; \"bachelor's degree\"\n\nConfidence: 0.9\n\nCompletion: 0.3"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search results are still not showing bachelor's degree programs. It might be necessary to navigate directly to the degrees section or refine the search.\n\nAction: Scroll WINDOW; down\n\nConfidence: 0.8\n\nCompletion: 0.3"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results are still focusing on specializations instead of degree programs. I should return to the main site and use the navigation menu to find the online degrees section directly.\n\nAction: GoBack\n\nConfidence: 0.85\n\nCompletion: 0.3"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There's an option labeled \"Earn a degree,\" which likely leads to the degrees section. I should click on it to explore bachelor's degree programs.\n\nAction: Click [11]\n\nConfidence: 0.95\n\nCompletion: 0.4"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I have found a bachelor's degree program in Computer Science. I need to find two more bachelor's programs to complete the task.\n\nAction: Scroll WINDOW; down\n\nConfidence: 0.9\n\nCompletion: 0.6"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Master of Business Administration (iMBA)\", \"Go to degree, Master of Business Administration (iMBA). #12 in Top Public Universities in the U.S. (U.S. News & World Report, 2023). Application due October 2, 2025\";\t[1]: \"Master of Data Science\", \"Go to degree, Master of Data Science. A highly-ranked, Carnegie R1 public research institution. Application due December 20, 2025\";\t[2]: \"Bachelor of Science in Computer Science\", \"Go to degree, Bachelor of Science in Computer Science. Specialise in ML and AI, data science, web and mobile development, physical computing and IoT, game development, VR, or UX. Application due September 8, 2025\";\t[3]: \"Master of Science in Computer Science\", \"Go to degree, Master of Science in Computer Science. Ranked #98 in the Best Global Universities (US News & World Report, 2025). Application due October 3, 2025\";\t[4]: \"Master of Science in Artificial Intelligence\", \"Go to degree, Master of Science in Artificial Intelligence. description. Application due October 3, 2025\";\t[5]: \"MSc Computer Science\", \"Go to degree, MSc Computer Science. Ranked #32 in the UK (QS World University Rankings 2025). Application due December 1, 2025\";\t[6]: \"Master of Science in Computer Science\", \"Go to degree, Master of Science in Computer Science. Ranked #80 in the National University rankings (US News & World Report, 2025). \";\t[7]: \"Master of Computer Science in Data Science\", \"Go to degree, Master of Computer Science in Data Science. Ranked #25 globally for computer science and Information Systems (QS World University Rankings 2025). Application due October 15, 2025\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current view shows only one bachelor's degree program in Computer Science. I need to explore further to find additional bachelor's programs.\n\nAction: Scroll WINDOW; down\n\nConfidence: 0.9\n\nCompletion: 0.6"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Email Me Info\";\t[3]: <button> \"1\", \"Page number 1\";\t[4]: <button> \"2\", \"Go to page 2\";\t[5]: <button> \"3\", \"Go to page 3\";\t[6]: <button> \"4\", \"Go to page 4\";\t[7]: <button> \"5\", \"Go to page 5\";\t[8]: <button> \"6\", \"Go to page 6\";\t[9]: <button> \"7\", \"Go to page 7, Last page\";\t[10]: <button> \"Go to next page\";\t[11]: \"Bachelor's Degrees\";\t[12]: \"Master's Degrees\";\t[13]: \"Postgraduate Programs\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There's an option to browse by program level specifically for bachelor's degrees. Clicking on this could directly show more bachelor's programs.\n\nAction: Click [11]\n\nConfidence: 0.95\n\nCompletion: 0.7"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Open Navigation Menu\";\t[2]: <button> \"Search Coursera\";\t[3]: \"Degrees\";\t[4]: \"Bachelor's Degrees\";\t[5]: \"Email me info\";\t[6]: <button> \"Subject0 selected\", \"Subject Filter By - Subject 0 selected\";\t[7]: \"Bachelor of Science in Computer Science\", \"Go to degree, Bachelor of Science in Computer Science. Specialise in ML and AI, data science, web and mobile development, physical computing and IoT, game development, VR, or UX. Application due September 8, 2025\";\t[8]: \"Bachelor of Science in Business Administration\", \"Go to degree, Bachelor of Science in Business Administration. Ranked #34 in the UK (The Times and Sunday Times Good University Guide 2025). Application due September 8, 2025\";\t[9]: \"BSc Data Science\", \"Go to degree, BSc Data Science. TEF Gold-rated University (Teaching Excellence Framework 2023). Application due October 6, 2025\";\t[10]: \"Bachelor of Information Technology\", \"Go to degree, Bachelor of Information Technology. #20 in the U.S. for high earnings and economic mobility (NYT college ranking tool, 2023). Application due September 15, 2025\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current view shows multiple bachelor's degree programs. I now have enough information to list three of them.\n\nAction: ANSWER; \n\n1. Bachelor of Science in Computer Science\n2. Bachelor of Science in Business Administration\n3. BSc Data Science\n\nConfidence: 1.0\n\nCompletion: 1.0"
+  }
+]
