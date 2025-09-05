@@ -1,0 +1,63 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now given a task: Search for LLaMA in the huggingface doc, what type is the spaces_between_special_tokens parameter in LlamaTokenizer and what is its default value.  Please interact with https://huggingface.co/ and get the answer. \nObservation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Hugging Face\";\t[1]: <input> \"\";\t[2]: \"Models\";\t[3]: \"Datasets\";\t[4]: \"Spaces\";\t[5]: \"Docs\";\t[6]: \"Pricing\";\t[7]: <button> \"\";\t[9]: \"Log In\";\t[10]: \"Sign Up\";\t[11]: \"Explore AI Apps\";\t[12]: \"Browse 1M+ models\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I need to explore the Hugging Face documentation to find information about the `LlamaTokenizer`. The \"Docs\" link likely leads to the documentation section.\n\nAction: Click [5]\n\nConfidence: 0.9\n\nCompletion: 0.1"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Hugging Face\";\t[1]: <input> \"\";\t[2]: \"Models\";\t[3]: \"Datasets\";\t[4]: \"Spaces\";\t[5]: \"Docs\";\t[6]: \"Pricing\";\t[7]: <button> \"\";\t[9]: \"Log In\";\t[10]: \"Sign Up\";\t[11]: <input> \"search input\";\t[12]: \"Hub Host Git-based models, datasets, and Spaces on the HF Hub\";\t[13]: \"Hub Python Library Python client to interact with the Hugging Face Hub\";\t[14]: \"Huggingface.js JavaScript libraries for Hugging Face with built-in TS types\";\t[15]: \"Tasks Explore demos, models, and datasets for any ML tasks\";\t[16]: \"Dataset viewer API for metadata, stats, and content of HF Hub datasets\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find information about the `spaces_between_special_tokens` parameter in `LlamaTokenizer`, I should search within the documentation. The search box for the docs is visible.\n\nAction: Type [11]; LLaMA LlamaTokenizer spaces_between_special_tokens\n\nConfidence: 0.9\n\nCompletion: 0.2"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Search documentation \u2318K\";\t[3]: \"ARDEENESFRHIITJAKOPTTETRZH\";\t[4]: <button> \"\";\t[5]: \"149,316\";\t[6]: \"Jamba\";\t[7]: \"JetMoe\";\t[8]: \"Jukebox\";\t[9]: \"LED\";\t[10]: \"LFM2\";\t[11]: \"LLaMA\";\t[12]: \"Llama2\";\t[13]: \"Llama3\";\t[14]: \"Longformer\";\t[15]: \"LongT5\";\t[16]: \"LUKE\";\t[17]: \"M2M100\";\t[18]: \"MADLAD-400\";\t[19]: \"Mamba\";\t[20]: \"Mamba2\";\t[21]: \"MarianMT\";\t[23]: \"< source >\";\t[24]: \"vocab_file\";\t[25]: \"= '<unk>'\";\t[26]: \"= '<s>'\";\t[27]: \"= '</s>'\";\t[28]: \"= None\";\t[29]: \": typing.Optional[dict[str, typing.Any]] = None\";\t[30]: \"= True\";\t[31]: \"= False\";\t[32]: \"= False\";\t[33]: \"= False\";\t[34]: \"= False\";\t[35]: \"= None\";\t[36]: \"Llama\";\t[37]: \"Notes\";\t[38]: \"LlamaConfig\";\t[39]: \"LlamaTokenizer\";\t[40]: \"LlamaTokenizerFast\";\t[41]: \"LlamaModel\";\t[42]: \"LlamaForCausalLM\";\t[43]: \"LlamaForSequenceClassification\";\t[44]: \"LlamaForQuestionAnswering\";\t[45]: \"LlamaForTokenClassification\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The documentation for `LlamaTokenizer` is visible. The `spaces_between_special_tokens` parameter is shown with its type and default value.\n\nAction: ANSWER; The `spaces_between_special_tokens` parameter in `LlamaTokenizer` is of type `bool` and its default value is `False`.\n\nConfidence: 1.0\n\nCompletion: 1.0"
+  }
+]

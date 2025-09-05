@@ -1,0 +1,189 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Browse online degrees section on Coursera and list 3 Bachelor's degree programmes.  Please interact with https://www.coursera.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: This is the Coursera homepage with an advertisement for Coursera Plus and university/company partners, but there is no visible menu or navigation option for \"online degrees\" yet. I need to scroll down or look for navigation to locate the section for online bachelor's degree programs.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.1",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999850132505143
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I still do not see any section specifically for online degrees or bachelor's degree programmes. More scrolling is likely needed to reach the relevant section or navigation menu for online degrees.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.15",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The visible programmes, such as \"Python for Everybody\" and \"IBM Data Science,\" are specializations or professional certificates, not bachelor's degrees. The bachelor's degree section or link is still not visible. I should continue scrolling to locate the online degrees section.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.18",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is a search bar (\"Search by keyword\") available, which could help directly look for \"Bachelor's degree\" programmes. This could be an efficient way to access the relevant list instead of scrolling further.\nAction: Type 2; Bachelor's degree\nConfidence: 0.98\nCompletion: 0.3",
+    "token": ": Type 2; Bachelor's degree",
+    "prob": 0.984149376852507
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search input was successful, but the query included additional text (\"Confidence: 0.98\"), likely due to a formatting issue. The results shown are not bachelor's degree programmes but professional certificates and specializations. I should clear the search and re-enter just \"Bachelor's degree\" to get more relevant results.\nAction: Click 2\nConfidence: 0.95\nCompletion: 0.32",
+    "token": ": Click ",
+    "prob": 0.9999998559933477
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search field is now cleared and ready for a new query. To refine the search, I will type just \"Bachelor's degree\" to try to display relevant degree programmes.\nAction: Type 1; Bachelor's degree\nConfidence: 0.98\nCompletion: 0.35",
+    "token": ": Type 1; Bachelor's degree",
+    "prob": 0.9999383989757452
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search input again contains extra text (\"Confidence: 0.98Completion: 0.35\") in addition to \"Bachelor's degree\", which seems to disrupt accurate searching. I need to clear the search input again and then carefully enter only \"Bachelor's degree\" without extraneous text, before clicking search.\nAction: Click 2\nConfidence: 0.97\nCompletion: 0.36",
+    "token": ": Click ",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search box is now cleared and ready for new input. This time, I will carefully type only \"Bachelor's degree\" to ensure accurate searching of relevant programmes.\nAction: Type 1; Bachelor's degree\nConfidence: 0.99\nCompletion: 0.38",
+    "token": ": Type 1; Bachelor's degree",
+    "prob": 0.9999626393479163
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search input still contains extraneous text (\"Confidence: 0.99\") along with \"Bachelor's degree,\" resulting in irrelevant search results (Professional Certificates are still shown, not degree programs). I should manually type only \"Bachelor\" in the search box to avoid extra system-generated content.\nAction: Click 2\nConfidence: 0.97\nCompletion: 0.4",
+    "token": ": Click ",
+    "prob": 0.9839345818802986
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search box is now empty and ready for input. To avoid including system-generated text, I will type only \"Bachelor\" as the search keyword in hopes of displaying relevant bachelor's degree programmes.\nAction: Type 1; Bachelor\nConfidence: 0.98\nCompletion: 0.45",
+    "token": ": Type 1; Bachelor",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search input is still appending system-generated text (now \"BachelorConfidence: 0.98\") to the query, which results in irrelevant results (Specializations instead of degree programs). Direct search input is not being transmitted cleanly. Instead, I should explore navigation buttons, such as clicking \"Business\" or other domains, to see if degree programs can be reached via those categories.\nAction: Click 3\nConfidence: 0.75\nCompletion: 0.47",
+    "token": ": Click ",
+    "prob": 0.9999998559933477
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search box still contains extra text from previous inputs. The most effective step is to clear the search field and then try exploring one of the category domain buttons for potential navigation to degree programs.\nAction: Click 3\nConfidence: 0.98\nCompletion: 0.48",
+    "token": ": Click ",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[1]: <input> \"Search by keyword\";\t[2]: <button> \"Search\";\t[3]: <button> \"Business\", \"domainName, add to search\";\t[4]: <button> \"Computer Science\", \"domainName, add to search\";\t[5]: <button> \"Data Science\", \"domainName, add to search\";\t[6]: <button> \"Health\", \"domainName, add to search\";\t[7]: <button> \"Information Technology\", \"domainName, add to search\";\t[8]: <button> \"Arts and Humanities\", \"domainName, add to search\";\t[9]: \"Leadership: Being a Confident and Effective Team LeaderSkillshareSpecializationBeginner LevelBeginner\", \"Leadership: Being a Confident and Effective Team Leader\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search box is now clear and ready. Instead of using direct input (which has caused formatting issues), I should try navigating using the category buttons to see if any of them lead to degree programmes. \"Business\" is a broad category that may include bachelor's degrees.\nAction: Click 3\nConfidence: 0.95\nCompletion: 0.5",
+    "token": ": Click ",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[2]: <input> \"Search by keyword\";\t[3]: <button> \"Clear search\";\t[4]: <button> \"Search\";\t[5]: <button> \"Business\", \"domainName, add to search\";\t[6]: <button> \"Computer Science\", \"domainName, add to search\";\t[7]: <button> \"Data Science\", \"domainName, add to search\";\t[8]: <button> \"Health\", \"domainName, add to search\";\t[9]: <button> \"Information Technology\", \"domainName, add to search\";\t[10]: <button> \"Arts and Humanities\", \"domainName, add to search\";\t[11]: \"Business FoundationsUniversity of PennsylvaniaSpecializationFilled StarFilled StarFilled StarFilled StarHalf Filled StarRated 4.7 out of five stars. 25912 reviews4.7(25,912)Beginner LevelBeginner\", \"Business Foundations\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results displayed are still specializations, not bachelor's degree programmes. It appears that clicking category buttons only narrows down to professional courses or specializations. I should scroll down to check if bachelor's degree programs are shown further down the list of results for \"Business.\"\nAction: Scroll WINDOW; down\nConfidence: 0.93\nCompletion: 0.52",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results shown are still specializations and guided projects, not bachelor's degree programmes. There\u2019s no indication of degree offerings further down yet. It may require several scrolls or a new strategy, such as going back to the top and searching specifically for \"degree\" or finding a dedicated \"Degrees\" section. I'll scroll down one more time to check for degree programmes further below.\nAction: Scroll WINDOW; down\nConfidence: 0.92\nCompletion: 0.55",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  }
+]

@@ -1,0 +1,179 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Identify a Specialization on Coursera that focuses on 'Human Resource', list the courses included in this Specialization, and the institution offering it.  Please interact with https://www.coursera.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find a Specialization focused on 'Human Resource,' I need to use the search function on Coursera. The search icon/button (magnifying glass) is clearly labeled [2], which will enable me to enter the relevant keywords.\nAction: Click [2]\nConfidence: 1\nCompletion: 0.1",
+    "token": ": Click [2",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search textbox [1] is available at the top and is where I can type in keywords to look for a Human Resource specialization. Entering \"Human Resource\" will help find the relevant specialization.\nAction: Type [1]; Human Resource\nConfidence: 1\nCompletion: 0.2",
+    "token": ": Type [1]; Human Resource",
+    "prob": 0.9999708785376185
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search results display a specialization titled \"Human Resource Management: HR for People Managers\" offered by the University of Minnesota. To list the courses included in this specialization, I need to click and view its detail page.\nAction: Click [31]\nConfidence: 1\nCompletion: 0.5",
+    "token": ": Click [31",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I have landed on the specialization page for \"Human Resource Management: HR for People Managers\" offered by the University of Minnesota. To find and list the courses included in this specialization, I need to scroll down the page to locate the section where the courses/modules are listed.\nAction: Scroll WINDOW; down\nConfidence: 1\nCompletion: 0.7",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9843458624673248
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot confirms that this specialization consists of a 5-course series. The individual course titles and topics are usually listed further down the page, so I may need to scroll down more to find the explicit list of course titles. The skills and learning outcomes listed do suggest possible course topics.\nAction: Scroll WINDOW; down\nConfidence: 0.98\nCompletion: 0.8",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The page view is almost the same as before, suggesting the explicit course titles list is still not fully visible. To accurately answer the task and enumerate all courses in the specialization, I should continue to scroll down to where these are usually listed.\nAction: Scroll WINDOW; down\nConfidence: 0.99\nCompletion: 0.8",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot now reveals more skill tags/possible course topics such as \"Human Resources Management and Planning,\" \"Recruitment Strategies,\" \"Constructive Feedback,\" and \"Compensation Strategy.\" However, there is a \"Show\" button ([5]) that likely expands a full, explicit list of all courses included in the specialization, which would provide a definitive answer.\nAction: Click [5]\nConfidence: 1\nCompletion: 0.85",
+    "token": ": Click [5",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \u201cShow all\u201d button ([5]) is present and likely expands to show the complete list of courses in the specialization, which is needed to answer the task precisely. Clicking it should reveal the necessary information for listing all included courses.\nAction: Click [5]\nConfidence: 1\nCompletion: 0.9",
+    "token": ": Click [5",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The popup shows a comprehensive list of \"Skills you'll gain,\" but this is a collection of skill tags and not explicit course titles. The full list of actual courses in the specialization is still not displayed. I should close this popup to return to the specialization page and continue searching for the explicit course list.\nAction: Click [0]\nConfidence: 1\nCompletion: 0.93",
+    "token": ": Click [0",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The specialization page is restored, but the explicit list of included courses is still not visible. That section is typically found further down on the page, so I should continue scrolling down to look for the actual course titles/modules of the specialization.\nAction: Scroll WINDOW; down\nConfidence: 1\nCompletion: 0.94",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The visible area still does not show the explicit list of courses included in the specialization. The current visible content focuses on generic specialization benefits. I need to scroll further down to uncover the detailed curriculum/course list section.\nAction: Scroll WINDOW; down\nConfidence: 1\nCompletion: 0.95",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Enroll for freeStarts Sep 9\";\t[1]: <button> \"Read more\";\t[2]: \"Recruitment Strategies\";\t[3]: \"Constructive Feedback\";\t[4]: \"Compensation Strategy\";\t[5]: <button> \"Show all\";\t[6]: \"Learn in-demand skills from university and industry experts\";\t[7]: \"Master a subject or tool with hands-on projects\";\t[8]: \"Develop a deep understanding of key concepts\";\t[9]: \"Earn a career certificate from University of Minnesota\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The visible section now displays the core of the curriculum for the specialization. Three explicit course titles are clearly listed: \"Preparing to Manage Human Resources,\" \"Recruiting, Hiring, and Onboarding Employees,\" and \"Managing Employee Performance.\" There are also at least two more courses, possibly just out of sight. Scrolling down will help reveal the complete list (since this is a 5-course series).\nAction: Scroll WINDOW; down\nConfidence: 1\nCompletion: 0.97",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999995083036837
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Enroll for freeStarts Sep 9\";\t[1]: <button> \"Read more\";\t[2]: <button> \"Preparing to Manage Human ResourcesCourse 1\u202219 hours\u20224.8 (10,308 ratings)\u2022View courseCourse details\";\t[3]: <button> \"Recruiting, Hiring, and Onboarding EmployeesCourse 2\u202221 hours\u20224.7 (4,631 ratings)\u2022View courseCourse details\";\t[4]: <button> \"Managing Employee PerformanceCourse 3\u202215 hours\u20224.7 (2,729 ratings)\u2022View courseCourse details\";\t[5]: <button> \"Managing Employee CompensationCourse 4\u202216 hours\u20224.7 (1,889 ratings)\u2022View courseCourse details\";\t[6]: \"John W. Budd\";\t[7]: \"Alan Benson\";\t[8]: \"Larry Bourgerie\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Four of the five courses in the specialization are now visible: \"Preparing to Manage Human Resources,\" \"Recruiting, Hiring, and Onboarding Employees,\" \"Managing Employee Performance,\" and \"Managing Employee Compensation.\" Scrolling down slightly should fully reveal the last course in the series.\nAction: Scroll WINDOW; down\nConfidence: 1\nCompletion: 0.98",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999990553300364
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Enroll for freeStarts Sep 9\";\t[1]: <button> \"Read more\";\t[2]: <button> \"Preparing to Manage Human ResourcesCourse 1\u202219 hours\u20224.8 (10,308 ratings)\u2022View courseCourse details\";\t[3]: <button> \"Recruiting, Hiring, and Onboarding EmployeesCourse 2\u202221 hours\u20224.7 (4,631 ratings)\u2022View courseCourse details\";\t[4]: <button> \"Managing Employee PerformanceCourse 3\u202215 hours\u20224.7 (2,729 ratings)\u2022View courseCourse details\";\t[5]: <button> \"Managing Employee CompensationCourse 4\u202216 hours\u20224.7 (1,889 ratings)\u2022View courseCourse details\";\t[6]: \"John W. Budd\";\t[7]: \"Alan Benson\";\t[8]: \"Larry Bourgerie\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The full list of courses in the specialization is now visible, including the capstone: \"Human Resources Management Capstone: HR for People Managers.\" The institution offering the specialization is \"University of Minnesota,\" which is explicitly visible as well.\nAction: ANSWER; Specialization: Human Resource Management: HR for People Managers  \nInstitution: University of Minnesota  \nCourses included: \n1. Preparing to Manage Human Resources\n2. Recruiting, Hiring, and Onboarding Employees\n3. Managing Employee Performance\n4. Managing Employee Compensation\n5. Human Resources Management Capstone: HR for People Managers\nConfidence: 1\nCompletion: 1",
+    "token": ": ANSWER; Specialization: Human Resource Management: HR for People Managers  \nInstitution: University of Minnesota  \nCourses included: \n1. Preparing to Manage Human Resources\n2. Recruiting, Hiring, and Onboarding Employees\n3. Managing Employee Performance\n4. Managing Employee Compensation\n5. Human Resources Management Capstone: HR for People Managers",
+    "prob": 0.8847042617872092
+  }
+]

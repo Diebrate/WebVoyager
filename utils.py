@@ -403,3 +403,39 @@ def get_pdf_retrieval_ans_from_assistant(client, pdf_path, task):
     # print(assistant_deletion_status)
     logging.info(assistant_deletion_status)
     return messages_text
+
+
+def extract_action_token_prob(model_output):
+
+    content = model_output.choices[0].message.content
+    match = re.search(r'Action: (.*)Confidence:', content, re.DOTALL)
+    if not match:
+        return "", 0.0
+    action_text = match.group(1)
+    action_text_stripped = action_text.strip()
+
+    token_list = model_output.choices[0].logprobs.content
+    reconstructed = ""
+    action_tokens = []
+    action_str = ""
+    in_action = False
+    action_started = False
+
+    for info in token_list:
+        token = info.token
+        logprob = info.logprob
+        reconstructed += token
+        if not in_action and "Action:" in reconstructed:
+            in_action = True
+            idx = reconstructed.index("Action:") + len("Action:")
+            reconstructed = reconstructed[idx:]
+            action_started = True
+        if in_action and action_started:
+            # Only add tokens until we've matched the full action_text (excluding trailing whitespace)
+            if len(action_str) < len(action_text):
+                action_tokens.append(logprob)
+                action_str += token
+            if action_str.strip() == action_text_stripped:
+                break
+
+    return action_str, float(np.exp(np.mean(action_tokens))) if action_tokens else 0.0

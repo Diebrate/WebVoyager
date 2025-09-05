@@ -7,6 +7,8 @@ import os
 import shutil
 import logging
 
+from dotenv import load_dotenv
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -15,7 +17,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from prompts import SYSTEM_PROMPT, SYSTEM_PROMPT_TEXT_ONLY
 from openai import OpenAI
 from utils import get_web_element_rect, encode_image, extract_information, print_message,\
-    get_webarena_accessibility_tree, get_pdf_retrieval_ans_from_assistant, clip_message_and_obs, clip_message_and_obs_text_only
+    get_webarena_accessibility_tree, get_pdf_retrieval_ans_from_assistant, clip_message_and_obs, clip_message_and_obs_text_only, extract_action_token_prob
 
 
 def setup_logger(folder_path):
@@ -121,7 +123,7 @@ def call_gpt4v_api(args, openai_client, messages):
             if not args.text_only:
                 logging.info('Calling gpt4v API...')
                 openai_response = openai_client.chat.completions.create(
-                    model=args.api_model, messages=messages, max_tokens=1000, seed=args.seed
+                    model=args.api_model, messages=messages, max_tokens=1000, seed=args.seed, logprobs=True
                 )
             else:
                 logging.info('Calling gpt4 API...')
@@ -235,7 +237,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--test_file', type=str, default='data/test.json')
     parser.add_argument('--max_iter', type=int, default=5)
-    parser.add_argument("--api_key", default="key", type=str, help="YOUR_OPENAI_API_KEY")
+    # parser.add_argument("--api_key", default="key", type=str, help="YOUR_OPENAI_API_KEY")
     parser.add_argument("--api_model", default="gpt-4-vision-preview", type=str, help="api model name")
     parser.add_argument("--output_dir", type=str, default='results')
     parser.add_argument("--seed", type=int, default=None)
@@ -253,8 +255,11 @@ def main():
 
     args = parser.parse_args()
 
+    load_dotenv()
+    api_key = os.getenv("OPENAI_API_KEY")
+
     # OpenAI client
-    client = OpenAI(api_key=args.api_key)
+    client = OpenAI(api_key=api_key)
 
     options = driver_config(args)
 
@@ -378,7 +383,8 @@ def main():
                 logging.info(f'Accumulate Prompt Tokens: {accumulate_prompt_token}; Accumulate Completion Tokens: {accumulate_completion_token}')
                 logging.info('API call complete...')
             gpt_4v_res = openai_response.choices[0].message.content
-            messages.append({'role': 'assistant', 'content': gpt_4v_res})
+            action_token, action_prob = extract_action_token_prob(openai_response)
+            messages.append({'role': 'assistant', 'content': gpt_4v_res, 'token': action_token, 'prob': action_prob})
 
 
             # remove the rects on the website

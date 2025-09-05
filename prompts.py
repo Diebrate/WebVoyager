@@ -34,6 +34,8 @@ Key Guidelines You MUST follow:
 Your reply should strictly follow the format:
 Thought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}
 Action: {One Action format you choose}
+Confidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}
+Completion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}
 
 Then the User will provide:
 Observation: {A labeled screenshot Given by User}"""
@@ -73,6 +75,8 @@ Key Guidelines You MUST follow:
 Your reply should strictly follow the format:
 Thought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}
 Action: {One Action format you choose}
+Confidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}
+Completion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}
 
 Then the User will provide:
 Observation: {Accessibility Tree of a web page}"""
