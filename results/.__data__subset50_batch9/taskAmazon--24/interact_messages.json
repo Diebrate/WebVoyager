@@ -1,0 +1,109 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Browse for a compact air fryer on Amazon with a capacity of 2 to 3 quarts. It should have a digital display, auto shutoff and be priced under $100.  Please interact with https://www.amazon.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To begin searching for a compact air fryer with specified features on Amazon, I should type the relevant keywords in the search box at the top of the page.\nAction: Type [1]; compact air fryer 2 to 3 quart digital display auto shutoff under $100\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Type [1]; compact air fryer 2 to 3 quart digital display auto shutoff under $100",
+    "prob": 0.9805293503716387
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results already show two air fryers that meet most criteria: both have digital displays, are compact (2 Qt and 3 QT), and are under $100. The CHEFMAN 2 Qt Mini Air Fryer ($49.99) and Crux 3QT Digital Air Fryer ($54.99) both display a digital interface. Next, I need to verify that they also have auto shutoff. Clicking into the CHEFMAN product will provide the needed details.\nAction: Click [17]\nConfidence: 0.95\nCompletion: 0.6",
+    "token": ": Click [17",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The product title confirms this is a 2 Qt digital compact air fryer, and it features a digital timer and shake reminder. However, the visible text does not confirm if it has an auto shutoff feature. I need to scroll down to find more product specifications or details to verify the presence of auto shutoff.\nAction: Scroll [WINDOW]; down\nConfidence: 0.95\nCompletion: 0.7",
+    "token": ": Scroll [WINDOW]; down",
+    "prob": 0.9999996895893928
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Special Feature\" line lists \"Digital, Dishwasher Safe, Nonstick, Shake Reminder\" but does not mention auto shutoff. I should look for a more detailed list of features or product description to confirm if auto shutoff is included. Clicking \"See more\" may expand the details.\nAction: Click [3]\nConfidence: 0.95\nCompletion: 0.8",
+    "token": ": Click [3",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: \"30-day refund / replacement\";\t[2]: \"Ships in product packaging\";\t[3]: \"Secure transaction\";\t[4]: \"See less\";\t[6]: \"Add to List\";\t[7]: \"View on Amazon.ca\";\t[10]: \"Click to see full view\";\t[18]: \"4.5 4.5 out of 5 stars\";\t[19]: \"26,927 ratings\";\t[21]: \"Details\";\t[22]: \"other sellers\";\t[23]: \"Color:\";\t[24]: \"White\";\t[30]: \"Special Feature\";\t[31]: \"Digital, Dishwasher Safe, Nonstick, Shake Reminder\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Expanding the details did not reveal new information about the presence of the auto shutoff feature. The features section remains unchanged. To gather more information, I should scroll further down the page to access the full product description or product information section.\nAction: Scroll [WINDOW]; down\nConfidence: 0.95\nCompletion: 0.8",
+    "token": ": Scroll [WINDOW]; down",
+    "prob": 0.9999999677312256
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: \"Sponsored\", \"Leave feedback on Sponsored ad\";\t[4]: \"Click to see full view\";\t[12]: \"Special Feature\";\t[13]: \"Digital, Dishwasher Safe, Nonstick, Shake Reminder\";\t[14]: \"Product Dimensions\";\t[15]: \"10\"D x 10\"W x 8.3\"H\";\t[16]: \"Color\";\t[17]: \"White\";\t[18]: \"Capacity\";\t[19]: \"2 Liters\";\t[20]: \"Material\";\t[21]: \"Aluminum, Plastic\";\t[23]: \"HEALTHY COOKING: Say goodbye to excess oil and fat, and hello to healthy cooking. This mini air fryer uses little-to-no oil to make delicious meals that are good for you, too.\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Special Feature\" and product summary sections shown still do not mention auto shutoff. The detailed product description (under \"About this item\") is partially visible but may contain more relevant information regarding the auto shutoff feature. Scrolling down further is necessary to review the complete product features and description.\nAction: Scroll [WINDOW]; down\nConfidence: 0.95\nCompletion: 0.85",
+    "token": ": Scroll [WINDOW]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: \"Click to see full view\";\t[10]: \"HEALTHY COOKING: Say goodbye to excess oil and fat, and hello to healthy cooking. This mini air fryer uses little-to-no oil to make delicious meals that are good for you, too.\";\t[12]: \"SHAKE NOTIFICATIONS: Halfway through cooking, the TurboFry Air Fryer automatically notifies you with an audible alarm that it\u2019s time to shake your food for the crispiest results possible.\";\t[13]: \"COMPACT STORAGE: This 2-quart air fryer is perfectly sized for healthy meals for 1-2 people. It fits in perfectly as a mainstay on your countertop, or its small frame fits perfectly in your cabinets.\";\t[14]: \"SIMPLE CLEAN-UP: The nonstick 2-quart basket and rack are both dishwasher safe to keep clean-up fast and simple.\";\t[15]: \"SAFETY FIRST: Automatic shutoff technology ensures added safety by turning off the fryer when cooking finishes or the basket is removed.\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The bottom of the product description clearly states: \"SAFETY FIRST: Automatic shutoff technology ensures added safety by turning off the fryer when cooking finishes or the basket is removed.\" This confirms that the air fryer has an auto shutoff feature. All requirements\u20142-quart capacity, digital display, auto shutoff, and price under $100\u2014are met.\nAction: ANSWER; The CHEFMAN 2 Qt Mini Air Fryer, priced at $49.99, has a 2-quart capacity, digital display, auto shutoff, and is compact. It meets all your criteria on Amazon.\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; The CHEFMAN 2 Qt Mini Air Fryer, priced at $49.99, has a 2-quart capacity, digital display, auto shutoff, and is compact. It meets all your criteria on Amazon",
+    "prob": 0.6857262523701804
+  }
+]

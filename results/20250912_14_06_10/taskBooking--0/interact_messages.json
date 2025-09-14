@@ -1,0 +1,189 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find a Mexico hotel with deals for December 25-26.  Please interact with https://www.booking.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find a hotel deal in Mexico, I need to first enter \"Mexico\" as the destination in the \"Where are you going?\" textbox.\nAction: Type [14]; Mexico\nConfidence: 1\nCompletion: 0.15",
+    "token": ": Type [14]; Mexico",
+    "prob": 0.9999924181947204
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The destination has been set to \"Niagara Falls\" instead of \"Mexico.\" I need to change the location to \"Mexico\" by clearing the existing location and typing \"Mexico\" in the destination field.\nAction: Type [13]; Mexico\nConfidence: 0.95\nCompletion: 0.15",
+    "token": ": Type [13]; Mexico",
+    "prob": 0.9999999478639471
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The destination field has not updated to \"Mexico\" and is still set to \"Niagara Falls.\" I need to clear the current destination so I can enter \"Mexico\" and get the correct hotel results for Mexico.\nAction: Click [14]\nConfidence: 0.95\nCompletion: 0.15",
+    "token": ": Click [14",
+    "prob": 0.9998528831654145
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The destination textbox is now clear and ready for input. I need to type \"Mexico\" into the \"Where are you going?\" textbox to search for hotels in Mexico.\nAction: Type [13]; Mexico\nConfidence: 1\nCompletion: 0.2",
+    "token": ": Type [13]; Mexico",
+    "prob": 0.9999971863162672
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Although I typed \"Mexico,\" the destination field still shows \"Niagara Falls.\" I need to clear the current location entirely before typing \"Mexico\" again, as the system may not have registered the change.\nAction: Click [14]\nConfidence: 0.95\nCompletion: 0.2",
+    "token": ": Click [14",
+    "prob": 0.9999980145393393
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The destination box is active, and the textbox is ready for new input. I need to type \"Mexico\" into the \"Where are you going?\" textbox to proceed with searching for hotels in Mexico.\nAction: Type [13]; Mexico\nConfidence: 1\nCompletion: 0.25",
+    "token": ": Type [13]; Mexico",
+    "prob": 0.9999999677312256
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Although \"Mexico\" was typed, the destination is still \"Niagara Falls.\" The calendar for date selection is open, showing September and October 2025, but I need to find December for the correct dates (Dec 25-26). I should navigate the calendar to reach December.\nAction: Click [18]\nConfidence: 0.98\nCompletion: 0.3",
+    "token": ": Click [18",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The calendar is now showing October and November 2025. I need to continue navigating forward to reach December 2025 in order to select December 25-26.\nAction: Click [19]\nConfidence: 1\nCompletion: 0.35",
+    "token": ": Click [19",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The calendar now displays December 2025. I need to select December 25 as the check-in date and December 26 as the check-out date to match the task requirements.\nAction: Click [87]\nConfidence: 1\nCompletion: 0.45",
+    "token": ": Click [87",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: December 25 has been selected as the check-in date. Now, I need to select December 26 as the check-out date to complete the date range for the hotel search.\nAction: Click [88]\nConfidence: 1\nCompletion: 0.55",
+    "token": ": Click [88",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The correct dates (Dec 25\u201326) have been set, but the destination is still \u201cNiagara Falls\u201d instead of \u201cMexico.\u201d I need to change the destination to \u201cMexico\u201d to find a Mexico hotel for the specified dates.\nAction: Click [14]\nConfidence: 0.98\nCompletion: 0.6",
+    "token": ": Click [14",
+    "prob": 0.9876302782400888
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The destination field is now clear and ready for input. I need to type \"Mexico\" into the \"Where are you going?\" field to proceed with the correct search location.\nAction: Type [13]; Mexico\nConfidence: 1\nCompletion: 0.7",
+    "token": ": Type [13]; Mexico",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"CAD\", \"Prices in Canadian Dollar\";\t[2]: <button> \"Language: English (US)\";\t[4]: \"List your property\";\t[5]: \"Register\", \"Register an account\";\t[6]: \"Sign in\";\t[7]: \"Stays\";\t[8]: \"Flights\";\t[9]: \"Flight + Hotel\";\t[10]: \"Car rental\";\t[11]: \"Attractions\";\t[12]: \"Airport taxis\";\t[13]: <input> \"Where are you going?\";\t[14]: <button> \"\";\t[15]: <button> \"Thu, Dec 25 \u2014 Fri, Dec 26\";\t[16]: <button> \"2 adults \u00b7 0 children \u00b7 1 room\", \"Number of travelers and rooms. Currently selected: 2 adults \u00b7 0 children \u00b7 1 room\";\t[17]: <button> \"Search\";\t[18]: \"Home\";\t[19]: \"Canada\";\t[20]: \"Ontario\";\t[21]: \"Niagara Falls\";\t[22]: \"Search results\";\t[23]: <button> \"Show on map\";\t[24]: \"List\";\t[25]: \"Grid\";\t[26]: <button> \"Sort by: Our top picks\";\t[28]: <button> \"Previous\";\t[29]: <button> \"Next\";\t[30]: <button> \"Save this item to a trip list\";\t[31]: \"Embassy Suites by Hilton Niagara Falls/ FallsviewOpens in new window\";\t[32]: \"Fallsview, Niagara Falls (Fallsview)Show on map\";\t[33]: \"Scored 7.5 7.5Good 8,843 reviews\";\t[34]: \"Entire studio \u2022 1 bedroom \u2022 25 m\u00b21 king bed\";\t[35]: \"Breakfast includedFree cancellationNo prepayment needed \u2013 pay at the property\";\t[36]: \"See availability\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The destination is still set to \"Niagara Falls\" instead of \"Mexico.\" I need to clear the current destination again and enter \"Mexico\" in the \"Where are you going?\" textbox to ensure results are for Mexico.\nAction: Click [14]\nConfidence: 0.98\nCompletion: 0.7",
+    "token": ": Click [14",
+    "prob": 0.999999862194097
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"CAD\", \"Prices in Canadian Dollar\";\t[2]: <button> \"Language: English (US)\";\t[4]: \"List your property\";\t[5]: \"Register\", \"Register an account\";\t[6]: \"Sign in\";\t[7]: \"Stays\";\t[8]: \"Flights\";\t[9]: \"Flight + Hotel\";\t[10]: \"Car rental\";\t[11]: \"Attractions\";\t[12]: \"Airport taxis\";\t[13]: <input> \"Where are you going?\";\t[14]: \"Niagara Falls2 adults\";\t[15]: \"Niagara FallsCanada\";\t[16]: \"TorontoCanada\";\t[17]: \"MontrealCanada\";\t[18]: \"OttawaCanada\";\t[19]: \"Quebec CityCanada\";\t[20]: <button> \"Thu, Dec 25 \u2014 Fri, Dec 26\";\t[21]: <button> \"2 adults \u00b7 0 children \u00b7 1 room\", \"Number of travelers and rooms. Currently selected: 2 adults \u00b7 0 children \u00b7 1 room\";\t[22]: <button> \"Search\";\t[23]: \"List\";\t[24]: \"Grid\";\t[26]: <button> \"Next\";\t[27]: <button> \"Save this item to a trip list\";\t[28]: \"Embassy Suites by Hilton Niagara Falls/ FallsviewOpens in new window\";\t[29]: \"Fallsview, Niagara Falls (Fallsview)Show on map\";\t[30]: \"Scored 7.5 7.5Good 8,843 reviews\";\t[31]: \"Entire studio \u2022 1 bedroom \u2022 25 m\u00b21 king bed\";\t[32]: \"Breakfast includedFree cancellationNo prepayment needed \u2013 pay at the property\";\t[33]: \"See availability\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Where are you going?\" textbox is now clear and ready for input. I need to type \"Mexico\" in this field to set the correct destination for hotel deals.\nAction: Type [13]; Mexico\nConfidence: 1\nCompletion: 0.75",
+    "token": ": Type [13]; Mexico",
+    "prob": 0.999998894898837
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"CAD\", \"Prices in Canadian Dollar\";\t[2]: <button> \"Language: English (US)\";\t[4]: \"List your property\";\t[5]: \"Register\", \"Register an account\";\t[6]: \"Sign in\";\t[7]: \"Stays\";\t[8]: \"Flights\";\t[9]: \"Flight + Hotel\";\t[10]: \"Car rental\";\t[11]: \"Attractions\";\t[12]: \"Airport taxis\";\t[13]: <input> \"Where are you going?\";\t[14]: <button> \"\";\t[15]: <button> \"Thu, Dec 25 \u2014 Fri, Dec 26\";\t[16]: <button> \"2 adults \u00b7 0 children \u00b7 1 room\", \"Number of travelers and rooms. Currently selected: 2 adults \u00b7 0 children \u00b7 1 room\";\t[17]: <button> \"Search\";\t[18]: \"Home\";\t[19]: \"Canada\";\t[20]: \"Ontario\";\t[21]: \"Niagara Falls\";\t[22]: \"Search results\";\t[23]: <button> \"Show on map\";\t[24]: \"List\";\t[25]: \"Grid\";\t[26]: <button> \"Sort by: Our top picks\";\t[28]: <button> \"Previous\";\t[29]: <button> \"Next\";\t[30]: <button> \"Save this item to a trip list\";\t[31]: \"Embassy Suites by Hilton Niagara Falls/ FallsviewOpens in new window\";\t[32]: \"Fallsview, Niagara Falls (Fallsview)Show on map\";\t[33]: \"Scored 7.5 7.5Good 8,843 reviews\";\t[34]: \"Entire studio \u2022 1 bedroom \u2022 25 m\u00b21 king bed\";\t[35]: \"Breakfast includedFree cancellationNo prepayment needed \u2013 pay at the property\";\t[36]: \"See availability\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: \"Mexico\" still did not register in the search field; the destination is showing as \"Niagara Falls.\" I should clear this field again and type \"Mexico\" in the search box to update the location and proceed with the search for the hotel deals in Mexico.\nAction: Click [14]\nConfidence: 0.98\nCompletion: 0.75",
+    "token": ": Click [14",
+    "prob": 0.99999843175133
+  }
+]

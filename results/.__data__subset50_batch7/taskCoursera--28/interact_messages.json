@@ -1,0 +1,189 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Locate a Coursera Guided project related to 'Astrophysics' suitable for advanced learners. Mention the course duration, the institution offering it, and the main subjects covered in the course.  Please interact with https://www.coursera.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find a guided project related to 'Astrophysics', I should use the search function. The search icon/button is labeled [2] in the screenshot.\nAction: Click [2]\nConfidence: 0.99\nCompletion: 0.1",
+    "token": ": Click [2",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I need to search for guided projects related to 'Astrophysics'. The search textbox is labeled [1], making it the appropriate place to enter the search query.\nAction: Type [1]; Astrophysics guided project\nConfidence: 0.99\nCompletion: 0.2",
+    "token": ": Type [1]; Astrophysics guided project",
+    "prob": 0.9950123056832517
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results shown are for \"Astrophysics guided project\", but all visible results appear to be regular courses, not specifically \"Guided Projects,\" and none indicate advanced level explicitly. I should scroll down to see if more relevant advanced guided projects appear.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.3",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9996143478602567
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: None of the currently visible courses are both astrophysics-focused and labeled as a \"Guided Project\"; the \"Guided Website Development Project\" is irrelevant. The other options are beginner level and not guided projects. I should continue to scroll down to see if there is a guided project specifically about astrophysics at an advanced level.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.35",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The only guided projects visible are related to finance (not astrophysics), while the astrophysics/space course (Our Place in the Cosmos) is a regular course, not a guided project. More scrolling is necessary to continue the search for a suitable guided project in astrophysics.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.4",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: \"Rocket Science for Everyone\" by Yale University is related to space but is marked as a \"COURSE\", not a \"Guided Project\", and is aimed at beginners. The visible guided projects are unrelated to astrophysics. I should continue to scroll to find a guided project in astrophysics for advanced learners.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.45",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The visible guided projects are related to statistics, big data, and data analysis, but none are related to astrophysics. No advanced-level guided projects for astrophysics are visible yet. Further scrolling is needed to find an appropriate course.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.5",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999374367368
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The guided projects displayed are focused on business, process management, Google Ads, and HTML, none of which are related to astrophysics. There are still no advanced astrophysics guided projects visible. More scrolling down is needed to locate a suitable guided project.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.55",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999972911189926
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The guided projects shown are again unrelated to astrophysics, focusing instead on HTML, Excel, data analysis, Python, project management, and databases. There are still no astrophysics-related guided projects, especially at the advanced level. More scrolling is needed to check for relevant results.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.6",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The currently displayed guided projects are about image analysis software (ImageJ) and project management (ClickUp), none of which are related to astrophysics or are for advanced learners. I still have not found any astrophysics guided projects and should scroll further to exhaust the options.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.65",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The guided projects displayed here are about machine learning with PySpark, program communications management, and Google Analytics. None are related to astrophysics. I need to keep scrolling to check for more relevant options on the page.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.7",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The shown guided projects are about Microsoft Excel, SEO, and machine/deep learning for mining quality prediction. None of the options are related to astrophysics. I should keep scrolling down to try and find a relevant astrophysics guided project for advanced learners.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.75",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999135960062
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Open Navigation Menu\";\t[3]: \"(745)\";\t[5]: \"(533)\";\t[7]: \"(328)\";\t[9]: \"(159)\";\t[10]: <button> \"Show 7 more\", \"Show more Subject options\";\t[11]: <button> \"Information about this filter group\";\t[13]: \"(1,461)\";\t[15]: \"(357)\";\t[17]: \"(316)\";\t[19]: \"(272)\";\t[21]: \"Coursera Project Network\";\t[22]: \"Public Speaking with Canva\", \"Public Speaking with Canva, offered by Coursera Project Network, GUIDED PROJECT\";\t[24]: \"National Academy of Sports Medicine\";\t[25]: \"Self-Guided Wellness Coaching\", \"Self-Guided Wellness Coaching, offered by National Academy of Sports Medicine, COURSE\";\t[27]: \"Coursera Project Network\";\t[28]: \"ChatGPT for Beginners: SciFi Writing with Dall-e\", \"ChatGPT for Beginners: SciFi Writing with Dall-e, offered by Coursera Project Network, GUIDED PROJECT\";\t[30]: \"Coursera Project Network\";\t[32]: \"Coursera Project Network\";\t[33]: \"Free\";\t[35]: \"Microsoft\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The courses shown are again not related to astrophysics. They cover public speaking, wellness coaching, and using ChatGPT for SciFi writing, among others, and none target advanced learners or astrophysics topics. I should continue to scroll down to see if any relevant guided projects appear.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.8",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999998420738176
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Open Navigation Menu\";\t[3]: \"(745)\";\t[5]: \"(533)\";\t[7]: \"(328)\";\t[9]: \"(159)\";\t[10]: <button> \"Show 7 more\", \"Show more Subject options\";\t[11]: <button> \"Information about this filter group\";\t[13]: \"(1,461)\";\t[15]: \"(357)\";\t[17]: \"(316)\";\t[19]: \"(272)\";\t[21]: \"Coursera Project Network\";\t[22]: \"Create Your First Python Program From UST\", \"Create Your First Python Program From UST, offered by Coursera Project Network, GUIDED PROJECT\";\t[24]: \"Coursera Project Network\";\t[25]: \"Create a Project Management Tracker using Microsoft Excel\", \"Create a Project Management Tracker using Microsoft Excel, offered by Coursera Project Network, GUIDED PROJECT\";\t[27]: \"Microsoft\";\t[28]: \"Build a computer vision app with Azure Cognitive Services\", \"Build a computer vision app with Azure Cognitive Services, offered by Microsoft, GUIDED PROJECT\";\t[30]: \"Coursera Project Network\";\t[31]: \"Build a free website with WordPress\", \"Build a free website with WordPress, offered by Coursera Project Network, GUIDED PROJECT\";\t[33]: \"Coursera Project Network\";\t[34]: \"Build a Full Website using WordPress\", \"Build a Full Website using WordPress, offered by Coursera Project Network, GUIDED PROJECT\";\t[36]: \"Coursera Project Network\";\t[37]: \"Introduction to Python\", \"Introduction to Python, offered by Coursera Project Network, GUIDED PROJECT\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The guided projects presently visible are about Python, project management, computer vision with Azure, and WordPress, but none are related to astrophysics. There is still no sign of an advanced-level guided project in astrophysics. More scrolling will help exhaust available results.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.85",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999989599672469
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Open Navigation Menu\";\t[3]: \"(745)\";\t[5]: \"(533)\";\t[7]: \"(328)\";\t[9]: \"(159)\";\t[10]: <button> \"Show 7 more\", \"Show more Subject options\";\t[11]: <button> \"Information about this filter group\";\t[13]: \"(1,461)\";\t[15]: \"(357)\";\t[17]: \"(316)\";\t[19]: \"(272)\";\t[24]: \"Coursera Project Network\";\t[25]: \"\u0623\u0633\u0627\u0633\u064a\u0627\u062a \u062a\u062d\u0644\u064a\u0644 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0628\u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0628\u0627\u064a\u062b\u0648\u0646 \u0648\u0628\u0627\u0646\u062f\u0627\", \"\u0623\u0633\u0627\u0633\u064a\u0627\u062a \u062a\u062d\u0644\u064a\u0644 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0628\u0627\u0633\u062a\u062e\u062f\u0627\u0645 \u0628\u0627\u064a\u062b\u0648\u0646 \u0648\u0628\u0627\u0646\u062f\u0627, offered by Coursera Project Network, GUIDED PROJECT\";\t[27]: \"Coursera Project Network\";\t[28]: \"Create Charts and Dashboards Using Microsoft Excel\", \"Create Charts and Dashboards Using Microsoft Excel, offered by Coursera Project Network, GUIDED PROJECT\";\t[29]: \"Free\";\t[31]: \"Coursera Project Network\";\t[32]: \"Gemini for Beginners: Develop a Social Media Marketing Plan\", \"Gemini for Beginners: Develop a Social Media Marketing Plan, offered by Coursera Project Network, GUIDED PROJECT\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The guided projects here focus on building websites with WordPress, Python basics, Excel dashboards, and marketing with Gemini. None are related to astrophysics or advanced astrophysics topics. The visible filters might help narrow down the subject search.\nAction: Click [10]\nConfidence: 0.95\nCompletion: 0.9",
+    "token": ": Click [10",
+    "prob": 0.9999997429904443
+  }
+]

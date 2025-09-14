@@ -1,0 +1,189 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find a course on Coursera about 'Relativity' for beginners. List the course's main topics and the estimated time (in hours) required to complete it.  Please interact with https://www.coursera.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: This is the Coursera homepage with a promotional banner. I need to search for a course about 'Relativity' for beginners, so I should look for a search bar or navigate to where I can input search terms.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.05",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999984116311561
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is still no search bar or area to search for courses visible. To find a course about 'Relativity', I need to keep scrolling down or locate the search function, which is commonly found at the top or further down on the homepage.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.1",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Featured courses and career skills sections are visible, but there is still no search box. To find a course specifically about 'Relativity,' I need to continue looking for the search functionality.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.15",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search bar (\"Search by keyword\") is now visible. I should type \"Relativity\" in the search box to look for relevant beginner courses on this topic.\nAction: Type 2; Relativity\nConfidence: 1.0\nCompletion: 0.2",
+    "token": ": Type 2; Relativity",
+    "prob": 0.9957581377110936
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I have typed \"Relativity\" in the search box, but I should click the \"Search\" button to apply the search and display relevant courses.\nAction: Click 3\nConfidence: 0.98\nCompletion: 0.25",
+    "token": ": Click ",
+    "prob": 0.9999999354624522
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results shown are not related to 'Relativity.' The courses listed are about Leadership and Manufacturing Technology. I need to scroll down to see if there are any relevant 'Relativity' courses, ideally for beginners.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.3",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: None of the courses visible are related to 'Relativity.' I should keep scrolling down to find any course on Relativity, ideally for beginners.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.35",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I have reached the end of the course listings, and none of the visible results are related to 'Relativity.' It appears there are no beginner-level courses about 'Relativity' in the current search results.\nAction: Scroll WINDOW; up\nConfidence: 0.9\nCompletion: 0.4",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.822772722731109
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search results still show only unrelated courses (\"Advances in Manufacturing Technology,\" \"Introduction to Digital Epistemology,\" \"Expedite \u2013 Skills for Industry Microcredential\"). There is no sign of any course about 'Relativity.' It's possible that my current search is too narrow, or there may not be a specific 'Relativity' course for beginners in these results. I should try a more general or alternative keyword, such as \"Physics\" or \"Einstein,\" to find suitable content.\nAction: Type 2; Einstein relativity beginner\nConfidence: 0.85\nCompletion: 0.45",
+    "token": ": Type 2; Einstein relativity beginner",
+    "prob": 0.7745032609236798
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The element I tried to type in is not a textbox, so I cannot enter a new search keyword here. I need to scroll up to try to locate the main search bar at the top of the page, where I previously typed \"Relativity.\"\nAction: Scroll WINDOW; up\nConfidence: 0.97\nCompletion: 0.45",
+    "token": ": Scroll WINDOW; up",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search box (element 2) can be edited, and the search button (element 4) can be used to start a new search. I should clear the previous query and enter a new keyword, like \"Einstein relativity beginner\", to try to find more relevant courses.\nAction: Type 2; Einstein relativity beginner\nConfidence: 0.98\nCompletion: 0.5",
+    "token": ": Type 2; Einstein relativity beginner",
+    "prob": 0.9999994056685685
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The new search has returned different results, but none mention relativity directly in their titles. The course \"Question Reality! Science, philosophy, a search for meaning\" may potentially cover relativity. I should scroll down to check for more relevant results, as the current visible courses are only partially related.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.55",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The course \"Understanding Modern Physics I: Relativity and Cosmology\" (element 2) is specifically about relativity and is marked as suitable for beginners. I should click on this course to view its main topics and estimated completion time.\nAction: Click 2\nConfidence: 1.0\nCompletion: 0.7",
+    "token": ": Click ",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The course \"Understanding Modern Physics I: Relativity and Cosmology\" is clearly intended for beginners and directly related to relativity. To provide information about its main topics and estimated completion time, I need to view more details by clicking on this course entry.\nAction: Click 2\nConfidence: 1.0\nCompletion: 0.75",
+    "token": ": Click ",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The course titled \"Understanding Modern Physics I: Relativity and Cosmology\" is the most relevant beginner course about relativity. To list its main topics and estimated completion time, I need to view the course details by clicking on this course.\nAction: Click 2\nConfidence: 1.0\nCompletion: 0.8",
+    "token": ": Click ",
+    "prob": 1.0
+  }
+]

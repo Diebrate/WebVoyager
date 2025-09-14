@@ -1,0 +1,189 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find an Intermediate-level online course on Coursera about 'Blockchain Technology' which lasts between 1 to 4 weeks, and is provided by a well-known institution. Also, note the course's main goals and the instructor's name.  Please interact with https://www.coursera.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I am currently viewing a promotional banner on Coursera's homepage without access to any search or navigation functionality related to courses. In order to search for an \"Intermediate-level online course on Blockchain Technology\" and apply filters, I need to scroll down to find a search bar or explore menu options.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.05",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999964418141966
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I still don't see a search bar or way to directly navigate to courses. I need to scroll further down to locate the search function or categories for browsing online courses.\nAction: Scroll WINDOW; down\nConfidence: 0.98\nCompletion: 0.08",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is a section featuring some highlighted courses with institutions and levels listed, but none are related to \"Blockchain Technology.\" There is a \"Show 8 more\" button, which may reveal more course options or navigation options to find the needed course. I should click it to reveal additional courses or options.\nAction: Click [14]\nConfidence: 0.93\nCompletion: 0.10",
+    "token": ": Click [14",
+    "prob": 0.9999974483231012
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: More courses are now visible, but none mention \"Blockchain Technology\" or appear directly relevant. There still isn't a search feature in view. Scrolling further down may reveal either more course options or potentially a search bar or navigation area for targeted searches.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.12",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999225549432
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Scrolling revealed more courses, but still none are related to \"Blockchain Technology.\" There is no visible search bar or category/filter options specific to blockchain. Continuing to scroll down may reveal a search bar or navigation links that can help narrow down to relevant courses.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.15",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I see a search bar labeled \"Search by keyword\" at the bottom of the screenshot. This is the right tool to find courses specifically about \"Blockchain Technology.\" I should type \"Blockchain Technology\" into the search textbox to begin the search.\nAction: Type [9]; Blockchain Technology\nConfidence: 0.99\nCompletion: 0.20",
+    "token": ": Type [9]; Blockchain Technology",
+    "prob": 0.9999999106239129
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I have entered \"Blockchain Technology\" in the search box but haven't yet executed the search. I should now click the \"Search\" button to display relevant courses.\nAction: Click [10]\nConfidence: 1.0\nCompletion: 0.25",
+    "token": ": Click [10",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The interface remains unchanged after entering the search term, indicating that I may need to click the \"Search\" button on the right side of the textbox to trigger the search functionality and get relevant course results.\nAction: Click [11]\nConfidence: 0.99\nCompletion: 0.27",
+    "token": ": Click [11",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The course listings have not updated and still show unrelated content. It may be necessary to scroll down to see if any new or relevant course results have loaded in response to the search.\nAction: Scroll WINDOW; down\nConfidence: 0.97\nCompletion: 0.30",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.999997076553062
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The first course listed, \"Blockchain\" by University at Buffalo, is an intermediate-level course provided by a well-known institution and matches the subject criteria. To check its duration (1 to 4 weeks), course goals, and instructor name, I need to view the detailed course page.\nAction: Click [7]\nConfidence: 0.99\nCompletion: 0.60",
+    "token": ": Click [7",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screen is still displaying the course list. I need to click on the \"Blockchain\" course by University at Buffalo (element 7) to get detailed information about the course duration, main goals, and instructor.\nAction: Click [7]\nConfidence: 0.99\nCompletion: 0.65",
+    "token": ": Click [7",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The interface is unchanged and still shows the course list. It is possible the click did not register previously. I will click on the \"Blockchain\" course by University at Buffalo (element 7) again to access the details for duration, goals, and instructor.\nAction: Click [7]\nConfidence: 0.97\nCompletion: 0.67",
+    "token": ": Click [7",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[1]: <button> \"Business\", \"domainName, add to search\";\t[2]: <button> \"Computer Science\", \"domainName, add to search\";\t[3]: <button> \"Data Science\", \"domainName, add to search\";\t[4]: <button> \"Health\", \"domainName, add to search\";\t[5]: <button> \"Information Technology\", \"domainName, add to search\";\t[6]: <button> \"Arts and Humanities\", \"domainName, add to search\";\t[7]: \"BlockchainUniversity at BuffaloSpecializationFilled StarFilled StarFilled StarFilled StarHalf Filled StarRated 4.6 out of five stars. 8990 reviews4.6(8,990)Intermediate LevelIntermediate\", \"Blockchain\";\t[8]: \"Building DApps In Ethereum BlockchainEDUCBASpecializationFilled StarFilled StarFilled StarFilled StarFilled StarRated 4.9 out of five stars. 140 reviews4.9(140)Beginner LevelBeginner\", \"Building DApps In Ethereum Blockchain\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The interface has not changed and is displaying the same course list. It seems I may need to scroll down to find more information or another clickable link to access the detailed course page for \"Blockchain\" by University at Buffalo.\nAction: Scroll WINDOW; down\nConfidence: 0.85\nCompletion: 0.68",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999995321443933
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[1]: \"Blockchain Applications in FintechINSEADCourseBeginner LevelBeginner\", \"Blockchain Applications in Fintech\";\t[2]: \"Blockchain RevolutionINSEADSpecializationFilled StarFilled StarFilled StarFilled StarHalf Filled StarRated 4.7 out of five stars. 3049 reviews4.7(3,049)Beginner LevelBeginner\", \"Blockchain Revolution\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The detailed listing for the \"Blockchain\" course by University at Buffalo is not visible yet; only beginner-level INSEAD courses are shown. I should scroll back up to try to interact with the intermediate-level course (element 7) directly.\nAction: Scroll WINDOW; up\nConfidence: 0.85\nCompletion: 0.69",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999995083036837
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[1]: <button> \"Business\", \"domainName, add to search\";\t[2]: <button> \"Computer Science\", \"domainName, add to search\";\t[3]: <button> \"Data Science\", \"domainName, add to search\";\t[4]: <button> \"Health\", \"domainName, add to search\";\t[5]: <button> \"Information Technology\", \"domainName, add to search\";\t[6]: <button> \"Arts and Humanities\", \"domainName, add to search\";\t[7]: \"BlockchainUniversity at BuffaloSpecializationFilled StarFilled StarFilled StarFilled StarHalf Filled StarRated 4.6 out of five stars. 8990 reviews4.6(8,990)Intermediate LevelIntermediate\", \"Blockchain\";\t[8]: \"Building DApps In Ethereum BlockchainEDUCBASpecializationFilled StarFilled StarFilled StarFilled StarFilled StarRated 4.9 out of five stars. 140 reviews4.9(140)Beginner LevelBeginner\", \"Building DApps In Ethereum Blockchain\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Blockchain\" course by University at Buffalo (element 7) is again visible. This is the intermediate-level course from a well-known institution. To get duration, goals, and instructor, I should click on this course entry to enter the detailed course page.\nAction: Click [7]\nConfidence: 0.98\nCompletion: 0.75",
+    "token": ": Click [7",
+    "prob": 1.0
+  }
+]

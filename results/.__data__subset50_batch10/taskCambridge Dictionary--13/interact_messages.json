@@ -1,0 +1,139 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find one word, one phase and one idiom related to euphoria in Cambridge Dictionary.  Please interact with https://dictionary.cambridge.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To start the search for content related to \"euphoria\", I need to enter the word \"euphoria\" into the search box. The textbox is labeled [14] and the search button is [17], so I will type \"euphoria\" in [14].\nAction: Type [14]; euphoria\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Type [14]; euphoria",
+    "prob": 0.9999995189548554
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search included extraneous text (\"euphoriaConfidence%3A 1.0\") likely due to a previous step error. I need to clear the search box and enter just \"euphoria\" to get the correct results.\nAction: Type [14]; euphoria\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Type [14]; euphoria",
+    "prob": 0.9999999553119544
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The incorrect query remains in the search box due to previous steps. I need to delete the content in the search box [14] and type only \"euphoria\" before clicking search [17].\nAction: Type [14]; euphoria\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Type [14]; euphoria",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search box [14] is now empty, indicating it is ready for input. I need to enter \"euphoria\" into the search box and initiate the correct search without extraneous text.\nAction: Type [14]; euphoria\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Type [14]; euphoria",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search box is ready for input but I have not executed the search yet. After typing \"euphoria,\" I need to click the search button [17] to perform the search and see the results.\nAction: Click [17]\nConfidence: 1.0\nCompletion: 0.15",
+    "token": ": Click [17",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The page has returned to the main Cambridge Dictionary search interface. The search box [14] is empty, so I need to type \"euphoria\" in it in order to search for the word, phrase, and idiom related to euphoria.\nAction: Type [14]; euphoria\nConfidence: 1.0\nCompletion: 0.15",
+    "token": ": Type [14]; euphoria",
+    "prob": 0.999999757362079
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search for \"euphoria\" was successful. The entry provides a word (\"euphoria\") and likely related phrases and idioms. I see the phrase \"state of euphoria\" [32]. Next, I need to look for an idiom in the context of euphoria, which may require scrolling to see more examples or idiomatic uses.\nAction: Scroll [WINDOW]; down\nConfidence: 0.95\nCompletion: 0.4",
+    "token": ": Scroll [WINDOW]; down",
+    "prob": 0.9240277766988881
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Toggle menu /dictionary/english/euphoria\";\t[1]: \"Dictionary\";\t[2]: \"Translate\";\t[3]: \"Grammar\";\t[4]: \"Thesaurus\";\t[5]: \"+Plus\";\t[6]: \"facebook\";\t[7]: \"instagram\";\t[8]: \"x\";\t[10]: \"Log in\";\t[11]: \"Sign up\";\t[12]: <button> \"globeEnglish (UK)chevron-down\";\t[14]: \"Fewer examples\";\t[15]: \"initial\";\t[16]: \"contract\";\t[17]: \"wore\";\t[18]: \"realized\";\t[19]: \"work\";\t[20]: \"turned\";\t[21]: \"dismay\";\t[22]: \"colleagues\";\t[23]: \"began\";\t[24]: \"suspect\";\t[25]: \"experimental\";\t[26]: \"results\";\t[27]: \"faked\";\t[28]: \"victorious\";\t[29]: \"team\";\t[30]: \"returned\";\t[31]: \"wave\";\t[32]: \"national\";\t[34]: \"SMART Vocabulary: related words and phrases\";\t[35]: \"Cambridge Advanced Learner's Dictionary & Thesaurus\";\t[38]: \"All\";\t[39]: \"state of euphoria\";\t[40]: \"See all meanings\";\t[42]: \"Idioms and phrases\";\t[43]: \"Facebook\";\t[44]: \"X\";\t[45]: <button> \"list-ulContents\";\t[46]: \"English\";\t[47]: \"American\";\t[48]: \"Examples\";\t[49]: <button> \"To toparrow-circle-o-up\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The section \"Idioms and phrases\" [42] suggests that idioms related to \"euphoria\" might be listed if I click or navigate there. This is likely where I will find a suitable idiom to answer the task.\nAction: Click [42]\nConfidence: 0.99\nCompletion: 0.7",
+    "token": ": Click [42",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Toggle menu /dictionary/english/euphoria\";\t[1]: \"Dictionary\";\t[2]: \"Translate\";\t[3]: \"Grammar\";\t[4]: \"Thesaurus\";\t[5]: \"+Plus\";\t[6]: \"facebook\";\t[7]: \"instagram\";\t[8]: \"x\";\t[10]: \"Log in\";\t[11]: \"Sign up\";\t[12]: <button> \"globeEnglish (UK)chevron-down\";\t[14]: \"Fewer examples\";\t[15]: \"initial\";\t[16]: \"contract\";\t[17]: \"wore\";\t[18]: \"realized\";\t[19]: \"work\";\t[20]: \"turned\";\t[21]: \"dismay\";\t[22]: \"colleagues\";\t[23]: \"began\";\t[24]: \"suspect\";\t[25]: \"experimental\";\t[26]: \"results\";\t[27]: \"faked\";\t[28]: \"victorious\";\t[29]: \"team\";\t[30]: \"returned\";\t[31]: \"wave\";\t[32]: \"national\";\t[34]: \"SMART Vocabulary: related words and phrases\";\t[35]: \"Cambridge Advanced Learner's Dictionary & Thesaurus\";\t[38]: \"All\";\t[39]: \"state of euphoria\";\t[40]: \"See all meanings\";\t[42]: \"Idioms and phrases\";\t[43]: \"state of euphoria\";\t[44]: \"See all idioms and phrases\";\t[45]: <button> \"list-ulContents\";\t[46]: \"English\";\t[47]: \"American\";\t[48]: \"Examples\";\t[49]: <button> \"To toparrow-circle-o-up\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Idioms and phrases\" section [42] seems to list only \"state of euphoria\" [43], which appears to be treated as both a phrase and (per label [44]) possibly an idiom. To confirm, I can check \"See all idioms and phrases\" [44] for any additional idioms related to euphoria.\nAction: Click [44]\nConfidence: 0.95\nCompletion: 0.8",
+    "token": ": Click [44",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Toggle menu /search/english/euphoria/idiom\";\t[1]: \"Dictionary\";\t[2]: \"Translate\";\t[3]: \"Grammar\";\t[4]: \"Thesaurus\";\t[5]: \"+Plus\";\t[6]: \"facebook\";\t[7]: \"instagram\";\t[8]: \"x\";\t[10]: \"Log in\";\t[11]: \"Sign up\";\t[12]: <button> \"globeEnglish (UK)chevron-down\";\t[14]: <input> \"\";\t[15]: <button> \"close1\";\t[16]: <button> \"EnglishChoose a dictionary\";\t[17]: <button> \"search\";\t[18]: \"English\u2013French\";\t[19]: \"state of euphoria\";\t[20]: <button> \"Go to +Plus\";\t[21]: <button> \"Log in\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The only idiom or phrase listed related to \"euphoria\" is \"state of euphoria\" according to the \"Idioms and phrases\" section [19]. Therefore, \"euphoria\" (word), \"state of euphoria\" (phrase), and \"state of euphoria\" (idiom) are the best possible matches from the Cambridge Dictionary.\nAction: ANSWER; \nWord: euphoria  \nPhrase: state of euphoria  \nIdiom: state of euphoria\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; \nWord: euphoria  \nPhrase: state of euphoria  \nIdiom: state of euphoria",
+    "prob": 0.8732306550864732
+  }
+]

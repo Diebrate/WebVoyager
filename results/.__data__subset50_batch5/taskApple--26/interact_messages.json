@@ -1,0 +1,149 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find the maximum video recording resolution supported by the latest iPad mini on the Apple website.  Please interact with https://www.apple.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find the maximum video recording resolution for the latest iPad mini, I should navigate to the iPad section on the Apple website.\nAction: Click [5]\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Click [5",
+    "prob": 0.999999713189551
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find the information about the iPad mini, I need to go to its specific product page. Clicking \"iPad mini\" should provide details or links to its specifications.\nAction: Click [19]\nConfidence: 1.0\nCompletion: 0.2",
+    "token": ": Click [19",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find the maximum video recording resolution, I need to view the technical specifications for the iPad mini. The \"Tech Specs\" section will have this information.\nAction: Click [19]\nConfidence: 1.0\nCompletion: 0.4",
+    "token": ": Click [19",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current screenshot only shows color and storage options for the iPad mini under Tech Specs. I need to scroll down to see more technical information, such as camera specifications.\nAction: Scroll WINDOW; down\nConfidence: 1.0\nCompletion: 0.4",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9986578273588943
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current section shows size and weight specifications. I need to scroll down further to reach the camera or video recording specifications.\nAction: Scroll WINDOW; down\nConfidence: 1.0\nCompletion: 0.4",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current visible information is about buttons and connectors, not camera or video recording specifications. I still need to scroll down to reach the camera/video section.\nAction: Scroll WINDOW; down\nConfidence: 1.0\nCompletion: 0.5",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: This section lists the box contents and not the device's camera or video recording specifications. I need to scroll down further to find this information.\nAction: Scroll WINDOW; down\nConfidence: 1.0\nCompletion: 0.5",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999998897552761
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current section details the display specifications, not camera or video resolution. I need to scroll further to get to the camera and video recording specifications.\nAction: Scroll WINDOW; down\nConfidence: 1.0\nCompletion: 0.5",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.999998435471885
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"iPad\u00a0mini\";\t[1]: \"Overview\";\t[2]: \"Why iPad\";\t[3]: \"Tech Specs\";\t[4]: \"Buy iPad mini\";\t[5]: \"Wide color (P3)\";\t[6]: \"True\u00a0Tone\";\t[7]: \"Fingerprint-resistant oleophobic coating\";\t[8]: \"Fully laminated\";\t[9]: \"Antireflective coating\";\t[10]: \"500 nits brightness\";\t[11]: \"Supports\u00a0Apple\u00a0Pencil\u00a0Pro\";\t[12]: \"Supports Apple\u00a0Pencil (USB\u2011C)\";\t[13]: \"Apple\u00a0Pencil hover\";\t[14]: \"A17\u00a0Pro chip\";\t[15]: \"6-core CPU with 2 performance cores and 4 efficiency cores\";\t[16]: \"5-core GPU\";\t[17]: \"16-core Neural\u00a0Engine\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current information is about the chip and pencil support. We still haven't reached the camera or video recording specifications section, so more scrolling is needed.\nAction: Scroll WINDOW; down\nConfidence: 1.0\nCompletion: 0.5",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999987454008672
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"iPad\u00a0mini\";\t[1]: \"Overview\";\t[2]: \"Why iPad\";\t[3]: \"Tech Specs\";\t[4]: \"Buy iPad mini\";\t[5]: \"16-core Neural\u00a0Engine\";\t[6]: \"\u25ca\u25ca\u25ca\", \"Footnote \u25ca\u25ca\u25ca symbol\";\t[7]: \"Learn more about Apple\u00a0Intelligence\";\t[8]: \"12MP Wide camera, \u0192/1.8 aperture\";\t[9]: \"Digital zoom up to 5x\";\t[10]: \"Five\u2011element lens\";\t[11]: \"True\u00a0Tone flash\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The camera specifications section has been reached. However, only details about the camera (not video recording resolution) are visible. Need to scroll a bit further to find specific information on video recording.\nAction: Scroll WINDOW; down\nConfidence: 1.0\nCompletion: 0.7",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999991030115255
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"iPad\u00a0mini\";\t[1]: \"Overview\";\t[2]: \"Why iPad\";\t[3]: \"Tech Specs\";\t[4]: \"Buy iPad mini\";\t[5]: \"True\u00a0Tone flash\";\t[6]: \"Autofocus with Focus Pixels\";\t[7]: \"Panorama (up to 63MP)\";\t[8]: \"Smart HDR 4\";\t[9]: \"Wide color capture for photos and Live\u00a0Photos\";\t[10]: \"Advanced red-eye correction\";\t[11]: \"Photo geotagging\";\t[12]: \"Auto image stabilization\";\t[13]: \"Burst mode\";\t[14]: \"Image formats captured: HEIF and JPEG\";\t[15]: \"4K video recording at 24 fps, 25 fps, 30 fps, or 60 fps\";\t[16]: \"1080p HD video recording at 25 fps, 30 fps, or 60 fps\";\t[17]: \"720p HD video recording at 30 fps\";\t[18]: \"True\u00a0Tone flash\";\t[19]: \"Slo\u2011mo video support for 1080p at 120 fps or 240 fps\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The relevant \"Video Recording\" specifications section is now visible. The specification \"4K video recording at 24 fps, 25 fps, 30 fps, or 60 fps\" under [15] indicates the maximum video recording resolution supported.\nAction: ANSWER; The maximum video recording resolution supported by the latest iPad mini is 4K at up to 60 fps.\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; The maximum video recording resolution supported by the latest iPad mini is 4K at up to 60 fps",
+    "prob": 0.8998205973490427
+  }
+]

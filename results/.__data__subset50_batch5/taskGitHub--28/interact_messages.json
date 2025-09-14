@@ -1,0 +1,79 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Identify the most starred JavaScript repositories on GitHub that were created after 2023-12-29.  Please interact with https://github.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To search for the most starred JavaScript repositories created after 2023-12-29, I need to use the search functionality on GitHub. The search or jump to... field (label [10]) is the correct starting point.\nAction: Click [10]\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Click [10",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"GitHub Universe 2025\";\t[1]: \"Register now\";\t[2]: <button> \"Close\";\t[3]: <input> \"\";\t[4]: \"Enterprise Learn More\";\t[5]: \"Security Learn More\";\t[6]: \"Copilot Learn More\";\t[7]: \"Pricing Learn More\";\t[8]: \"Search syntax tips\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search input box (label [3]) is now in focus, ready for typing. I need to enter a search query to find JavaScript repositories created after 2023-12-29, and sort them by stars. The correct search syntax is: \"language:JavaScript created:>2023-12-29 sort:stars\".\nAction: Type [3]; language:JavaScript created:>2023-12-29 sort:stars\nConfidence: 1.0\nCompletion: 0.2",
+    "token": ": Type [3]; language:JavaScript created:>2023-12-29 sort:stars",
+    "prob": 0.9999999247970529
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Platform\";\t[2]: <button> \"Solutions\";\t[3]: <button> \"Resources\";\t[4]: <button> \"Open Source\";\t[5]: <button> \"Enterprise\";\t[6]: \"Pricing\";\t[7]: <button> \"language:JavaScript created:>2023-12-29 sort:stars\", \"Search or jump to\u2026\";\t[8]: \"Sign in\";\t[9]: \"Sign up\";\t[10]: <button> \"\";\t[11]: \"Code...\u00a0(...)results\";\t[12]: \"Repositories8.2M\u00a0(8.2M)results\";\t[13]: \"Issues2M\u00a0(2M)results\";\t[14]: \"Pull requests14M\u00a0(14M)results\";\t[15]: \"Discussions1M\u00a0(1M)results\";\t[16]: \"Users1M\u00a0(1M)results\";\t[17]: <button> \"More\";\t[19]: \"HTML\";\t[20]: \"JavaScript\";\t[21]: \"Python\";\t[22]: \"TypeScript\";\t[23]: \"Java\";\t[24]: \"Jupyter Notebook\";\t[25]: \"CSS\";\t[26]: <button> \"Sort by: Best match\";\t[27]: <button> \"Open column options\";\t[28]: \"Jackywine/Bella\";\t[29]: \"JavaScript\";\t[30]: \"6k\", \"5974 stars\";\t[31]: \"Updated on Jul 29\";\t[32]: \"Star\";\t[33]: \"Lunakepio/Mario-Kart-3.js\";\t[34]: \"JavaScript\";\t[35]: \"4.5k\", \"4545 stars\";\t[36]: \"Updated on May 29\";\t[37]: \"Star\";\t[38]: \"tiagozip/cap\";\t[39]: \"javascript\";\t[40]: \"web\";\t[41]: \"captcha\";\t[42]: \"anti-bot\";\t[43]: \"antispam\";\t[44]: \"JavaScript\";\t[45]: \"4.1k\", \"4142 stars\";\t[46]: \"Updated 5 days ago\";\t[47]: \"Star\";\t[48]: \"openai/openai-realtime-console\";\t[49]: \"Star\";\t[50]: \"Explore sponsorable projects\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search results for JavaScript repositories created after 2023-12-29, sorted by stars, are visible. The most starred repositories and their star counts can be seen in the results list.\nAction: Scroll [WINDOW]; down\nConfidence: 0.9\nCompletion: 0.8",
+    "token": ": Scroll [WINDOW]; down",
+    "prob": 0.9994689801188295
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Code...\u00a0(...)results\";\t[1]: \"Repositories8.2M\u00a0(8.2M)results\";\t[2]: \"Issues2M\u00a0(2M)results\";\t[3]: \"Pull requests14M\u00a0(14M)results\";\t[4]: \"Discussions1M\u00a0(1M)results\";\t[5]: \"Users1M\u00a0(1M)results\";\t[6]: <button> \"More\";\t[8]: \"HTML\";\t[9]: \"JavaScript\";\t[10]: \"Python\";\t[11]: \"TypeScript\";\t[12]: \"Java\";\t[13]: \"Jupyter Notebook\";\t[14]: \"CSS\";\t[15]: \"C#\";\t[16]: \"C++\";\t[17]: \"antispam\";\t[18]: \"JavaScript\";\t[19]: \"4.1k\", \"4142 stars\";\t[20]: \"Updated 5 days ago\";\t[21]: \"openai/openai-realtime-console\";\t[22]: \"react\";\t[23]: \"nodejs\";\t[24]: \"javascript\";\t[25]: \"typescript\";\t[26]: \"openai\";\t[27]: \"JavaScript\";\t[28]: \"3.4k\", \"3432 stars\";\t[29]: \"Updated 16 days ago\";\t[30]: \"Star\";\t[31]: \"Wei-Shaw/claude-relay-service\";\t[32]: \"claude\";\t[33]: \"claude-api\";\t[34]: \"gemini-cli\";\t[35]: \"claude-code\";\t[36]: \"codex-cli\";\t[37]: \"JavaScript\";\t[38]: \"3.1k\", \"3085 stars\";\t[39]: \"Updated yesterday\";\t[40]: \"Star\";\t[41]: \"Kalabasa/htmz\";\t[42]: \"Star\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The required information about the most starred JavaScript repositories created after 2023-12-29 is available. The top repositories are:\n1. Jackywine/Bella (5974 stars)\n2. Lunakepio/Mario-Kart-3.js (4545 stars)\n3. tiagozip/cap (4142 stars)\n4. openai/openai-realtime-console (3432 stars)\n5. Wei-Shaw/claude-relay-service (3085 stars)\n\nI can now construct the final answer.\nAction: ANSWER; \n1. Jackywine/Bella \u2013 5974 stars\n2. Lunakepio/Mario-Kart-3.js \u2013 4545 stars\n3. tiagozip/cap \u2013 4142 stars\n4. openai/openai-realtime-console \u2013 3432 stars\n5. Wei-Shaw/claude-relay-service \u2013 3085 stars\n\nThese are the most starred JavaScript repositories on GitHub created after 2023-12-29.\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; \n1. Jackywine/Bella \u2013 5974 stars\n2. Lunakepio/Mario-Kart-3.js \u2013 4545 stars\n3. tiagozip/cap \u2013 4142 stars\n4. openai/openai-realtime-console \u2013 3432 stars\n5. Wei-Shaw/claude-relay-service \u2013 3085 stars\n\nThese are the most starred JavaScript repositories on GitHub created after 2023-12-29",
+    "prob": 0.9449756466360256
+  }
+]

@@ -1,0 +1,189 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find a one-way business class flight from Buenos Aires to Amsterdam on March 10, 2024, and provide the details of the flight with the shortest duration.  Please interact with https://www.google.com/travel/flights/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I need to set the departure airport (\"Where from?\") to Buenos Aires. The current value is \"Toronto.\" The relevant input field is labeled [13].\nAction: Type [13]; Buenos Aires\nConfidence: 0.99\nCompletion: 0.10",
+    "token": ": Type [13]; Buenos Aires",
+    "prob": 0.999995710846014
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The focus is on the \"Where from?\" field, currently set to \"Toronto.\" I need to replace \"Toronto\" with \"Buenos Aires\" for the correct search.\nAction: Type [13]; Buenos Aires\nConfidence: 1.0\nCompletion: 0.15",
+    "token": ": Type [13]; Buenos Aires",
+    "prob": 0.9999999723410504
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I need to specify the destination (\"Where to?\") as Amsterdam to match the task requirements. The field for destination is labeled [14].\nAction: Type [14]; Amsterdam\nConfidence: 1.0\nCompletion: 0.25",
+    "token": ": Type [14]; Amsterdam",
+    "prob": 0.9999999677312256
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The flights shown are for round trips and for dates in November, not March 10, 2024. I need to change the departure date to March 10, 2024. The field to change the departure date was seen as [15] in earlier screenshots.\nAction: Click [15]\nConfidence: 0.99\nCompletion: 0.30",
+    "token": ": Click [15",
+    "prob": 0.9999769567538532
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The visible elements do not show the date picker, which is still set for November 20-27. I need to access the date picker to select March 10, 2024, and look for a \"one-way\" ticket instead of a round trip. The previous field to change dates is not currently visible, and there might be an option after scrolling up.\nAction: Scroll WINDOW; up\nConfidence: 0.85\nCompletion: 0.35",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999996275072829
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The date picker or search options for filtering flight type (e.g., one-way, business) are still not visible. I need to scroll up further to reveal those filter/search settings.\nAction: Scroll WINDOW; up\nConfidence: 0.90\nCompletion: 0.37",
+    "token": ": Scroll WINDOW; up",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The date and trip type options are still not visible above the flight result section. I should try accessing the main \"Flights\" menu, which often provides the option to change search parameters like date, class, and trip type.\nAction: Click [4]\nConfidence: 0.85\nCompletion: 0.38",
+    "token": ": Click [4",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The interface to change trip type (\"Round trip\") and cabin class (\"Economy\") is visible. I need to change \"Round trip\" to \"One-way\" to match the task requirements.\nAction: Click [10]\nConfidence: 0.99\nCompletion: 0.40",
+    "token": ": Click [10",
+    "prob": 0.9972409456026432
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The menu to select trip type is open and displays \"One way\" as an option. Selecting this will change the search to one-way flights, which matches the task requirements.\nAction: Click [12]\nConfidence: 1.0\nCompletion: 0.45",
+    "token": ": Click [12",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The one-way option is now selected. The departure date is currently set to \"Thu, Nov 20.\" I need to update the departure date to March 10, 2024, to match the task requirements. The date input field is labeled [16].\nAction: Click [16]\nConfidence: 1.0\nCompletion: 0.50",
+    "token": ": Click [16",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The calendar is currently displaying November and December. I need to move forward several months to reach March 2024 to select March 10.\nAction: Click [77]\nConfidence: 1.0\nCompletion: 0.55",
+    "token": ": Click [77",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The calendar has advanced too far (showing December and January 2026). I need to go back several months to reach March 2024. I should repeatedly click the \"Previous\" button to navigate back.\nAction: Click [77]\nConfidence: 1.0\nCompletion: 0.58",
+    "token": ": Click [77",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: <button> \"Travel\";\t[3]: <button> \"Explore\";\t[4]: <button> \"Flights\";\t[5]: <button> \"Hotels\";\t[6]: <button> \"Vacation rentals\";\t[7]: <button> \"Change appearance\";\t[9]: \"Sign in\";\t[10]: <input> \"Departure\";\t[11]: <button> \"\";\t[12]: <button> \"\";\t[14]: <button> \"Reset\";\t[15]: \"1$970\";\t[16]: \"2$970\";\t[17]: \"3$881\";\t[18]: \"4$881\";\t[19]: \"5$881\";\t[20]: \"6$881\";\t[21]: \"7$881\";\t[22]: \"8$881\";\t[23]: \"9$881\";\t[24]: \"10$881\";\t[25]: \"11$881\";\t[26]: \"12$783\";\t[27]: \"13$766\";\t[28]: \"14$783\";\t[29]: \"15$783\";\t[30]: \"16$766\";\t[31]: \"17$766\";\t[32]: \"18$766\";\t[33]: \"19$766\";\t[34]: \"20$766\";\t[35]: \"21$766\";\t[36]: \"22$783\";\t[37]: \"23$766\";\t[38]: \"24$783\";\t[39]: \"25$766\";\t[40]: \"26$766\";\t[41]: \"27$783\";\t[42]: \"28$783\";\t[43]: \"29$783\";\t[44]: \"30$836\";\t[45]: \"1$970\";\t[46]: \"2$881\";\t[47]: \"3$836\";\t[48]: \"4$970\";\t[49]: \"5$970\";\t[50]: \"6$1,090\";\t[51]: \"7$1,100\";\t[52]: \"8$1,090\";\t[53]: \"9$1,090\";\t[54]: \"10$1,090\";\t[55]: \"11$1,090\";\t[56]: \"12$1,380\";\t[57]: \"13$1,270\";\t[58]: \"14$1,490\";\t[59]: \"15$1,390\";\t[60]: \"16$1,490\";\t[61]: \"17$1,490\";\t[62]: \"18$1,590\";\t[63]: \"19$1,800\";\t[64]: \"20$2,010\";\t[65]: \"21$1,790\";\t[66]: \"22$1,800\";\t[67]: \"23$1,400\";\t[68]: \"24$1,460\";\t[69]: \"25$1,380\";\t[70]: \"26$2,050\";\t[71]: \"27$2,060\";\t[72]: \"28$1,800\";\t[73]: \"29$1,950\";\t[74]: \"30$2,060\";\t[75]: \"31$2,060\";\t[76]: <button> \"Previous\";\t[77]: <button> \"Next\";\t[78]: <button> \"Done\", \"Done. Search for one-way flights, departing on November 20, 2025\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The calendar is still showing November and December. I need to keep moving backward to get to March 2024. I should continue clicking \"Previous.\"\nAction: Click [76]\nConfidence: 1.0\nCompletion: 0.60",
+    "token": ": Click [76",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: <button> \"Travel\";\t[3]: <button> \"Explore\";\t[4]: <button> \"Flights\";\t[5]: <button> \"Hotels\";\t[6]: <button> \"Vacation rentals\";\t[7]: <button> \"Change appearance\";\t[9]: \"Sign in\";\t[10]: <input> \"Departure\";\t[11]: <button> \"\";\t[12]: <button> \"\";\t[14]: <button> \"Reset\";\t[15]: \"1$1,090\";\t[16]: \"2$1,090\";\t[17]: \"3$1,380\";\t[18]: \"4$1,370\";\t[19]: \"5$1,490\";\t[20]: \"6$1,270\";\t[21]: \"7$1,280\";\t[22]: \"8$1,090\";\t[23]: \"9$1,090\";\t[24]: \"10$1,260\";\t[25]: \"11$1,280\";\t[26]: \"12$1,380\";\t[27]: \"13$1,100\";\t[28]: \"14$1,090\";\t[29]: \"15$1,090\";\t[30]: \"16$1,120\";\t[31]: \"17$1,120\";\t[32]: \"18$1,110\";\t[33]: \"19$1,120\";\t[34]: \"20$1,100\";\t[35]: \"21$1,090\";\t[36]: \"22$1,090\";\t[37]: \"23$1,090\";\t[38]: \"24$1,090\";\t[39]: \"25$1,100\";\t[40]: \"26$1,020\";\t[41]: \"27$1,020\";\t[42]: \"28$970\";\t[43]: \"29$970\";\t[44]: \"30$970\";\t[45]: \"31$982\";\t[46]: \"1$970\";\t[47]: \"2$970\";\t[48]: \"3$881\";\t[49]: \"4$881\";\t[50]: \"5$881\";\t[51]: \"6$881\";\t[52]: \"7$881\";\t[53]: \"8$881\";\t[54]: \"9$881\";\t[55]: \"10$881\";\t[56]: \"11$881\";\t[57]: \"12$783\";\t[58]: \"13$766\";\t[59]: \"14$783\";\t[60]: \"15$783\";\t[61]: \"16$766\";\t[62]: \"17$766\";\t[63]: \"18$766\";\t[64]: \"19$766\";\t[65]: \"20$766\";\t[66]: \"21$766\";\t[67]: \"22$783\";\t[68]: \"23$766\";\t[69]: \"24$783\";\t[70]: \"25$766\";\t[71]: \"26$766\";\t[72]: \"27$783\";\t[73]: \"28$783\";\t[74]: \"29$783\";\t[75]: \"30$836\";\t[76]: <button> \"Previous\";\t[77]: <button> \"Next\";\t[78]: <button> \"Done\", \"Done. Search for one-way flights, departing on November 20, 2025\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The calendar is currently showing October and November. I need to go further back to reach March 2024, so I should continue to click the \"Previous\" button.\nAction: Click [76]\nConfidence: 1.0\nCompletion: 0.62",
+    "token": ": Click [76",
+    "prob": 0.9999999515968387
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: <button> \"Travel\";\t[3]: <button> \"Explore\";\t[4]: <button> \"Flights\";\t[5]: <button> \"Hotels\";\t[6]: <button> \"Vacation rentals\";\t[7]: <button> \"Change appearance\";\t[9]: \"Sign in\";\t[10]: <input> \"Departure\";\t[11]: <button> \"\";\t[12]: <button> \"\";\t[14]: <button> \"Reset\";\t[15]: \"1\";\t[16]: \"2\";\t[17]: \"3\";\t[18]: \"4\";\t[19]: \"5\";\t[20]: \"6\";\t[21]: \"7\";\t[22]: \"8\";\t[23]: \"9\";\t[24]: \"10\";\t[25]: \"11\";\t[26]: \"12\";\t[27]: \"13$3,090\";\t[28]: \"14$2,440\";\t[29]: \"15$2,250\";\t[30]: \"16$2,130\";\t[31]: \"17$1,820\";\t[32]: \"18$1,590\";\t[33]: \"19$1,590\";\t[34]: \"20$1,290\";\t[35]: \"21$1,610\";\t[36]: \"22$1,090\";\t[37]: \"23$1,090\";\t[38]: \"24$1,090\";\t[39]: \"25$1,090\";\t[40]: \"26$1,620\";\t[41]: \"27$1,590\";\t[42]: \"28$1,090\";\t[43]: \"29$1,090\";\t[44]: \"30$1,090\";\t[45]: \"1$1,090\";\t[46]: \"2$1,090\";\t[47]: \"3$1,380\";\t[48]: \"4$1,370\";\t[49]: \"5$1,490\";\t[50]: \"6$1,270\";\t[51]: \"7$1,280\";\t[52]: \"8$1,090\";\t[53]: \"9$1,090\";\t[54]: \"10$1,260\";\t[55]: \"11$1,280\";\t[56]: \"12$1,380\";\t[57]: \"13$1,100\";\t[58]: \"14$1,090\";\t[59]: \"15$1,090\";\t[60]: \"16$1,120\";\t[61]: \"17$1,120\";\t[62]: \"18$1,110\";\t[63]: \"19$1,120\";\t[64]: \"20$1,100\";\t[65]: \"21$1,090\";\t[66]: \"22$1,090\";\t[67]: \"23$1,090\";\t[68]: \"24$1,090\";\t[69]: \"25$1,100\";\t[70]: \"26$1,020\";\t[71]: \"27$1,020\";\t[72]: \"28$970\";\t[73]: \"29$970\";\t[74]: \"30$970\";\t[75]: \"31$982\";\t[76]: <button> \"Next\";\t[77]: <button> \"Done\", \"Done. Search for one-way flights, departing on November 20, 2025\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The calendar is displaying September and October. I need to keep selecting \"Previous\" to navigate to March 2024.\nAction: Click [76]\nConfidence: 1.0\nCompletion: 0.65",
+    "token": ": Click [76",
+    "prob": 1.0
+  }
+]

@@ -9,5 +9,6 @@ do
         --temperature 1 \
         --fix_box_color \
         --api_model gpt-4.1-2025-04-14 \
-        --seed ${i} > logs/subset_batch_${i}.log &
+        --seed ${i} > logs/subset_batch_${i}.log \
+        --batch_id ${i} &
 done

@@ -1,0 +1,69 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now given a task: Browse online degrees section on Coursera and list 3 Bachelor's degree programmes.  Please interact with https://www.coursera.org/ and get the answer. \nObservation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Open Navigation Menu\";\t[2]: <button> \"Search\";\t[3]: \"Save on Coursera Plus\";\t[4]: \"Save on Teams\";\t[5]: \"We collaborate with 350+ leading universities and companies\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The task is to browse the online degrees section and list 3 Bachelor's degree programmes. The current screenshot shows the Coursera homepage without direct access to the online degrees section. Using the search function is likely the best way to reach the \"online degrees\" section or locate bachelor's degrees.\nAction: Click [2]\nConfidence: 0.95\nCompletion: 0.1",
+    "token": ": Click [2",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <input> \"What do you want to learn?\";\t[3]: \"IBM Generative AI Engineering\";\t[4]: \"IBM\";\t[6]: \"IBM AI Developer\";\t[7]: \"IBM\";\t[9]: \"Google Data Analytics\";\t[10]: \"Google\";\t[12]: \"machine learning\";\t[14]: \"ai for everyone\";\t[16]: \"artificial intelligence\";\t[17]: <button> \"Take a short quiz\";\t[18]: <button> \"Close Search Auto Complete\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search textbox is now available at the top, allowing specific queries. To directly access the online bachelor's degree programs, I should enter a relevant search term such as \"bachelor's degree\" or \"online bachelor's degree.\"\nAction: Type [1]; bachelor's degree\nConfidence: 0.98\nCompletion: 0.2",
+    "token": ": Type [1]; bachelor's degree",
+    "prob": 0.9558356023437793
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Open Navigation Menu\";\t[3]: <input> \"What do you want to learn?\";\t[5]: \"(50)\";\t[7]: \"(18)\";\t[9]: \"(14)\";\t[11]: \"(13)\";\t[12]: <button> \"Show 6 more\", \"Show more Subject options\";\t[13]: <button> \"Information about this filter group\";\t[15]: \"(85)\";\t[17]: \"(56)\";\t[19]: \"(53)\";\t[21]: \"(52)\";\t[22]: \"Sort by: Best Match\";\t[24]: \"University of London\";\t[25]: \"Bachelor of Science in Computer Science\", \"Bachelor of Science in Computer Science, offered by University of London, DEGREE\";\t[27]: \"IIT Guwahati\";\t[28]: \"Bachelor of Science in Data Science & AI\", \"Bachelor of Science in Data Science & AI, offered by IIT Guwahati, DEGREE\";\t[30]: \"University of North Texas\";\t[31]: \"Bachelor of Science in General Business\", \"Bachelor of Science in General Business, offered by University of North Texas, DEGREE\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results page shows several Bachelor's degree programs. The first three visible are: \n1. Bachelor of Science in Computer Science (University of London)\n2. Bachelor of Science in Data Science & AI (IIT Guwahati)\n3. Bachelor of Science in General Business (University of North Texas).\nI am now ready to compile the answer.\nAction: ANSWER; 1. Bachelor of Science in Computer Science (University of London) 2. Bachelor of Science in Data Science & AI (IIT Guwahati) 3. Bachelor of Science in General Business (University of North Texas)\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; 1. Bachelor of Science in Computer Science (University of London) 2. Bachelor of Science in Data Science & AI (IIT Guwahati) 3. Bachelor of Science in General Business (University of North Texas",
+    "prob": 0.9762032265453948
+  }
+]

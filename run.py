@@ -252,6 +252,7 @@ def main():
     parser.add_argument("--window_width", type=int, default=1024)
     parser.add_argument("--window_height", type=int, default=768)  # for headless mode, there is no address bar
     parser.add_argument("--fix_box_color", action='store_true')
+    parser.add_argument("--batch_id", type=int, default=0)
 
     args = parser.parse_args()
 
@@ -264,8 +265,9 @@ def main():
     options = driver_config(args)
 
     # Save Result file
-    current_time = time.strftime("%Y%m%d_%H_%M_%S", time.localtime())
-    result_dir = os.path.join(args.output_dir, current_time)
+    # current_time = time.strftime("%Y%m%d_%H_%M_%S", time.localtime())
+    output_name = f"{args.test_file.split('/')[-1].replace('.jsonl', '')}_batch{args.batch_id}"
+    result_dir = os.path.join(args.output_dir, output_name)
     os.makedirs(result_dir, exist_ok=True)
 
     # Load tasks

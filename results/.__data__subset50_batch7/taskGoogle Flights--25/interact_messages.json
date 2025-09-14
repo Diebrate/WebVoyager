@@ -1,0 +1,189 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find a one-way business class flight from Buenos Aires to Amsterdam on March 10, 2024, and provide the details of the flight with the shortest duration.  Please interact with https://www.google.com/travel/flights/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To start searching for flights from Buenos Aires to Amsterdam, I need to enter the departure city in the \"Where from?\" field. The current city is set to \"Toronto\", so I need to change that to \"Buenos Aires.\"\nAction: Type 13; Buenos Aires\nConfidence: 1\nCompletion: 0.2",
+    "token": ": Type 13; Buenos Aires",
+    "prob": 0.7148061945576486
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current departure city is \"Toronto,\" but it needs to be changed to \"Buenos Aires\" for this search. The textbox for departure city is selected and ready for input.\nAction: Type 13; Buenos Aires\nConfidence: 1\nCompletion: 0.2",
+    "token": ": Type 13; Buenos Aires",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Where from?\" field now shows \"Buenos Aires.\" Next, I need to set the destination to \"Amsterdam\" by entering it in the \"Where to?\" field (currently empty).\nAction: Type 14; Amsterdam\nConfidence: 1\nCompletion: 0.3",
+    "token": ": Type 14; Amsterdam",
+    "prob": 0.9999999081293959
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The destination is now set to Amsterdam, and flight options from Buenos Aires are showing. However, the displayed results are for round-trip flights and show dates in November, not the required one-way flight on March 10, 2024. I need to adjust the trip type and the date.\nAction: Click 10 (to change trip details\u2014typically this opens trip/date settings)\nConfidence: 0.9\nCompletion: 0.4",
+    "token": ": Click 10 (to change trip details\u2014typically this opens trip/date settings",
+    "prob": 0.19175011052768443
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The previous action navigated back to the main flight search screen. I need to change the trip type from \"Round trip\" to \"One-way\" to match the task requirements before setting the correct date.\nAction: Click 12\nConfidence: 1\nCompletion: 0.5",
+    "token": ": Click 12",
+    "prob": 0.9972418569419457
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The dropdown to select class is open. I need to set the search to \"Business\" class, which is visible in the list.\nAction: Click 15\nConfidence: 1\nCompletion: 0.6",
+    "token": ": Click 15",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The class has been changed to \"Business.\" The current results are still not matching the requested date (March 10, 2024). I need to adjust the trip type from \"Round trip\" to \"One-way\" and then select the correct date.\nAction: Click 12 (to open the trip type and set \"One-way\")\nConfidence: 1\nCompletion: 0.65",
+    "token": ": Click 12 (to open the trip type and set \"One-way\")\n",
+    "prob": 0.4804541828476365
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The travel class dropdown is currently open and \"Business\" is highlighted. It is necessary to close this dropdown and make sure the trip type (currently set to \"Round trip\") is changed to \"One-way\" so the correct date can be set.\nAction: Click 10 (to change trip type from \"Round trip\" to \"One-way\")\nConfidence: 1\nCompletion: 0.75",
+    "token": ": Click 10 (to change trip type from \"Round trip\" to \"One-way\")\n",
+    "prob": 0.8566738428468408
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The trip type dropdown is now open. To meet the requirement of a one-way flight, I need to select the \"One way\" option.\nAction: Click 12\nConfidence: 1\nCompletion: 0.8",
+    "token": ": Click 12",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The trip is now set to \"One way\" and the class is \"Business.\" However, the current search date is not correct; I need to select March 10, 2024 for the flight. The current date selector is labeled \"Trip in the next 6 months.\"\nAction: Click 15 (to open the date selection calendar and set the correct flight date)\nConfidence: 1\nCompletion: 0.85",
+    "token": ": Click 15 (to open the date selection calendar and set the correct flight date",
+    "prob": 0.5650160175367683
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The filters dialog for \"Stops\" is currently open, but to select the flight date, I need to close this dialog. This will let me interact with the date picker to select March 10, 2024.\nAction: Click 19 (Close dialog)\nConfidence: 1\nCompletion: 0.87",
+    "token": ": Click 19 (Close dialog",
+    "prob": 0.91050418254251
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The page is back to the main flight search, and all filter dialogs are closed. To proceed, I need to set the correct flight date by interacting with the date selector (\"Trip in the next 6 months\") so I can choose March 10, 2024.\nAction: Click 15 (this is the button for \"All filters\" and likely to open the date menu right above it)\nConfidence: 0.8\nCompletion: 0.88",
+    "token": ": Click 15 (this is the button for \"All filters\" and likely to open the date menu right above it",
+    "prob": 0.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: <button> \"Travel\";\t[3]: <button> \"Explore\";\t[4]: <button> \"Flights\";\t[5]: <button> \"Hotels\";\t[6]: <button> \"Vacation rentals\";\t[7]: <button> \"Change appearance\";\t[9]: \"Sign in\";\t[11]: <button> \"1\", \"1 passenger\";\t[13]: <input> \"Where from?\";\t[14]: <input> \"Where to?\";\t[15]: <button> \"All filters (1)\", \"All filters, 1 filter selected\";\t[16]: <button> \"Flights only\", \"Flights only, Travel mode, Selected\";\t[17]: <button> \"Clear Travel mode\";\t[18]: <button> \"Stops\", \"Stops, Not selected\";\t[19]: <button> \"Close dialog\";\t[21]: \"Any number of stops\";\t[23]: \"Nonstop only\";\t[25]: \"1 stop or fewer\";\t[27]: \"2 stops or fewer\";\t[28]: <button> \"Clear all\";\t[29]: \"ParisCA$3,291\";\t[30]: \"New YorkCA$2,158\";\t[31]: \"CA$7,474\", \"7474 Canadian dollars\";\t[33]: \"Rome\";\t[35]: \"DubaiCA$4,028\";\t[39]: \"Lisbon\";\t[43]: \"Miami\";\t[47]: \"Budapest\";\t[48]: \"Cape TownCA$5,228\";\t[52]: \"Mauritius IslandCA$8,485\";\t[54]: \"Marrakesh\";\t[56]: \"Mumbai\";\t[58]: \"Jaipur\";\t[59]: \"Rio de JaneiroCA$1,581\";\t[60]: \"Johannesburg\";\t[61]: \"LimaCA$838\";\t[65]: \"UshuaiaCA$2,399\";\t[66]: \"AstanaCA$8,661\";\t[69]: \"Iceland\";\t[70]: \"Costa Rica\";\t[71]: \"Egypt\";\t[72]: \"Sri Lanka\";\t[73]: \"Argentina\";\t[74]: <button> \"Map camera controls\";\t[75]: <button> \"Zoom in\";\t[76]: <button> \"Zoom out\";\t[77]: <button> \"Keyboard shortcuts\";\t[78]: \"Terms\", \"Terms (opens in new tab)\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Filters\" dialog for stops has popped up again, which prevents selecting the flight date. I need to close this dialog before selecting the travel date for March 10, 2024.\nAction: Click 19 (to close the Filters dialog)\nConfidence: 1\nCompletion: 0.88",
+    "token": ": Click 19 (to close the Filters dialog",
+    "prob": 0.6587810931295064
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: <button> \"Travel\";\t[3]: <button> \"Explore\";\t[4]: <button> \"Flights\";\t[5]: <button> \"Hotels\";\t[6]: <button> \"Vacation rentals\";\t[7]: <button> \"Change appearance\";\t[9]: \"Sign in\";\t[11]: <button> \"1\", \"1 passenger\";\t[13]: <input> \"Where from?\";\t[14]: <input> \"Where to?\";\t[15]: <button> \"All filters (1)\", \"All filters, 1 filter selected\";\t[16]: <button> \"Flights only\", \"Flights only, Travel mode, Selected\";\t[17]: <button> \"Clear Travel mode\";\t[18]: <button> \"Stops\", \"Stops, Not selected\";\t[19]: <button> \"About these results\";\t[20]: \"ParisWed, Nov 192 stops34 hr 35 minCA$3,291\";\t[21]: \"LondonThu, Nov 201 stop18 hr 40 minCA$3,759\";\t[22]: <button> \"\u200bEnglish (United States)\";\t[23]: <button> \"\u200bCAD\";\t[24]: \"ParisCA$3,291\";\t[25]: \"New YorkCA$2,158\";\t[26]: \"CA$7,474\", \"7474 Canadian dollars\";\t[28]: \"Rome\";\t[30]: \"DubaiCA$4,028\";\t[34]: \"Lisbon\";\t[38]: \"Miami\";\t[42]: \"Budapest\";\t[43]: \"Cape TownCA$5,228\";\t[47]: \"Mauritius IslandCA$8,485\";\t[49]: \"Marrakesh\";\t[51]: \"Mumbai\";\t[53]: \"Jaipur\";\t[54]: \"Rio de JaneiroCA$1,581\";\t[55]: \"Johannesburg\";\t[56]: \"LimaCA$838\";\t[60]: \"UshuaiaCA$2,399\";\t[61]: \"AstanaCA$8,661\";\t[64]: \"Iceland\";\t[65]: \"Costa Rica\";\t[66]: \"Egypt\";\t[67]: \"Sri Lanka\";\t[68]: \"Argentina\";\t[69]: <button> \"Map camera controls\";\t[70]: <button> \"Zoom in\";\t[71]: <button> \"Zoom out\";\t[72]: <button> \"Keyboard shortcuts\";\t[73]: \"Terms\", \"Terms (opens in new tab)\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The filters dialog is now closed and the main interface is visible again. To proceed with selecting March 10, 2024, I need to open the date selection/calendar, currently described as \"Trip in the next 6 months.\"\nAction: Click 15 (the area just above it where the travel date selector is visible is not specifically labeled, but \"All filters\" is below the trip date field, so clicking 15 is the closest actionable area to trigger calendar selection)\nConfidence: 0.9\nCompletion: 0.89",
+    "token": ": Click 15 (the area just above it where the travel date selector is visible is not specifically labeled, but \"All filters\" is below the trip date field, so clicking 15 is the closest actionable area to trigger calendar selection",
+    "prob": 1.1334267458990257e-93
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: <button> \"Travel\";\t[3]: <button> \"Explore\";\t[4]: <button> \"Flights\";\t[5]: <button> \"Hotels\";\t[6]: <button> \"Vacation rentals\";\t[7]: <button> \"Change appearance\";\t[9]: \"Sign in\";\t[11]: <button> \"1\", \"1 passenger\";\t[13]: <input> \"Where from?\";\t[14]: <input> \"Where to?\";\t[15]: <button> \"All filters (1)\", \"All filters, 1 filter selected\";\t[16]: <button> \"Flights only\", \"Flights only, Travel mode, Selected\";\t[17]: <button> \"Clear Travel mode\";\t[18]: <button> \"Stops\", \"Stops, Not selected\";\t[19]: <button> \"Close dialog\";\t[21]: \"Any number of stops\";\t[23]: \"Nonstop only\";\t[25]: \"1 stop or fewer\";\t[27]: \"2 stops or fewer\";\t[28]: <button> \"Clear all\";\t[29]: \"ParisCA$3,291\";\t[30]: \"New YorkCA$2,158\";\t[31]: \"CA$7,474\", \"7474 Canadian dollars\";\t[33]: \"Rome\";\t[35]: \"DubaiCA$4,028\";\t[39]: \"Lisbon\";\t[43]: \"Miami\";\t[47]: \"Budapest\";\t[48]: \"Cape TownCA$5,228\";\t[52]: \"Mauritius IslandCA$8,485\";\t[54]: \"Marrakesh\";\t[56]: \"Mumbai\";\t[58]: \"Jaipur\";\t[59]: \"Rio de JaneiroCA$1,581\";\t[60]: \"Johannesburg\";\t[61]: \"LimaCA$838\";\t[65]: \"UshuaiaCA$2,399\";\t[66]: \"AstanaCA$8,661\";\t[69]: \"Iceland\";\t[70]: \"Costa Rica\";\t[71]: \"Egypt\";\t[72]: \"Sri Lanka\";\t[73]: \"Argentina\";\t[74]: <button> \"Map camera controls\";\t[75]: <button> \"Zoom in\";\t[76]: <button> \"Zoom out\";\t[77]: <button> \"Keyboard shortcuts\";\t[78]: \"Terms\", \"Terms (opens in new tab)\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Filters\" dialog for stops has appeared again, covering the interface and preventing access to the date selection. I need to close this dialog before proceeding to select the travel date.\nAction: Click 19 (to close the Filters dialog)\nConfidence: 1\nCompletion: 0.89",
+    "token": ": Click 19 (to close the Filters dialog",
+    "prob": 0.8016503499955886
+  }
+]
