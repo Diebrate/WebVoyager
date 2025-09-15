@@ -35,7 +35,7 @@ def sample_jsonl(input_file, output_file, sample_size):
     sampled_data = np.random.choice(data, size=sample_size, replace=False)
     save_jsonl(sampled_data, output_file)
 
-def parse_evaluation_log_to_jsonl(log_path, output_jsonl_path):
+def parse_evaluation_log_to_jsonl(log_path, output_jsonl_path, return_results=False):
     with open(log_path, 'r') as f:
         lines = f.readlines()
 
@@ -71,6 +71,8 @@ def parse_evaluation_log_to_jsonl(log_path, output_jsonl_path):
             task_id = None
             success = None
 
+    if return_results:
+        return results
     # Write to JSONL
     with open(output_jsonl_path, 'w') as f:
         for entry in results:
@@ -94,3 +96,25 @@ def extract_confidence_completion(json_path):
             except Exception:
                 continue
     return interactions
+
+def parse_batch_output(batch_name, size, output_jsonl_path):
+    results = []
+    for i in range(1, size + 1):
+        log_path = EVAL_PATH / f"{batch_name}_batch{i}_evaluation.log"
+        if not log_path.exists():
+            continue
+        tmp = parse_evaluation_log_to_jsonl(log_path, None, return_results=True)
+        if not tmp:
+            continue
+        if not results:
+            results = tmp.copy()
+            for res in results:
+                res["success"] = [res["success"]]
+                res["interactions"] = [res["interactions"]]
+            continue
+        for res, entry in zip(results, tmp):
+            res["success"].append(entry["success"])
+            res["interactions"].append(entry["interactions"])
+    with open(output_jsonl_path, 'w') as f:
+        for entry in results:
+            f.write(json.dumps(entry) + '\n')
