@@ -213,7 +213,7 @@ def get_web_element_rect(browser, fix_color=True):
 def extract_information(text):
     patterns = {
         "click": r"Click \[?(\d+)\]?",
-        "type": r"Type \[?(\d+)\]?[; ]+\[?(.[^\]]*)\]?",
+        "type": r"Type \[?(\d+)\]?[; ]+\[?([^\]]*?)(?=(Confidence:|Completion:|$))\]?",
         # "delete_and_type": r"Delete_and_Type \[?(\d+)\]?[; ]+\[?(.[^\]]*)\]?",
         "scroll": r"Scroll \[?(\d+|WINDOW)\]?[; ]+\[?(up|down)\]?",
         "wait": r"^Wait",

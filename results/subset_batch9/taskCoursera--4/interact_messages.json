@@ -1,0 +1,189 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Identify a course or Specialization on Coursera that helps business process management with with a rating 4.7.  Please interact with https://www.coursera.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current screen is showing a promotional banner and does not provide any way to search for courses or specializations related to business process management. I need to dismiss or bypass this promo to proceed to the main page where search functionality will likely be available.\nAction: Click [1]\nConfidence: 0.95\nCompletion: 0.05",
+    "token": ": Click [1",
+    "prob": 0.9992431137337642
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: A sign-up modal is now blocking the screen. In order to access the main Coursera site and search for relevant courses or specializations, I should close this modal.\nAction: Click [0]\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Click [0",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The promotional banner is still visible and obstructing navigation. I need to scroll down to try to access the search or explore functionalities that are likely below this banner.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.15",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9996995344294052
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The promotional section has passed but the search functionality is still not visible. I need to continue scrolling down to find the search bar or explore/menu section to locate courses on business process management.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.2",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999998897552761
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There are featured specializations being displayed, but none of them are directly related to business process management. There is a \"Show 8 more\" button, which could reveal additional courses or specializations that may be relevant.\nAction: Click [13]\nConfidence: 0.9\nCompletion: 0.25",
+    "token": ": Click [13",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: More courses are partially visible at the bottom of the screenshot, indicating that there may be additional relevant content if I scroll down further. None of the fully-visible courses focus on business process management. I need to scroll down to see the rest of the available options.\nAction: Scroll WINDOW; down\nConfidence: 0.98\nCompletion: 0.3",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999374367368
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The visible courses still do not focus on business process management, nor do they display course ratings. To efficiently find a specialization related to business process management and verify its rating, searching directly would be more effective than browsing. I need to look for a search bar or icon.\nAction: Scroll WINDOW; up\nConfidence: 0.85\nCompletion: 0.35",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999807696732254
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I am back to the area showing featured specializations, but still cannot see a search bar or way to directly search for business process management. The search or navigation bar is likely further up the page.\nAction: Scroll WINDOW; up\nConfidence: 0.9\nCompletion: 0.35",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999992937371864
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The top navigation or search feature is still not visible, but we are closer to the top of the page, as evidenced by the Coursera logo and promotional details. The very top section may contain a searchable interface.\nAction: Scroll WINDOW; up\nConfidence: 0.9\nCompletion: 0.38",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999996513479953
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I am now at the very top of the page. The search bar is typically present in the site header on Coursera, but it appears to be hidden or not loaded. The promotional banner is still taking up the full width, and I cannot see navigation or search options. I need to scroll down a little to see if these options appear under the banner.\nAction: Scroll WINDOW; down\nConfidence: 0.85\nCompletion: 0.39",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999995083036837
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The visible section is still an informational/promotional area. There is no search bar or navigation menu present. To efficiently locate a course or specialization, I need to access the main site search or menu typically found at the top. I should continue scrolling up just in case the very top navigation is still out of view.\nAction: Scroll WINDOW; up\nConfidence: 0.8\nCompletion: 0.39",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999995321443933
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I am once again at the promotional banner at the very top of the page. No navigation or search bar is visible. It appears that the main navigation/search may be hidden behind the promo banner or only appears after scrolling past it.\nAction: Scroll WINDOW; down\nConfidence: 0.85\nCompletion: 0.39",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: This section is still promotional/introductory content for Coursera, advertising partners and benefits but not offering any course search, filter, or business process management content. I need to scroll further down to reach relevant sections or site navigation.\nAction: Scroll WINDOW; down\nConfidence: 0.88\nCompletion: 0.39",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[1]: <button> \"Save now\";\t[3]: \"University of Michigan\";\t[4]: \"Python for Everybody\", \"Python for Everybody, offered by University of Michigan, SPECIALIZATION\";\t[6]: \"Vanderbilt University\";\t[7]: \"Prompt Engineering\", \"Prompt Engineering, offered by Vanderbilt University, SPECIALIZATION\";\t[9]: \"AI skills\";\t[11]: \"IBM\";\t[12]: \"IBM Data Science\", \"IBM Data Science, offered by IBM, PROFESSIONAL CERTIFICATE\";\t[14]: \"AI skills\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Currently, the visible courses and specializations featured (\"Python for Everybody,\" \"Prompt Engineering,\" \"IBM Data Science\") are not related to business process management. No filters or search bar is visible yet, so I need to continue scrolling down to either spot a relevant course or find the platform's main navigation/search functionality.\nAction: Scroll WINDOW; down\nConfidence: 0.9\nCompletion: 0.4",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[2]: \"Coursera\";\t[3]: \"Navigating Generative AI: A CEO Playbook\", \"Navigating Generative AI: A CEO Playbook, offered by Coursera , COURSE\";\t[5]: \"Google\";\t[6]: \"Google Project Management:\", \"Google Project Management:, offered by Google, PROFESSIONAL CERTIFICATE\";\t[8]: \"University of Colorado Boulder\";\t[9]: \"The Structured Query Language (SQL)\", \"The Structured Query Language (SQL), offered by University of Colorado Boulder, COURSE\";\t[11]: \"AI skills\";\t[13]: \"Microsoft\";\t[14]: \"Microsoft Cybersecurity Analyst\", \"Microsoft Cybersecurity Analyst, offered by Microsoft, PROFESSIONAL CERTIFICATE\";\t[16]: \"IBM\";\t[17]: \"Generative AI Fundamentals\", \"Generative AI Fundamentals, offered by IBM, SPECIALIZATION\";\t[19]: \"University of Illinois Urbana-Champaign\";\t[20]: \"Leading Teams: Developing as a Leader\", \"Leading Teams: Developing as a Leader, offered by University of Illinois Urbana-Champaign, COURSE\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The courses and specializations displayed (\"Navigating Generative AI,\" \"Google Project Management,\" \"The Structured Query Language,\" \"Microsoft Cybersecurity Analyst,\" \"Generative AI Fundamentals,\" \"Leading Teams: Developing as a Leader\") are still not related to business process management, nor do they display ratings. No search or filter options are visible in this section. To continue searching for a relevant business process management course or specialization, I should scroll down further.\nAction: Scroll WINDOW; down\nConfidence: 0.9\nCompletion: 0.42",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999997228701816
+  }
+]

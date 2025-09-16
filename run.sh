@@ -1,6 +1,6 @@
 #!/bin/bash
 nohup python -u run.py \
-    --test_file ./data/subset50.jsonl \
+    --test_file ./data/tasks_test.jsonl \
     --headless \
     --max_iter 15 \
     --max_attached_imgs 3 \

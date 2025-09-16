@@ -1,0 +1,159 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Identify a course or Specialization on Coursera that helps business process management with with a rating 4.7.  Please interact with https://www.coursera.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current page is a promotional landing page for Coursera Plus and does not show the search or navigation for courses. I need to access the main page or a search function to look for a business process management course/Specialization with a 4.7 rating.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.1",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9998466662702034
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current section provides general information about Coursera's partners and the benefits of their courses, but there is no search or filtering functionality visible yet. I need access to the search bar or menu to look for a business process management course with the required rating.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.15",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I see a selection of featured courses and specializations, but nothing related to business process management is currently visible. Clicking \"Show 8 more\" may reveal additional courses or specializations that could include business process management options.\nAction: Click [13]\nConfidence: 0.9\nCompletion: 0.2",
+    "token": ": Click [13",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: More course cards are now visible, but I still don't see anything explicitly related to business process management. Scrolling further down may reveal additional relevant courses or specializations.\nAction: Scroll WINDOW; down\nConfidence: 0.9\nCompletion: 0.25",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Several new courses and specializations are visible, but none mention business process management or show ratings. More scrolling is needed to find a relevant course or specialization with a 4.7 rating.\nAction: Scroll WINDOW; down\nConfidence: 0.9\nCompletion: 0.3",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The option to \"Show 8 more\" is available again, which could reveal additional courses or specializations. None of the currently visible options are related to business process management. Clicking \"Show 8 more\" is the best next step.\nAction: Click [7]\nConfidence: 0.95\nCompletion: 0.35",
+    "token": ": Click [7",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: None of the courses or specializations now visible cover business process management. There are more new program cards, but still not the target topic. I should keep scrolling or look for a search/filter function to directly search for business process management courses.\nAction: Scroll WINDOW; down\nConfidence: 0.9\nCompletion: 0.4",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Still none of the visible courses or specializations pertain to business process management, nor do any mention ratings. The approach of scrolling isn't yielding relevant results, and it would be more effective to use a search function (if available) to specifically look for business process management courses with a 4.7 rating.\nAction: Scroll WINDOW; down\nConfidence: 0.85\nCompletion: 0.45",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is now a visible search box (\"Search by keyword\") and a blue search button next to it. Using the search function with keywords like \"business process management\" should quickly yield relevant courses or specializations.\nAction: Type [6]; business process management\nConfidence: 0.99\nCompletion: 0.55",
+    "token": ": Type [6]; business process management",
+    "prob": 0.995255632173558
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[2]: \"University of Michigan\";\t[3]: \"Python 3 Programming\", \"Python 3 Programming, offered by University of Michigan, SPECIALIZATION\";\t[4]: <button> \"Show 5 more\", \"Show 5 more \";\t[5]: <input> \"Search by keyword\";\t[6]: <button> \"Clear search\";\t[7]: <button> \"Search\";\t[8]: <button> \"Business\", \"domainName, add to search\";\t[9]: <button> \"Computer Science\", \"domainName, add to search\";\t[10]: <button> \"Data Science\", \"domainName, add to search\";\t[11]: <button> \"Health\", \"domainName, add to search\";\t[12]: <button> \"Information Technology\", \"domainName, add to search\";\t[13]: <button> \"Arts and Humanities\", \"domainName, add to search\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search term \"business process management\" has been entered. To initiate the search and see relevant courses or specializations, the next step is to click the blue search button.\nAction: Click [7]\nConfidence: 0.99\nCompletion: 0.65",
+    "token": ": Click [7",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[2]: \"University of Michigan\";\t[3]: \"Python 3 Programming\", \"Python 3 Programming, offered by University of Michigan, SPECIALIZATION\";\t[4]: <button> \"Show 5 more\", \"Show 5 more \";\t[6]: <input> \"Search by keyword\";\t[7]: <button> \"Clear search\";\t[8]: <button> \"Search\";\t[9]: <button> \"Business\", \"domainName, add to search\";\t[10]: <button> \"Computer Science\", \"domainName, add to search\";\t[11]: <button> \"Data Science\", \"domainName, add to search\";\t[12]: <button> \"Health\", \"domainName, add to search\";\t[13]: <button> \"Information Technology\", \"domainName, add to search\";\t[14]: <button> \"Arts and Humanities\", \"domainName, add to search\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The input \"business process management\" remains in the search box and the results section indicates there are four relevant results, but the matching course/specialization cards are not visible yet. I need to scroll down to view the displayed search results and look for the rating (4.7) information.\nAction: Scroll WINDOW; down\nConfidence: 0.98\nCompletion: 0.7",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999998987142101
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[2]: \"Operations and Process ManagementIllinois TechCourseFilled StarFilled StarFilled StarFilled StarFilled StarRated 4.8 out of five stars. 171 reviews4.8(171)Intermediate LevelIntermediate\", \"Operations and Process Management\";\t[3]: \"Business Process ModellingStarweaverCourseFilled StarFilled StarFilled StarFilled StarHalf Filled StarRated 4.7 out of five stars. 99 reviews4.7(99)Beginner LevelBeginner\", \"Business Process Modelling\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Business Process Modelling\" course by Starweaver is visible. It is directly related to business process management and has a rating of 4.7 out of 5, which matches the task requirement. I have identified the required course.\nAction: ANSWER; The course that helps with business process management and has a 4.7 rating on Coursera is \"Business Process Modelling\" by Starweaver.\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; The course that helps with business process management and has a 4.7 rating on Coursera is \"Business Process Modelling\" by Starweaver",
+    "prob": 0.853308184211688
+  }
+]
