@@ -9,9 +9,9 @@
   },
   {
     "role": "assistant",
-    "content": "Thought: To find three new and popular open-source NLP models for language translation, I should filter the models by the \"Translation\" task on Huggingface. The menu on the right offers a \"Translation\" button under the \"Natural Language Processing\" section, which should take me directly to the relevant models list.\nAction: Click [Translation]\nConfidence: 0.99\nCompletion: 0.2",
-    "token": ": Click [Translation",
-    "prob": 0.9999459966287266
+    "content": "Thought: To find three new and popular open-source NLP models for language translation released in the past month, I need to browse models specifically for the \"Translation\" task. There is a clear \"Translation\" button under \"Natural Language Processing\" (center right). Clicking this will filter for translation models. I will explore this filter first. \nAction: Click [Translation] (no label, but it is located next to the \u201cZero-Shot Classification\u201d button in the NLP section near the middle right)\nConfidence: 0.95\nCompletion: 0.2",
+    "token": ": Click [Translation] (no label, but it is located next to the \u201cZero-Shot Classification\u201d button in the NLP section near the middle right",
+    "prob": 0.33350908707509863
   },
   {
     "role": "user",
@@ -19,9 +19,9 @@
   },
   {
     "role": "assistant",
-    "content": "Thought: My previous action was incorrect because the \"Translation\" button does not have a visible numerical label. Instead, I should use the search bar at the top to search for \"translation\" models, which will allow me to apply further filters for recent and popular models.\nAction: Type [1]; translation\nConfidence: 0.98\nCompletion: 0.2",
+    "content": "Thought: Since my previous action was not executable (no numerical label for \"Translation\"), I should use the search functionality to directly search for translation models. The search box labeled [1] allows me to search for relevant models. I will search for \"translation\" to find the most relevant models for language translation.\nAction: Type [1]; translation\nConfidence: 0.95\nCompletion: 0.2",
     "token": ": Type [1]; translation",
-    "prob": 0.9999957633431157
+    "prob": 0.9999998485275722
   },
   {
     "role": "user",
@@ -29,9 +29,9 @@
   },
   {
     "role": "assistant",
-    "content": "Thought: The current page is showing details for a specific model called \"Qwen-Image-Edit,\" which is an image-to-image model, not related to NLP or language translation. I need to go back to the models/search results and use filters (like date and popularity) to find new and popular language translation models that are open-source.\nAction: GoBack\nConfidence: 0.97\nCompletion: 0.2",
+    "content": "Thought: The screenshot shows the page for the \"Tri-1.8B-Translation\" model by Trillion Labs, marked as \"NEW\" and tagged for translation. This is one qualified new open-source NLP model for language translation. To find two more recent and popular models, I need to go back to the search or model list results.\nAction: GoBack\nConfidence: 0.95\nCompletion: 0.33",
     "token": ": GoBack",
-    "prob": 0.9999679496608235
+    "prob": 1.0
   },
   {
     "role": "user",
@@ -39,16 +39,36 @@
   },
   {
     "role": "assistant",
-    "content": "Thought: I am now on the search results page for \"translation\" models. To find the newest and most popular models, I should click to see all 1844 model results where I can then sort/filter for recent and popular options.\nAction: Click [9]\nConfidence: 0.99\nCompletion: 0.4",
-    "token": ": Click [9",
+    "content": "Thought: The search term \"translation\" has been entered, but the results have not yet been filtered or displayed for translation models. I should proceed by clicking on \"Browse 1M+ models\" [12] to view filtered search results for translation and look for more recent models.\nAction: Click [12]\nConfidence: 0.95\nCompletion: 0.35",
+    "token": ": Click [12",
     "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current results are not specifically filtered for translation models; they show text generation and embedding models. I need to filter by the translation task. There is a \"Tasks\" filter button labeled [12] at the top left, which should allow me to select 'Translation' as the task of interest.\nAction: Click [12]\nConfidence: 0.98\nCompletion: 0.35",
+    "token": ": Click [12",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Tasks\" filter is expanded, displaying various task categories. I need to find and select the \"Translation\" filter under Natural Language Processing, but it's not visible in this screenshot. To locate the translation filter, I should scroll down within the tasks section to reveal more NLP options.\nAction: Scroll [WINDOW]; down\nConfidence: 0.98\nCompletion: 0.4",
+    "token": ": Scroll [WINDOW]; down",
+    "prob": 0.932254767490217
   },
   {
     "role": "user",
     "content": [
       {
         "type": "text",
-        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Hugging Face\";\t[1]: <input> \"\";\t[2]: \"Models\";\t[3]: \"Datasets\";\t[4]: \"Spaces\";\t[5]: \"Docs\";\t[6]: \"Pricing\";\t[7]: <button> \"\";\t[9]: \"Log In\";\t[10]: \"Sign Up\";\t[11]: <button> \"Main\";\t[12]: <button> \"Tasks\";\t[13]: <button> \"Libraries\";\t[14]: <button> \"Languages\";\t[15]: <button> \"Licenses\";\t[16]: <button> \"Other\";\t[17]: \"Text Generation\";\t[18]: \"Any-to-Any\";\t[19]: \"Image-Text-to-Text\";\t[20]: \"Image-to-Text\";\t[21]: \"Image-to-Image\";\t[22]: \"Text-to-Image\";\t[23]: \"Text-to-Video\";\t[24]: \"Text-to-Speech\";\t[25]: <button> \"+ 42\";\t[26]: <button> \"6B\";\t[27]: <button> \"12B\";\t[28]: <button> \"32B\";\t[29]: <button> \"128B\";\t[31]: <button> \"< 1B\";\t[32]: <button> \"> 500B\";\t[33]: \"PyTorch\";\t[35]: \".J { stroke: #dce0df; } .K { stroke-linejoin: round; } JAX\";\t[36]: \"Transformers\";\t[37]: \"Diffusers\";\t[38]: \"Safetensors\";\t[39]: \"ONNX\";\t[40]: \"GGUF\";\t[41]: \"Transformers.js\";\t[42]: \"MLX\";\t[43]: \"Keras\";\t[44]: <button> \"+ 41\";\t[45]: <input> \"\";\t[46]: \"Full-text search\";\t[47]: <button> \"Sort: Trending\";\t[48]: \"trillionlabs/Tri-1.8B-Translation Translation \u2022 2B \u2022 Updated 19 days ago \u2022 929 \u2022 14\";\t[49]: \"NYTK/translation-nllb-200-3.3B-multi12-hungarian Translation \u2022 Updated Jan 23, 2023 \u2022 81 \u2022 4\";\t[50]: \"larryvrh/mt5-translation-ja_zh Translation \u2022 Updated Apr 11, 2023 \u2022 107 \u2022 31\";\t[51]: \"Jour/Translation-Test Updated Nov 30, 2021\";\t[52]: \"NYTK/translation-bart-128-en-hu Translation \u2022 Updated Jan 10, 2023 \u2022 28\";\t[53]: \"NYTK/translation-bart-en-hu Translation \u2022 Updated Jan 23, 2023 \u2022 18 \u2022 1\";"
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Text-to-Image\";\t[1]: \"Image-to-Text\";\t[2]: \"Image-to-Image\";\t[3]: \"Image-to-Video\";\t[4]: \"Unconditional Image Generation\";\t[5]: \"Video Classification\";\t[6]: \"Text-to-Video\";\t[7]: \"Zero-Shot Image Classification\";\t[8]: \"Mask Generation\";\t[9]: \"Zero-Shot Object Detection\";\t[10]: \"Text-to-3D\";\t[11]: \"Image-to-3D\";\t[12]: \"Image Feature Extraction\";\t[13]: \"Keypoint Detection\";\t[14]: \"Video-to-Video\";\t[15]: \"Text Classification\";\t[16]: \"Token Classification\";\t[17]: \"Table Question Answering\";\t[18]: \"Question Answering\";\t[19]: \"Zero-Shot Classification\";\t[20]: \"Translation\";\t[21]: \"Summarization\";\t[22]: \"Feature Extraction\";\t[23]: \"Text Generation\";\t[24]: \"Fill-Mask\";\t[25]: \"Sentence Similarity\";\t[26]: \"Text Ranking\";\t[27]: \"Text-to-Speech\";\t[28]: \"Text-to-Audio\";\t[30]: \"\u2022\";\t[32]: \"\u2022\";\t[33]: \"6 days ago\";\t[34]: \"\u2022\";\t[36]: \"\u2022\";\t[38]: \"\u2022\";\t[40]: \"LLM360/K2-Think Text Generation \u2022 33B \u2022 Updated 3 days ago \u2022 13.3k \u2022 280\";\t[41]: \"tencent/HunyuanImage-2.1 Text-to-Image \u2022 Updated 5 days ago \u2022 5.59k \u2022 \u2022 606\";\t[42]: \"bytedance-research/HuMo Image-to-Video \u2022 Updated about 13 hours ago \u2022 186 \u2022 176\";\t[43]: \"facebook/MobileLLM-R1-950M Text Generation \u2022 0.9B \u2022 Updated 5 days ago \u2022 2.23k \u2022 173\";\t[44]: \"IndexTeam/IndexTTS-2 Updated 9 days ago \u2022 4.92k \u2022 225\";\t[45]: \"google/vaultgemma-1b Text Generation \u2022 1B \u2022 Updated 4 days ago \u2022 1.28k \u2022 136\";\t[46]: \"microsoft/VibeVoice-1.5B Text-to-Speech \u2022 3B \u2022 Updated 16 days ago \u2022 275k \u2022 1.72k\";"
       },
       {
         "type": "image_url",
@@ -60,16 +80,16 @@
   },
   {
     "role": "assistant",
-    "content": "Thought: The models are currently sorted by \"Trending.\" To find the newest models, I need to change the sorting to \"Recently updated\" or \"New\" to identify those released in the past month. The sort button is labeled [47].\nAction: Click [47]\nConfidence: 0.99\nCompletion: 0.5",
-    "token": ": Click [47",
-    "prob": 1.0
+    "content": "Thought: The \"Translation\" filter under Natural Language Processing is now visible in the task filters area. Clicking this button will filter models specifically for the translation task, aligning perfectly with the task requirements.\nAction: Click [21]\nConfidence: 0.99\nCompletion: 0.45",
+    "token": ": Click [21",
+    "prob": 0.9993810701963881
   },
   {
     "role": "user",
     "content": [
       {
         "type": "text",
-        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Hugging Face\";\t[1]: <input> \"\";\t[2]: \"Models\";\t[3]: \"Datasets\";\t[4]: \"Spaces\";\t[5]: \"Docs\";\t[6]: \"Pricing\";\t[7]: <button> \"\";\t[9]: \"Log In\";\t[10]: \"Sign Up\";\t[11]: <button> \"Main\";\t[12]: <button> \"Tasks\";\t[13]: <button> \"Libraries\";\t[14]: <button> \"Languages\";\t[15]: <button> \"Licenses\";\t[16]: <button> \"Other\";\t[17]: \"Text Generation\";\t[18]: \"Any-to-Any\";\t[19]: \"Image-Text-to-Text\";\t[20]: \"Image-to-Text\";\t[21]: \"Image-to-Image\";\t[22]: \"Text-to-Image\";\t[23]: \"Text-to-Video\";\t[24]: \"Text-to-Speech\";\t[25]: <button> \"+ 42\";\t[26]: <button> \"6B\";\t[27]: <button> \"12B\";\t[28]: <button> \"32B\";\t[29]: <button> \"128B\";\t[31]: <button> \"< 1B\";\t[32]: <button> \"> 500B\";\t[33]: \"PyTorch\";\t[35]: \".J { stroke: #dce0df; } .K { stroke-linejoin: round; } JAX\";\t[36]: \"Transformers\";\t[37]: \"Diffusers\";\t[38]: \"Safetensors\";\t[39]: \"ONNX\";\t[40]: \"GGUF\";\t[41]: \"Transformers.js\";\t[42]: \"MLX\";\t[43]: \"Keras\";\t[44]: <button> \"+ 41\";\t[45]: <input> \"\";\t[46]: \"Full-text search\";\t[47]: <button> \"Sort: Trending\";\t[48]: <button> \"Trending\";\t[49]: <button> \"Most likes\";\t[50]: <button> \"Most downloads\";\t[51]: <button> \"Recently created\";\t[52]: <button> \"Recently updated\";\t[53]: \"trillionlabs/Tri-1.8B-Translation Translation \u2022 2B \u2022 Updated 19 days ago \u2022 929 \u2022 14\";\t[54]: \"NYTK/translation-nllb-200-3.3B-multi12-hungarian Translation \u2022 Updated Jan 23, 2023 \u2022 81 \u2022 4\";\t[55]: \"larryvrh/mt5-translation-ja_zh Translation \u2022 Updated Apr 11, 2023 \u2022 107 \u2022 31\";\t[56]: \"Jour/Translation-Test Updated Nov 30, 2021\";\t[57]: \"NYTK/translation-bart-128-en-hu Translation \u2022 Updated Jan 10, 2023 \u2022 28\";\t[58]: \"NYTK/translation-bart-en-hu Translation \u2022 Updated Jan 23, 2023 \u2022 18 \u2022 1\";"
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Text-to-Image\";\t[1]: \"Image-to-Text\";\t[2]: \"Image-to-Image\";\t[3]: \"Image-to-Video\";\t[4]: \"Unconditional Image Generation\";\t[5]: \"Video Classification\";\t[6]: \"Text-to-Video\";\t[7]: \"Zero-Shot Image Classification\";\t[8]: \"Mask Generation\";\t[9]: \"Zero-Shot Object Detection\";\t[10]: \"Text-to-3D\";\t[11]: \"Image-to-3D\";\t[12]: \"Image Feature Extraction\";\t[13]: \"Keypoint Detection\";\t[14]: \"Video-to-Video\";\t[15]: \"Text Classification\";\t[16]: \"Token Classification\";\t[17]: \"Table Question Answering\";\t[18]: \"Question Answering\";\t[19]: \"Zero-Shot Classification\";\t[20]: \"Translation\";\t[21]: \"Summarization\";\t[22]: \"Feature Extraction\";\t[23]: \"Text Generation\";\t[24]: \"Fill-Mask\";\t[25]: \"Sentence Similarity\";\t[26]: \"Text Ranking\";\t[27]: \"Text-to-Speech\";\t[28]: \"Text-to-Audio\";\t[29]: \"HooshvareLab/pn-summary-mt5-base Summarization \u2022 Updated May 5, 2021 \u2022 33 \u2022 5\";\t[30]: \"d0rj/ru-mbart-large-summ Summarization \u2022 0.4B \u2022 Updated Jun 21, 2023 \u2022 30 \u2022 8\";\t[31]: \"Xenova/distilbart-xsum-6-6 Summarization \u2022 Updated Jul 21 \u2022 10 \u2022 1\";\t[32]: \"Falconsai/text_summarization Summarization \u2022 0.1B \u2022 Updated Feb 17, 2024 \u2022 37.4k \u2022 \u2022 253\";\t[33]: \"Wespeaker/wespeaker-voxceleb-resnet34-LM Summarization \u2022 Updated May 6, 2024 \u2022 42 \u2022 6\";\t[34]: \"dnzblgn/Chat-Summarization Summarization \u2022 0.2B \u2022 Updated Oct 8, 2024 \u2022 8 \u2022 1\";\t[35]: \"alig01/mt5-small-sum-de-mit-v1-Q4_K_M-GGUF Summarization \u2022 0.3B \u2022 Updated Jan 30 \u2022 4 \u2022 2\";\t[36]: \"Phonepadith/aidc-llm-laos-10k-gemma-3-12b-it Summarization \u2022 13B \u2022 Updated Aug 15 \u2022 1.21k \u2022 2\";"
       },
       {
         "type": "image_url",
@@ -81,8 +101,8 @@
   },
   {
     "role": "assistant",
-    "content": "Thought: To find new models released in the past month, I should sort the results by \"Recently created.\" This will display the newest models first for selection.\nAction: Click [51]\nConfidence: 0.99\nCompletion: 0.7",
-    "token": ": Click [51",
+    "content": "Thought: The \"Summarization\" filter is currently selected instead of \"Translation\". To find language translation models, I need to click the \"Translation\" button [20] in the Natural Language Processing section, which will display the relevant models.\nAction: Click [20]\nConfidence: 1.0\nCompletion: 0.5",
+    "token": ": Click [20",
     "prob": 1.0
   },
   {
@@ -90,7 +110,7 @@
     "content": [
       {
         "type": "text",
-        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Hugging Face\";\t[1]: <input> \"\";\t[2]: \"Models\";\t[3]: \"Datasets\";\t[4]: \"Spaces\";\t[5]: \"Docs\";\t[6]: \"Pricing\";\t[7]: <button> \"\";\t[9]: \"Log In\";\t[10]: \"Sign Up\";\t[11]: <button> \"Main\";\t[12]: <button> \"Tasks\";\t[13]: <button> \"Libraries\";\t[14]: <button> \"Languages\";\t[15]: <button> \"Licenses\";\t[16]: <button> \"Other\";\t[17]: \"Text Generation\";\t[18]: \"Any-to-Any\";\t[19]: \"Image-Text-to-Text\";\t[20]: \"Image-to-Text\";\t[21]: \"Image-to-Image\";\t[22]: \"Text-to-Image\";\t[23]: \"Text-to-Video\";\t[24]: \"Text-to-Speech\";\t[25]: <button> \"+ 42\";\t[26]: <button> \"6B\";\t[27]: <button> \"12B\";\t[28]: <button> \"32B\";\t[29]: <button> \"128B\";\t[31]: <button> \"< 1B\";\t[32]: <button> \"> 500B\";\t[33]: \"PyTorch\";\t[35]: \".J { stroke: #dce0df; } .K { stroke-linejoin: round; } JAX\";\t[36]: \"Transformers\";\t[37]: \"Diffusers\";\t[38]: \"Safetensors\";\t[39]: \"ONNX\";\t[40]: \"GGUF\";\t[41]: \"Transformers.js\";\t[42]: \"MLX\";\t[43]: \"Keras\";\t[44]: <button> \"+ 41\";\t[45]: <input> \"\";\t[46]: \"Full-text search\";\t[47]: <button> \"Sort: Recently created\";\t[48]: \"ahycl/gemma-3-translation Image-Text-to-Text \u2022 4B \u2022 Updated about 4 hours ago\";\t[49]: \"aixin2024/finetuned-translation-zh-to-en Translation \u2022 0.1B \u2022 Updated about 7 hours ago\";\t[50]: \"autoprogrammer/deepseek_esft_translation_lr5e-4 16B \u2022 Updated about 15 hours ago \u2022 8\";\t[51]: \"autoprogrammer/deepseek_esft_translation_lr3e-4 Updated about 15 hours ago\";\t[52]: \"autoprogrammer/deepseek_esft_translation_lr5e-4_ste 16B \u2022 Updated about 15 hours ago \u2022 9\";\t[53]: \"AndreasX1206/deepseek_esft_translation_lr4e-4_ste Updated about 15 hours ago\";"
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Text-to-Image\";\t[1]: \"Image-to-Text\";\t[2]: \"Image-to-Image\";\t[3]: \"Image-to-Video\";\t[4]: \"Unconditional Image Generation\";\t[5]: \"Video Classification\";\t[6]: \"Text-to-Video\";\t[7]: \"Zero-Shot Image Classification\";\t[8]: \"Mask Generation\";\t[9]: \"Zero-Shot Object Detection\";\t[10]: \"Text-to-3D\";\t[11]: \"Image-to-3D\";\t[12]: \"Image Feature Extraction\";\t[13]: \"Keypoint Detection\";\t[14]: \"Video-to-Video\";\t[15]: \"Text Classification\";\t[16]: \"Token Classification\";\t[17]: \"Table Question Answering\";\t[18]: \"Question Answering\";\t[19]: \"Zero-Shot Classification\";\t[20]: \"Translation\";\t[21]: \"Summarization\";\t[22]: \"Feature Extraction\";\t[23]: \"Text Generation\";\t[24]: \"Fill-Mask\";\t[25]: \"Sentence Similarity\";\t[26]: \"Text Ranking\";\t[27]: \"Text-to-Speech\";\t[28]: \"Text-to-Audio\";\t[29]: \"facebook/nllb-200-distilled-600M Translation \u2022 Updated Feb 14, 2024 \u2022 415k \u2022 746\";\t[30]: \"facebook/nllb-200-3.3B Translation \u2022 Updated Feb 11, 2023 \u2022 41.8k \u2022 364\";\t[31]: \"ModelSpace/GemmaX2-28-9B-v0.1 Translation \u2022 10B \u2022 Updated Mar 21 \u2022 2.63k \u2022 69\";\t[32]: \"trillionlabs/Tri-1.8B-Translation Translation \u2022 2B \u2022 Updated 19 days ago \u2022 929 \u2022 14\";\t[33]: \"yanolja/YanoljaNEXT-Rosetta-20B Translation \u2022 21B \u2022 Updated 13 days ago \u2022 385 \u2022 24\";\t[34]: \"google-t5/t5-base Translation \u2022 0.2B \u2022 Updated Feb 14, 2024 \u2022 1.48M \u2022 \u2022 745\";\t[35]: \"repleeka/eng-tagin-nmt Translation \u2022 0.1B \u2022 Updated 7 days ago \u2022 39 \u2022 2\";\t[36]: \"pfnet/plamo-2-translate Translation \u2022 10B \u2022 Updated Jun 3 \u2022 45.4k \u2022 79\";"
       },
       {
         "type": "image_url",
@@ -102,8 +122,8 @@
   },
   {
     "role": "assistant",
-    "content": "Thought: The page is now sorted by \"Recently created,\" and I see several new language translation models updated within the past 24 hours. To identify three new and popular open-source NLP models for language translation, I need to extract the top three relevant models with translation tasks from this list.\nAction: ANSWER; \n1. ahycl/gemma-3-translation (Image-Text-to-Text, updated ~4 hours ago)\n2. aixin2024/finetuned-translation-zh-to-en (Translation, updated ~7 hours ago)\n3. autoprogrammer/deepseek_esft_translation_lr5e-4 (Translation, updated ~15 hours ago)\n\nThese are the three newest translation models available on Huggingface, showing popularity with recent activity/downloads.\nConfidence: 0.99\nCompletion: 1.0",
-    "token": ": ANSWER; \n1. ahycl/gemma-3-translation (Image-Text-to-Text, updated ~4 hours ago)\n2. aixin2024/finetuned-translation-zh-to-en (Translation, updated ~7 hours ago)\n3. autoprogrammer/deepseek_esft_translation_lr5e-4 (Translation, updated ~15 hours ago)\n\nThese are the three newest translation models available on Huggingface, showing popularity with recent activity/downloads",
-    "prob": 2.879849093897857e-44
+    "content": "Thought: I now see a list of translation models. I need to identify three new and popular open-source NLP models for translation released in the past month. By examining the update dates: \n- \"trillionlabs/Tri-1.8B-Translation\" (19 days ago)\n- \"yanolja/YanoljaNEXT-Rosetta-20B\" (13 days ago)\n- \"repleeka/eng-tagin-nmt\" (7 days ago)\nThese fit the criteria. I will proceed to summarize these three as the answer.\n\nAction: ANSWER; \nThe three new and popular open-source NLP models for language translation released in the past month on Huggingface are:\n1. repleeka/eng-tagin-nmt (Updated 7 days ago)\n2. yanolja/YanoljaNEXT-Rosetta-20B (Updated 13 days ago)\n3. trillionlabs/Tri-1.8B-Translation (Updated 19 days ago)\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; \nThe three new and popular open-source NLP models for language translation released in the past month on Huggingface are:\n1. repleeka/eng-tagin-nmt (Updated 7 days ago)\n2. yanolja/YanoljaNEXT-Rosetta-20B (Updated 13 days ago)\n3. trillionlabs/Tri-1.8B-Translation (Updated 19 days ago",
+    "prob": 0.9260568692770886
   }
 ]
