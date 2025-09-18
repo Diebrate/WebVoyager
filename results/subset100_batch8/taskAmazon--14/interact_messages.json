@@ -1,0 +1,79 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find the new surge protector on Amazon with 6 to 8 outlets under 25 dollars with customer reviews above 4+ stars.  Please interact with https://www.amazon.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is a popup asking to choose between staying on Amazon.com or shopping on Amazon.ca. To proceed with searching for the surge protector on Amazon.com, I need to dismiss this popup by selecting \"Stay on Amazon.com.\"\nAction: Click [1]\nConfidence: 1.0\nCompletion: 0.05",
+    "token": ": Click [1",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \".us\", \"Amazon\";\t[1]: \"Deliver to Canada\";\t[2]: <input> \"Search Amazon\";\t[4]: \"EN\", \"Choose a language for shopping in Amazon United States. The current selection is English (EN).\n\";\t[5]: <button> \"Expand to Change Language or Country\";\t[6]: \"Hello, sign in Account & Lists\";\t[7]: <button> \"Expand Account and Lists\";\t[8]: \"Returns & Orders\";\t[9]: \"0 Cart\", \"0 items in cart\";\t[12]: \"All\", \"Open All Categories Menu\";\t[13]: \"Sell\";\t[14]: \"Previous slide\";\t[15]: \"Next slide\";\t[16]: \"Click here to go to amazon.ca\";\t[17]: \"Cleaning Tools\";\t[18]: \"Home Storage\";\t[20]: \"Jeans under $50\";\t[21]: \"Tops under $25\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is a notification about delivery location, but it isn't blocking the search functionality. The search bar is identified with tag [2], which I need to use to start searching for surge protectors.\nAction: Type [2]; surge protector 6 to 8 outlets under 25 dollars\nConfidence: 1.0\nCompletion: 0.15",
+    "token": ": Type [2]; surge protector 6 to 8 outlets under 25 dollars",
+    "prob": 0.9939385732332587
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \".us\", \"Amazon\";\t[1]: \"Deliver to Canada\";\t[2]: <input> \"Search Amazon\";\t[4]: \"EN\", \"Choose a language for shopping in Amazon United States. The current selection is English (EN).\n\";\t[5]: <button> \"Expand to Change Language or Country\";\t[6]: \"Hello, sign in Account & Lists\";\t[7]: <button> \"Expand Account and Lists\";\t[8]: \"Returns & Orders\";\t[9]: \"0 Cart\", \"0 items in cart\";\t[12]: \"All\", \"Open All Categories Menu\";\t[13]: \"Sell\";\t[14]: \"Sort by:\";\t[15]: \"Featured\";\t[17]: \"SponsoredSponsored\";\t[18]: \"Outlet Extender Surge Protector - 6 Outlet Splitter with 4 USB Ports (2 USB C), Multiple Plug Expander Wall Charger, 3 Sided Multi Plug Wall Adapter Power Strip for Home Office Kitchen Travel\";\t[19]: \"4.7 out of 5 stars\", \"4.7 out of 5 stars, rating details\";\t[20]: \"1,799\", \"1,799 ratings\";\t[21]: \"$9.99$9.99\";\t[22]: <button> \"Add to cart\";\t[24]: \"SponsoredSponsored\";\t[25]: \"Belkin 12-Outlet Surge Protector Power Strip w/ 12 AC Outlets & 8ft Flat Plug, UL-listed Heavy-Duty Extension Cord for Home, Office, Travel, Computer, Laptop, Charger - 3,940 Joules of Protection\";\t[26]: \"4.8 out of 5 stars\", \"4.8 out of 5 stars, rating details\";\t[27]: \"54,836\", \"54,836 ratings\";\t[29]: \"Up to $10\";\t[30]: \"$10 to $15\";\t[31]: \"$15 to $20\";\t[32]: \"$20 & above\";\t[33]: \"All Discounts\";\t[34]: \"Today's Deals\";\t[35]: \"4 Stars & Up\", \"Apply 4 Stars & Up filter to narrow results\";\t[36]: \"New\", \"Apply New filter to narrow results\";\t[37]: \"Used\", \"Apply Used filter to narrow results\";\t[38]: \"Surge Protection\", \"Apply Surge Protection filter to narrow results\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search results show several options, but to filter only for surge protectors with customer reviews above 4 stars, I should apply the relevant filter. There is a \"4 Stars & Up\" filter at [35] that matches this requirement.\nAction: Click [35]\nConfidence: 1.0\nCompletion: 0.3",
+    "token": ": Click [35",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \".us\", \"Amazon\";\t[1]: \"Deliver to Canada\";\t[2]: <input> \"Search Amazon\";\t[4]: \"EN\", \"Choose a language for shopping in Amazon United States. The current selection is English (EN).\n\";\t[5]: <button> \"Expand to Change Language or Country\";\t[6]: \"Hello, sign in Account & Lists\";\t[7]: <button> \"Expand Account and Lists\";\t[8]: \"Returns & Orders\";\t[9]: \"0 Cart\", \"0 items in cart\";\t[12]: \"All\", \"Open All Categories Menu\";\t[13]: \"Sell\";\t[14]: \"Sort by:\";\t[15]: \"Featured\";\t[17]: \"SponsoredSponsored\";\t[18]: \"Outlet Extender Surge Protector - 6 Outlet Splitter with 4 USB Ports (2 USB C), Multiple Plug Expander Wall Charger, 3 Sided Multi Plug Wall Adapter Power Strip for Home Office Kitchen Travel\";\t[19]: \"4.7 out of 5 stars\", \"4.7 out of 5 stars, rating details\";\t[20]: \"1,799\", \"1,799 ratings\";\t[21]: \"$9.99$9.99\";\t[22]: <button> \"Add to cart\";\t[23]: \"SponsoredSponsored\";\t[24]: \"Power Strip Surge Protector, 5FT Braided Extension Cord with Multiple Outlets-8 AC Outlets 4 USB Ports (2 USB C), Flag Plug Charging Station, 1700 Joule Surge Protection for Home Office, White\";\t[25]: \"4.7 out of 5 stars\", \"4.7 out of 5 stars, rating details\";\t[26]: \"462\", \"462 ratings\";\t[27]: \"$\";\t[28]: \"22.\";\t[29]: \"99\";\t[31]: \"Up to $10\";\t[32]: \"$10 to $15\";\t[33]: \"$15 to $25\";\t[34]: \"$25 & above\";\t[35]: \"All Discounts\";\t[36]: \"Today's Deals\";\t[37]: \"Clear\";\t[38]: \"4 Stars & Up\", \"Remove 4 Stars & Up filter to expand results\";\t[39]: \"New\", \"Apply New filter to narrow results\";\t[40]: \"Used\", \"Apply Used filter to narrow results\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Both top results have 4+ stars and are under $25. The second product (Power Strip Surge Protector, 5FT Braided Extension Cord) has 8 AC outlets and 4 USB ports, priced at $22.99, with a 4.7-star rating from 462 reviews. It fits the criteria better (new, 6 to 8 outlets, under $25, over 4 stars).\nAction: ANSWER; The \"Power Strip Surge Protector, 5FT Braided Extension Cord with Multiple Outlets-8 AC Outlets 4 USB Ports (2 USB C), Flat Plug Charging Station, 1700 Joule Surge Protection for Home Office, White\" meets your criteria: 8 outlets, $22.99, 4.7 out of 5 stars from 462 reviews, available now on Amazon.\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; The \"Power Strip Surge Protector, 5FT Braided Extension Cord with Multiple Outlets-8 AC Outlets 4 USB Ports (2 USB C), Flat Plug Charging Station, 1700 Joule Surge Protection for Home Office, White\" meets your criteria: 8 outlets, $22.99, 4.7 out of 5 stars from 462 reviews, available now on Amazon",
+    "prob": 0.8131407343380992
+  }
+]

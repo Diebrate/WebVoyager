@@ -1,0 +1,48 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now given a task: Find the US English pronunciation of the word \"meticulous\" using the Cambridge Dictionary and note the International Phonetic Alphabet (IPA) notation, then find one example sentence provided in the dictionary using this word.  Please interact with https://dictionary.cambridge.org/ and get the answer. \nObservation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: \"Dictionary\";\t[2]: \"Translate\";\t[3]: \"Grammar\";\t[4]: \"Thesaurus\";\t[5]: \"+Plus Cambridge Dictionary +Plus\";\t[10]: \"Log in\";\t[11]: \"Sign up\";\t[13]: \"English (UK)\";\t[15]: <input> \"Search\";\t[17]: <button> \"English\", \"Choose a dictionary\";\t[18]: <button> \"Search\";\t[19]: \"English\u2013French\", \"Set dictionary search to English\u2013French\";\t[20]: \"French\u2013English\", \"Set dictionary search to French\u2013English\";\t[21]: \"Grammar\", \"Set dictionary search to Grammar\";\t[23]: \"Privacy and Cookies Policy\", \"More information about your privacy, opens in a new tab\";\t[24]: <button> \"Cookies Settings\", \"Cookies Settings, Opens the preference center dialog\";\t[25]: <button> \"Accept All Cookies\";\t[26]: <button> \"Close\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find the pronunciation and example sentence for \"meticulous,\" I need to search for the word first. The search textbox is visible, so I will type \"meticulous\" into the search field.\nAction: Type [15]; meticulous\nConfidence: 1\nCompletion: 0.2",
+    "token": ": Type [15]; meticulous",
+    "prob": 0.999998234343996
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: \"Dictionary\";\t[2]: \"Translate\";\t[3]: \"Grammar\";\t[4]: \"Thesaurus\";\t[5]: \"+Plus Cambridge Dictionary +Plus\";\t[10]: \"Log in\";\t[11]: \"Sign up\";\t[13]: \"English (UK)\";\t[14]: <input> \"Search\";\t[16]: <button> \"English\", \"Choose a dictionary\";\t[17]: <button> \"Search\";\t[24]: \"Add to word list\";\t[25]: \"careful\";\t[26]: \"great\";\t[27]: \"attention\";\t[28]: \"detail\";\t[29]: \"hours\";\t[30]: \"preparation\";\t[31]: \"book\";\t[33]: \"To top\";\t[36]: \"Contents\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I can now see the US English IPA pronunciation for \"meticulous\" next to label [24] as /m\u0259\u02c8t\u026ak.j\u0259.l\u0259s/. There is also an example sentence below: \"Many hours of meticulous preparation have gone into writing the book.\" I have found both the IPA notation and an example sentence.\nAction: ANSWER; US English IPA pronunciation of \"meticulous\": /m\u0259\u02c8t\u026ak.j\u0259.l\u0259s/\nExample sentence: \"Many hours of meticulous preparation have gone into writing the book.\"\nConfidence: 1\nCompletion: 1",
+    "token": ": ANSWER; US English IPA pronunciation of \"meticulous\": /m\u0259\\xcb\\x88t\\xc9\\xaak.j\u0259.l\u0259s/\nExample sentence: \"Many hours of meticulous preparation have gone into writing",
+    "prob": 0.9083418802688907
+  }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Show me the list of baby products that are on sale and under 10 dollars on Amazon. Provide at least 2 on sale products  Please interact with https://www.amazon.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There's a popup asking to choose between Amazon.com and Amazon.ca. To proceed with the task as requested, I need to stay on Amazon.com.\nAction: Click [1]\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Click [1",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \".us\", \"Amazon\";\t[1]: \"Deliver to Canada\";\t[2]: <input> \"Search Amazon\";\t[4]: \"EN\", \"Choose a language for shopping in Amazon United States. The current selection is English (EN).\n\";\t[5]: <button> \"Expand to Change Language or Country\";\t[6]: \"Hello, sign in Account & Lists\";\t[7]: <button> \"Expand Account and Lists\";\t[8]: \"Returns & Orders\";\t[9]: \"0 Cart\", \"0 items in cart\";\t[12]: \"All\", \"Open All Categories Menu\";\t[13]: \"Sell\";\t[14]: \"Previous slide\";\t[15]: \"Next slide\";\t[16]: \"Click here to go to amazon.ca\";\t[17]: \"Cleaning Tools\";\t[18]: \"Home Storage\";\t[19]: \"Jeans under $50\";\t[20]: \"Tops under $25\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is a search box available at the top of the page that can be used to search for baby products. This is the next step to look for baby products on sale and under $10.\nAction: Type [2]; baby products on sale under 10 dollars\nConfidence: 1.0\nCompletion: 0.2",
+    "token": ": Type [2]; baby products on sale under 10 dollars",
+    "prob": 0.9973951834632129
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \".us\", \"Amazon\";\t[1]: \"Deliver to Canada\";\t[2]: <input> \"Search Amazon\";\t[4]: \"EN\", \"Choose a language for shopping in Amazon United States. The current selection is English (EN).\n\";\t[5]: <button> \"Expand to Change Language or Country\";\t[6]: \"Hello, sign in Account & Lists\";\t[7]: <button> \"Expand Account and Lists\";\t[8]: \"Returns & Orders\";\t[9]: \"0 Cart\", \"0 items in cart\";\t[12]: \"All\", \"Open All Categories Menu\";\t[13]: \"Sell\";\t[14]: \"Sort by:\";\t[15]: \"Featured\";\t[17]: \"SponsoredSponsored\";\t[18]: \"Owlet Dream Duo (3rd Gen) \u2013 FDA-Cleared Smart Baby Monitor with Sock & HD Video Cam, Tracks Pulse Rate, Oxygen & Sleep, 2K HD Video, Cry & Motion Alerts, Temp Monitoring - Bedtime Blue\";\t[19]: \"4.5 out of 5 stars\", \"4.5 out of 5 stars, rating details\";\t[20]: \"2\", \"2 ratings\";\t[21]: \"$299.99$299.99 List: $379.99List: $379.99$379.99\";\t[23]: \"SponsoredSponsored\";\t[24]: \"The Honest Company Clean Conscious Multi-Use Wipes | Hypoallergenic + Unscented for Sensitive Skin | Over 99% Water, Compostable, Plant Based, Baby Wipes | Pattern Play, 60 Count\";\t[25]: \"10 sizes10 sizes\", \"Options: 10 sizes\";\t[26]: \"4.8 out of 5 stars\", \"4.8 out of 5 stars, rating details\";\t[27]: \"52,754\", \"52,754 ratings\";\t[29]: \"SponsoredSponsored\";\t[30]: \"Baby Wrist Rattle Foot Finder Socks Set for Babies 0-3-6-12 Months, Infant Toys for Newborn Boys and Girls 0-6-9-12 Months, Sensory Learning Toy for Shower Gifts\";\t[31]: \"4.6 out of 5 stars\", \"4.6 out of 5 stars, rating details\";\t[32]: \"1,560\", \"1,560 ratings\";\t[33]: \"$8.99$8.99\";\t[35]: \"Up to $5\";\t[36]: \"$5 & above\";\t[37]: \"All Discounts\";\t[38]: \"Today's Deals\";\t[39]: \"4 Stars & Up\", \"Apply 4 Stars & Up filter to narrow results\";\t[40]: \"Baby Products\";\t[41]: \"Baby Pacifiers, Teethers & Teething Relief Products\";\t[42]: \"Baby Bathing Products\";\t[43]: \"Baby Grooming & Skin Care Products\";\t[44]: \"Diaper Wipes & Accessories\";\t[45]: \"Baby Girls' Clothing & Shoes\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search results are displayed, but not all are under $10 or clearly marked as on sale. There is a price filter slider set to $0-$9+ on the left, but the \"Go\" button to apply this filter needs to be clicked. This will help show only baby products under $10, making it easier to find items on sale.\nAction: Click [34]\nConfidence: 1.0\nCompletion: 0.4",
+    "token": ": Click [34",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \".us\", \"Amazon\";\t[1]: \"Deliver to Canada\";\t[2]: <input> \"Search Amazon\";\t[4]: \"EN\", \"Choose a language for shopping in Amazon United States. The current selection is English (EN).\n\";\t[5]: <button> \"Expand to Change Language or Country\";\t[6]: \"Hello, sign in Account & Lists\";\t[7]: <button> \"Expand Account and Lists\";\t[8]: \"Returns & Orders\";\t[9]: \"0 Cart\", \"0 items in cart\";\t[12]: \"All\", \"Open All Categories Menu\";\t[13]: \"Sell\";\t[14]: \"Sort by:\";\t[15]: \"Featured\";\t[17]: \"SponsoredSponsored\";\t[18]: \"Owlet Dream Duo (3rd Gen) \u2013 FDA-Cleared Smart Baby Monitor with Sock & HD Video Cam, Tracks Pulse Rate, Oxygen & Sleep, 2K HD Video, Cry & Motion Alerts, Temp Monitoring - Bedtime Blue\";\t[19]: \"4.5 out of 5 stars\", \"4.5 out of 5 stars, rating details\";\t[20]: \"2\", \"2 ratings\";\t[21]: \"$299.99$299.99 List: $379.99List: $379.99$379.99\";\t[23]: \"SponsoredSponsored\";\t[24]: \"Baby Wrist Rattle Foot Finder Socks Set for Babies 0-3-6-12 Months, Infant Toys for Newborn Boys and Girls 0-6-9-12 Months, Sensory Learning Toy for Shower Gifts\";\t[25]: \"4.6 out of 5 stars\", \"4.6 out of 5 stars, rating details\";\t[26]: \"1,560\", \"1,560 ratings\";\t[27]: \"$8.99$8.99\";\t[29]: \"SponsoredSponsored\";\t[30]: \"Tummy Time Water Mat\u4e28Inflatable Tummy Time Water Play Mat for Babies, Infants and Toddlers 3 to 12 Months Promote Development Toys Baby Gifts\";\t[31]: \"4.3 out of 5 stars\", \"4.3 out of 5 stars, rating details\";\t[32]: \"9,216\", \"9,216 ratings\";\t[33]: \"$9.99$9.99 List: $14.99List: $14.99$14.99\";\t[35]: \"Up to $5\";\t[36]: \"$5 & above\";\t[37]: \"All Discounts\";\t[38]: \"Today's Deals\";\t[39]: \"4 Stars & Up\", \"Apply 4 Stars & Up filter to narrow results\";\t[40]: \"Baby Products\";\t[41]: \"Baby Pacifiers, Teethers & Teething Relief Products\";\t[42]: \"Baby Bathing Products\";\t[43]: \"Baby Grooming & Skin Care Products\";\t[44]: \"Diaper Wipes & Accessories\";\t[45]: \"Baby Girls' Clothing & Shoes\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Now, products under $10 are visible. The \"Baby Wrist Rattle Foot Finder Socks Set\" is $8.99, and the \"Tummy Time Water Mat\" is $9.99 (on sale from $14.99, indicating a discount). Both products meet the requirement of being on sale and under $10.\nAction: ANSWER; \n1. Baby Wrist Rattle Foot Finder Socks Set for Babies 0-3-6-12 Months, Infant Toys - $8.99\n2. Tummy Time Water Mat | Inflatable Tummy Time Water Play Mat for Babies - $9.99 (on sale from $14.99)\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; \n1. Baby Wrist Rattle Foot Finder Socks Set for Babies 0-3-6-12 Months, Infant Toys - $8.99\n2. Tummy Time Water Mat | Inflatable Tummy Time Water Play Mat for Babies - $9.99 (on sale from $14.99",
+    "prob": 0.8990159309886788
+  }
+]

@@ -1,0 +1,89 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Search for an online course on Coursera about 'Digital Marketing', suitable for beginner-level learners. Specify the course duration, the main learning outcomes, and the institution offering the course.  Please interact with https://www.coursera.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To search for an online course about 'Digital Marketing,' I should use the search functionality. The search button is labeled as [2] in the screenshot.\nAction: Click [2]\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Click [2",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search textbox is labeled as [1] and is ready for text input. I need to type \"Digital Marketing\" to find relevant courses.\nAction: Type [1]; Digital Marketing\nConfidence: 1.0\nCompletion: 0.2",
+    "token": ": Type [1]; Digital Marketing",
+    "prob": 0.9999999723410504
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Open Navigation Menu\";\t[3]: <input> \"What do you want to learn?\";\t[5]: \"(1,919)\";\t[7]: \"(815)\";\t[9]: \"(305)\";\t[11]: \"(205)\";\t[12]: <button> \"Show 7 more\", \"Show more Subject options\";\t[13]: <button> \"Information about this filter group\";\t[15]: \"(3,064)\";\t[17]: \"(1,583)\";\t[19]: \"(1,300)\";\t[20]: \"Sort by: Best Match\";\t[21]: \"Free Trial\";\t[23]: \"Google\";\t[24]: \"Foundations of Digital Marketing and E-commerce\", \"Foundations of Digital Marketing and E-commerce, offered by Google, COURSE\";\t[25]: \"Free Trial\";\t[27]: \"AI skills\";\t[29]: \"Google\";\t[30]: \"Google Digital Marketing & E-commerce\", \"Google Digital Marketing & E-commerce, offered by Google, PROFESSIONAL CERTIFICATE\";\t[31]: \"New\";\t[32]: \"Free Trial\";\t[34]: \"IBM\";\t[35]: \"Capstone Project: Digital Marketing and Growth Hacking\", \"Capstone Project: Digital Marketing and Growth Hacking, offered by IBM, COURSE\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The first course titled \"Foundations of Digital Marketing and E-commerce,\" offered by Google, appears suitable for beginner-level learners, as indicated in its information. It also provides a duration (1-4 weeks) and a brief description of main skills that will be gained. I need to gather those details for the answer by looking closer at its content.\nAction: Click [24]\nConfidence: 0.98\nCompletion: 0.5",
+    "token": ": Click [24",
+    "prob": 0.9999900875427716
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Open Navigation Menu\";\t[2]: <button> \"Search\";\t[4]: \"Browse\";\t[5]: \"Business\";\t[6]: \"Marketing\";\t[7]: \"Save now\";\t[8]: <button> \"Close\";\t[9]: \"Google Digital Marketing & E-commerce Professional Certificate\";\t[10]: <button> \"11 languages available\";\t[11]: \"Google Career Certificates\";\t[12]: <button> \"Enroll for freeStarts Sep 18\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I am on the course page for \"Foundations of Digital Marketing and E-commerce\" by Google. To specify the duration and main learning outcomes, I need to scroll down to locate these details, as they are usually available in the course description or syllabus below the fold.\nAction: Scroll WINDOW; down\nConfidence: 0.98\nCompletion: 0.6",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999909018405625
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Open Navigation Menu\";\t[2]: <button> \"Search\";\t[3]: <button> \"Enroll for freeStarts Sep 18\";\t[4]: \"Learn more\", \"Learn more about Coursera Plus\";\t[5]: \"4 modules\";\t[6]: \"About\";\t[7]: \"Outcomes\";\t[8]: \"Modules\";\t[9]: \"Recommendations\";\t[10]: \"Testimonials\";\t[11]: \"Define the fields of digital marketing and e-commerce\";\t[12]: \"Describe the job responsibilities of an entry-level digital marketer and e-commerce specialist\";\t[13]: \"Explain the concept of a marketing funnel\";\t[14]: \"Understand the elements and goals of a digital marketing and e-commerce strategy\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The required details are visible: the course is beginner level with 4 modules, flexible schedule (1 week at 10 hours/week), and the main learning outcomes are listed. The course is offered by Google. Now I can summarize the information to answer the task.\n\nAction: ANSWER; \nCourse: Foundations of Digital Marketing and E-commerce\nOffered by: Google (Google Career Certificates)\nLevel: Beginner\nDuration: 1 week at 10 hours/week (flexible schedule), consists of 4 modules\nMain Learning Outcomes:\n- Define the fields of digital marketing and e-commerce\n- Describe the job responsibilities of an entry-level digital marketer and e-commerce specialist\n- Explain the concept of a marketing funnel\n- Understand the elements and goals of a digital marketing and e-commerce strategy\n\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; \nCourse: Foundations of Digital Marketing and E-commerce\nOffered by: Google (Google Career Certificates)\nLevel: Beginner\nDuration: 1 week at 10 hours/week (flexible schedule), consists of 4 modules\nMain Learning Outcomes:\n- Define the fields of digital marketing and e-commerce\n- Describe the job responsibilities of an entry-level digital marketer and e-commerce specialist\n- Explain the concept of a marketing funnel\n- Understand the elements and goals of a digital marketing and e-commerce strategy",
+    "prob": 0.875775329186198
+  }
+]

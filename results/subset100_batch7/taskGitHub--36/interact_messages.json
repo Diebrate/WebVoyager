@@ -1,0 +1,89 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Identify a new open-source project on GitHub related to 'AI agriculture' that created in 2022, and note its main programming language and description.  Please interact with https://github.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find a new open-source project related to 'AI agriculture' from 2022 on GitHub, the first step is to use the search function. The search bar is present with the label [10] (\"Search or jump to...\").\nAction: Click [10]\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Click [10",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search textbox [3] is now visible and ready for input. To find relevant projects, I should enter a precise query, such as \"AI agriculture created:2022\", to filter for AI agriculture projects created in 2022.\nAction: Type [3]; AI agriculture created:2022\nConfidence: 1.0\nCompletion: 0.2",
+    "token": ": Type [3]; AI agriculture created:202",
+    "prob": 0.9999976204090789
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Platform\";\t[2]: <button> \"Solutions\";\t[3]: <button> \"Resources\";\t[4]: <button> \"Open Source\";\t[5]: <button> \"Enterprise\";\t[6]: \"Pricing\";\t[7]: <button> \"AI agriculture created:2022\", \"Search or jump to\u2026\";\t[8]: \"Sign in\";\t[9]: \"Sign up\";\t[10]: <button> \"\";\t[11]: \"Code...\u00a0(...)results\";\t[12]: \"Repositories72\u00a0(72)results\";\t[13]: \"Issues279\u00a0(279)results\";\t[14]: \"Pull requests20\u00a0(20)results\";\t[15]: \"Discussions15\u00a0(15)results\";\t[16]: \"Users25\u00a0(25)results\";\t[17]: <button> \"More\";\t[19]: \"Jupyter Notebook\";\t[20]: \"Python\";\t[21]: \"HTML\";\t[22]: \"JavaScript\";\t[23]: \"C++\";\t[24]: \"CSS\";\t[25]: \"Dart\";\t[26]: <button> \"Sort by: Best match\";\t[27]: <button> \"Open column options\";\t[28]: \"microsoft/farmvibes-ai\";\t[29]: \"weather\";\t[30]: \"sustainability\";\t[31]: \"ai\";\t[32]: \"agriculture\";\t[33]: \"geospatial\";\t[34]: \"Jupyter Notebook\";\t[35]: \"794\", \"794 stars\";\t[36]: \"Updated on Jul 28\";\t[37]: \"Star\";\t[38]: \"nesl/agrobot\";\t[39]: \"machine-learning\";\t[40]: \"ai\";\t[41]: \"localization\";\t[42]: \"deep-learning\";\t[43]: \"neural-network\";\t[44]: \"Jupyter Notebook\";\t[45]: \"67\", \"67 stars\";\t[46]: \"Updated on Jul 4, 2023\";\t[47]: \"Star\";\t[48]: \"innovayio/AI-Plants-Diseases-SmartAgriculture\";\t[49]: \"Star\";\t[50]: \"Explore sponsorable projects\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current results show repositories related to \"AI agriculture\", with the first visible project being \"microsoft/farmvibes-ai\". To confirm its creation date and see its details (programming language is Jupyter Notebook, visible), I need to access its repository page for more information, including the description.\nAction: Click [28]\nConfidence: 0.95\nCompletion: 0.4",
+    "token": ": Click [28",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Platform\";\t[2]: <button> \"Solutions\";\t[3]: <button> \"Resources\";\t[4]: <button> \"Open Source\";\t[5]: <button> \"Enterprise\";\t[6]: \"Pricing\";\t[7]: <button> \"Search or jump to...\", \"Search or jump to\u2026\";\t[8]: \"Sign in\";\t[9]: \"Sign up\";\t[10]: <button> \"\";\t[11]: \"microsoft\";\t[12]: \"farmvibes-ai\";\t[13]: \"Notifications\", \"You must be signed in to change notification settings\";\t[14]: \"Fork 149\";\t[15]: \"Star 794\", \"You must be signed in to star a repository\";\t[16]: \"Code\";\t[17]: \"Issues 28\";\t[18]: \"Pull requests 3\";\t[19]: \"Discussions\";\t[20]: \"Actions\";\t[21]: \"Projects 0\";\t[22]: \"Security\";\t[23]: \"Insights\";\t[24]: <button> \"\";\t[25]: <button> \"main\", \"main branch\";\t[28]: <input> \"Go to file\";\t[29]: <button> \"Code\";\t[31]: \"krishnaglodha\", \"commits by krishnaglodha\";\t[32]: \"Update terraform files to use new format (\";\t[33]: <button> \"\";\t[34]: <button> \"\";\t[35]: \"99e1fc1\", \"Commit 99e1fc1\";\t[36]: \"41 Commits\";\t[37]: \".devcontainer\", \".devcontainer, (Directory)\";\t[38]: \"Release dev to main branch (\";\t[39]: \"#215\";\t[40]: \"Nov 29, 2024\";\t[41]: \".github\", \".github, (Directory)\";\t[42]: \"Release dev to main branch (\";\t[43]: \"#215\";\t[44]: \"Nov 29, 2024\";\t[45]: \"docs\", \"docs, (Directory)\";\t[46]: \"Release dev to main branch (\";\t[47]: \"#215\";\t[48]: \"Nov 29, 2024\";\t[49]: \"notebooks\", \"notebooks, (Directory)\";\t[50]: \"Release dev to main branch (\";\t[51]: \"#215\";\t[52]: \"Nov 29, 2024\";\t[53]: \"op_resources\", \"op_resources, (Directory)\";\t[54]: \"Release dev to main branch (\";\t[55]: \"#215\";\t[56]: \"Nov 29, 2024\";\t[57]: \"ops\", \"ops, (Directory)\";\t[58]: \"Release dev to main branch (\";\t[59]: \"#215\";\t[60]: \"Nov 29, 2024\";\t[61]: \"resources\", \"resources, (Directory)\";\t[62]: \"Release dev to main branch (\";\t[63]: \"#215\";\t[64]: \"Nov 29, 2024\";\t[65]: \"scripts\", \"scripts, (Directory)\";\t[66]: \"Release dev to main branch (\";\t[67]: \"#215\";\t[68]: \"Nov 29, 2024\";\t[69]: \"microsoft.github.io/farmvibes-ai/\";\t[70]: \"weather\";\t[71]: \"sustainability\";\t[72]: \"ai\";\t[73]: \"agriculture\";\t[74]: \"geospatial\";\t[75]: \"remote-sensing\";\t[76]: \"multi-modal\";\t[77]: \"geospatial-analytics\";\t[78]: \"stac\";\t[79]: \"Readme\";\t[80]: \"MIT license\";\t[81]: \"Code of conduct\";\t[82]: \"Security policy\";\t[83]: \"Activity\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"About\" section is visible, showing the project's description and tags (confirming it's about AI and agriculture). The main programming language (from previous info) is Jupyter Notebook. I need to verify the creation date\u2014this information is not yet visible, so scrolling down or finding the repo details (often at the bottom right or on the main page) is necessary.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.6",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9995043653526449
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"ops\", \"ops, (Directory)\";\t[1]: \"Release dev to main branch (\";\t[2]: \"#215\";\t[3]: \"Nov 29, 2024\";\t[4]: \"resources\", \"resources, (Directory)\";\t[5]: \"Release dev to main branch (\";\t[6]: \"#215\";\t[7]: \"Nov 29, 2024\";\t[8]: \"scripts\", \"scripts, (Directory)\";\t[9]: \"Release dev to main branch (\";\t[10]: \"#215\";\t[11]: \"Nov 29, 2024\";\t[12]: \"src\", \"src, (Directory)\";\t[13]: \"Update terraform files to use new format (\";\t[14]: \"Jul 28, 2025\";\t[15]: \"workflows\", \"workflows, (Directory)\";\t[16]: \"Release dev to main branch (\";\t[17]: \"#215\";\t[18]: \"Nov 29, 2024\";\t[19]: \".gitattributes\", \".gitattributes, (File)\";\t[20]: \"Release dev to main branch (\";\t[21]: \"#215\";\t[22]: \"Nov 29, 2024\";\t[23]: \".gitignore\", \".gitignore, (File)\";\t[24]: \"Release dev to main branch (\";\t[25]: \"#215\";\t[26]: \"Nov 29, 2024\";\t[27]: \".ruff.toml\", \".ruff.toml, (File)\";\t[28]: \"Release dev to main branch (\";\t[29]: \"#215\";\t[30]: \"Nov 29, 2024\";\t[31]: \"CODE_OF_CONDUCT.md\", \"CODE_OF_CONDUCT.md, (File)\";\t[32]: \"Initial FarmVibes-AI commit. Enjoy.\";\t[33]: \"Oct 6, 2022\";\t[34]: \"LICENSE\", \"LICENSE, (File)\";\t[35]: \"Initial FarmVibes-AI commit. Enjoy.\";\t[36]: \"Oct 6, 2022\";\t[37]: \"Makefile\", \"Makefile, (File)\";\t[38]: \"Release dev to main branch (\";\t[39]: \"#215\";\t[40]: \"Nov 29, 2024\";\t[41]: \"README.md\", \"README.md, (File)\";\t[42]: \"Sync with prod branch\";\t[43]: \"May 18, 2023\";\t[44]: \"SECURITY.md\", \"SECURITY.md, (File)\";\t[45]: \"Initial FarmVibes-AI commit. Enjoy.\";\t[46]: \"Oct 6, 2022\";\t[47]: \"SUPPORT.md\", \"SUPPORT.md, (File)\";\t[48]: \"FarmVibes.AI 24.04 (\";\t[49]: \"#157\";\t[50]: \")\";\t[51]: \"Apr 5, 2024\";\t[52]: \"pyrightconfig.json\", \"pyrightconfig.json, (File)\";\t[53]: \"Release dev to main branch (\";\t[54]: \"#215\";\t[55]: \"Nov 29, 2024\";\t[56]: \"MIT license\";\t[57]: \"Code of conduct\";\t[58]: \"Security policy\";\t[59]: \"Activity\";\t[60]: \"Custom properties\";\t[61]: \"794 stars\";\t[62]: \"38 watching\";\t[63]: \"149 forks\";\t[64]: \"Report repository\";\t[65]: \"Contributors 14\";\t[80]: \"Jupyter Notebook 92.9%\";\t[81]: \"Python 6.8%\";\t[82]: \"Other 0.3%\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I have found confirmation that \"FarmVibes.AI\" was created in 2022 (first commit: Oct 6, 2022). The main programming language is Jupyter Notebook (92.9%), and the description is already collected from the previous screen. I now have all required info to answer the task fully.\nAction: ANSWER; \nProject: microsoft/farmvibes-ai  \nCreated: Oct 6, 2022  \nMain programming language: Jupyter Notebook  \nDescription: FarmVibes.AI: Multi-Modal GeoSpatial ML Models for Agriculture and Sustainability\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; \nProject: microsoft/farmvibes-ai  \nCreated: Oct 6, 2022  \nMain programming language: Jupyter Notebook  \nDescription: FarmVibes.AI: Multi-Modal GeoSpatial ML Models for Agriculture and Sustainability",
+    "prob": 0.9188327507841701
+  }
+]

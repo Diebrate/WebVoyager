@@ -98,7 +98,7 @@ def extract_confidence_completion(json_path):
     return interactions
 
 def parse_batch_output(batch_name, size, output_jsonl_path):
-    results = []
+    results = {}
     for i in range(1, size + 1):
         log_path = EVAL_PATH / f"{batch_name}_batch{i}_evaluation.log"
         if not log_path.exists():
@@ -106,15 +106,16 @@ def parse_batch_output(batch_name, size, output_jsonl_path):
         tmp = parse_evaluation_log_to_jsonl(log_path, None, return_results=True)
         if not tmp:
             continue
-        if not results:
-            results = tmp.copy()
-            for res in results:
-                res["success"] = [res["success"]]
-                res["interactions"] = [res["interactions"]]
-            continue
-        for res, entry in zip(results, tmp):
-            res["success"].append(entry["success"])
-            res["interactions"].append(entry["interactions"])
+        for entry in tmp:
+            name = f"{entry['task_type']}_{entry['task_id']}"
+            if name not in results:
+                results[name] = {}
+                results[name]["name"] = name
+                results[name]["success"] = []
+                results[name]["interactions"] = []
+            results[name]["success"].append(entry["success"])
+            results[name]["interactions"].append(entry["interactions"])
+    results = list(results.values())
     with open(output_jsonl_path, 'w') as f:
         for entry in results:
             f.write(json.dumps(entry) + '\n')

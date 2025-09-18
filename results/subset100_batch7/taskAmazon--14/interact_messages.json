@@ -1,0 +1,69 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now given a task: Find the new surge protector on Amazon with 6 to 8 outlets under 25 dollars with customer reviews above 4+ stars.  Please interact with https://www.amazon.com/ and get the answer. \nObservation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Amazon\";\t[1]: <input> \"\";\t[3]: \"Your Account\";\t[4]: \"Help\";\t[5]: \"Cart\";\t[6]: \"Try 30 days for freeTry 30 days for free\";\t[7]: \"Women's fashion\";\t[8]: \"Men's fashion\";\t[9]: \"Beauty\";\t[10]: \"Home\";\t[11]: \"Shop nowShop now\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I need to search for \"surge protector 6 to 8 outlets under 25 dollars\" in the Amazon search bar to begin filtering products matching the task requirements.\nAction: Type [1]; surge protector 6 to 8 outlets under 25 dollars\nConfidence: 0.98\nCompletion: 0.1",
+    "token": ": Type [1]; surge protector 6 to 8 outlets under 25 dollars",
+    "prob": 0.999650347455473
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \".us\", \"Amazon\";\t[1]: \"Deliver to Canada\";\t[2]: <input> \"Search Amazon\";\t[4]: \"EN\", \"Choose a language for shopping in Amazon United States. The current selection is English (EN).\n\";\t[5]: <button> \"Expand to Change Language or Country\";\t[6]: \"Hello, sign in Account & Lists\";\t[7]: <button> \"Expand Account and Lists\";\t[8]: \"Returns & Orders\";\t[9]: \"0 Cart\", \"0 items in cart\";\t[12]: \"All\", \"Open All Categories Menu\";\t[13]: \"Sell\";\t[14]: \"Sort by:\";\t[15]: \"Featured\";\t[17]: \"SponsoredSponsored\";\t[18]: \"Outlet Extender Surge Protector - 6 Outlet Splitter with 4 USB Ports (2 USB C), Multiple Plug Expander Wall Charger, 3 Sided Multi Plug Wall Adapter Power Strip for Home Office Kitchen Travel\";\t[19]: \"4.7 out of 5 stars\", \"4.7 out of 5 stars, rating details\";\t[20]: \"1,799\", \"1,799 ratings\";\t[21]: \"$9.99$9.99\";\t[22]: <button> \"Add to cart\";\t[23]: \"SponsoredSponsored\";\t[24]: \"Power Strip Surge Protector, 5FT Braided Extension Cord with Multiple Outlets-8 AC Outlets 4 USB Ports (2 USB C), Flag Plug Charging Station, 1700 Joule Surge Protection for Home Office, White\";\t[25]: \"4.7 out of 5 stars\", \"4.7 out of 5 stars, rating details\";\t[26]: \"462\", \"462 ratings\";\t[27]: \"$\";\t[28]: \"22.\";\t[29]: \"99\";\t[31]: \"Up to $10\";\t[32]: \"$10 to $20\";\t[33]: \"$20 & above\";\t[34]: \"All Discounts\";\t[35]: \"Today's Deals\";\t[36]: \"4 Stars & Up\", \"Apply 4 Stars & Up filter to narrow results\";\t[37]: \"New\", \"Apply New filter to narrow results\";\t[38]: \"Used\", \"Apply Used filter to narrow results\";\t[39]: \"Surge Protection\", \"Apply Surge Protection filter to narrow results\";\t[40]: \"Mountable\", \"Apply Mountable filter to narrow results\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is a filter for customer reviews \"4 Stars & Up,\" which helps ensure products meet the review requirement. Applying this filter will help narrow the search to products above 4 stars.\nAction: Click [36]\nConfidence: 0.98\nCompletion: 0.3",
+    "token": ": Click [36",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \".us\", \"Amazon\";\t[1]: \"Deliver to Canada\";\t[2]: <input> \"Search Amazon\";\t[4]: \"EN\", \"Choose a language for shopping in Amazon United States. The current selection is English (EN).\n\";\t[5]: <button> \"Expand to Change Language or Country\";\t[6]: \"Hello, sign in Account & Lists\";\t[7]: <button> \"Expand Account and Lists\";\t[8]: \"Returns & Orders\";\t[9]: \"0 Cart\", \"0 items in cart\";\t[12]: \"All\", \"Open All Categories Menu\";\t[13]: \"Sell\";\t[14]: \"Sort by:\";\t[15]: \"Featured\";\t[17]: \"SponsoredSponsored\";\t[18]: \"Outlet Extender Surge Protector - 6 Outlet Splitter with 4 USB Ports (2 USB C), Multiple Plug Expander Wall Charger, 3 Sided Multi Plug Wall Adapter Power Strip for Home Office Kitchen Travel\";\t[19]: \"4.7 out of 5 stars\", \"4.7 out of 5 stars, rating details\";\t[20]: \"1,799\", \"1,799 ratings\";\t[21]: \"$9.99$9.99\";\t[22]: <button> \"Add to cart\";\t[23]: \"SponsoredSponsored\";\t[24]: \"Power Strip Surge Protector, 5FT Braided Extension Cord with Multiple Outlets-8 AC Outlets 4 USB Ports (2 USB C), Flag Plug Charging Station, 1700 Joule Surge Protection for Home Office, White\";\t[25]: \"4.7 out of 5 stars\", \"4.7 out of 5 stars, rating details\";\t[26]: \"462\", \"462 ratings\";\t[27]: \"$\";\t[28]: \"22.\";\t[29]: \"99\";\t[31]: \"Up to $10\";\t[32]: \"$10 to $20\";\t[33]: \"$20 & above\";\t[34]: \"All Discounts\";\t[35]: \"Today's Deals\";\t[36]: \"Clear\";\t[37]: \"4 Stars & Up\", \"Remove 4 Stars & Up filter to expand results\";\t[38]: \"New\", \"Apply New filter to narrow results\";\t[39]: \"Used\", \"Apply Used filter to narrow results\";\t[40]: \"Surge Protection\", \"Apply Surge Protection filter to narrow results\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The top result \"Outlet Extender Surge Protector - 6 Outlet Splitter with 4 USB Ports\" meets the requirements: it's new, has 6 outlets, costs $9.99 (under $25), and has a 4.7-star rating with 1,799 reviews. This is a suitable answer.\nAction: ANSWER; The best new surge protector matching your criteria on Amazon is the \"Outlet Extender Surge Protector - 6 Outlet Splitter with 4 USB Ports (2 USB C),\" priced at $9.99, with 6 outlets and a customer review rating of 4.7 out of 5 stars from 1,799 ratings.\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; The best new surge protector matching your criteria on Amazon is the \"Outlet Extender Surge Protector - 6 Outlet Splitter with 4 USB Ports (2 USB C),\" priced at $9.99, with 6 outlets and a customer review rating of 4.7 out of 5 stars from 1,799 ratings",
+    "prob": 0.7937492175302158
+  }
+]

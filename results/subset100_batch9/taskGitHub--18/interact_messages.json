@@ -1,0 +1,89 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Identify and report the most popular (in terms of stars) open-source image processing tool on GitHub.  Please interact with https://github.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find the most popular open-source image processing tool on GitHub, I should use the search functionality. The search bar (\"Search or jump to...\") at [10] is the appropriate place to start.\nAction: Click [10]\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Click [10",
+    "prob": 0.9999995343841253
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search textbox [3] is now active and ready for input. To find the most popular open-source image processing tool, I should search for \"image processing\" to get relevant repositories.\nAction: Type [3]; image processing\nConfidence: 1.0\nCompletion: 0.2",
+    "token": ": Type [3]; image processing",
+    "prob": 0.9999999446821016
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Platform\";\t[2]: <button> \"Solutions\";\t[3]: <button> \"Resources\";\t[4]: <button> \"Open Source\";\t[5]: <button> \"Enterprise\";\t[6]: \"Pricing\";\t[7]: <button> \"image processing\", \"Search or jump to\u2026\";\t[8]: \"Sign in\";\t[9]: \"Sign up\";\t[10]: <button> \"\";\t[11]: \"Code...\u00a0(...)results\";\t[12]: \"Repositories107k\u00a0(107k)results\";\t[13]: \"Issues397k\u00a0(397k)results\";\t[14]: \"Pull requests872k\u00a0(872k)results\";\t[15]: \"Discussions22k\u00a0(22k)results\";\t[16]: \"Users4k\u00a0(4k)results\";\t[17]: <button> \"More\";\t[19]: \"Python\";\t[20]: \"Jupyter Notebook\";\t[21]: \"MATLAB\";\t[22]: \"C++\";\t[23]: \"Java\";\t[24]: \"JavaScript\";\t[25]: \"C\";\t[26]: <button> \"Sort by: Best match\";\t[27]: <button> \"Open column options\";\t[28]: \"Intervention/image\";\t[29]: \"php\";\t[30]: \"image\";\t[31]: \"imagick\";\t[32]: \"gd\";\t[33]: \"intervention\";\t[34]: \"PHP\";\t[35]: \"14.2k\", \"14235 stars\";\t[36]: \"Updated 26 days ago\";\t[37]: \"Star\";\t[38]: <button> \"Sponsor\", \"Sponsor Intervention/image\";\t[39]: \"WZMIAOMIAO/deep-learning-for-image-processing\";\t[40]: \"deep-learning\";\t[41]: \"pytorch\";\t[42]: \"classification\";\t[43]: \"segmentation\";\t[44]: \"bilibili\";\t[45]: \"Python\";\t[46]: \"25.4k\", \"25418 stars\";\t[47]: \"Updated on Jan 11\";\t[48]: \"Star\";\t[49]: \"scikit-image/scikit-image\";\t[50]: \"Star\";\t[51]: <button> \"Sponsor\", \"Sponsor scikit-image/scikit-image\";\t[52]: \"Explore sponsorable projects\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search results are displayed, sorted by \"Best match.\" The second repository, \"WZMIAOMIAO/deep-learning-for-image-processing,\" has 25.4k stars, which is higher than the first repository's 14.2k stars. However, there might be repositories with even more stars further down or sorted differently. To ensure the most popular, I should sort by \"Most stars.\"\nAction: Click [26]\nConfidence: 1.0\nCompletion: 0.4",
+    "token": ": Click [26",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Platform\";\t[2]: <button> \"Solutions\";\t[3]: <button> \"Resources\";\t[4]: <button> \"Open Source\";\t[5]: <button> \"Enterprise\";\t[6]: \"Pricing\";\t[7]: <button> \"image processing\", \"Search or jump to\u2026\";\t[8]: \"Sign in\";\t[9]: \"Sign up\";\t[10]: <button> \"\";\t[11]: \"Code...\u00a0(...)results\";\t[12]: \"Repositories107k\u00a0(107k)results\";\t[13]: \"Issues397k\u00a0(397k)results\";\t[14]: \"Pull requests872k\u00a0(872k)results\";\t[15]: \"Discussions22k\u00a0(22k)results\";\t[16]: \"Users4k\u00a0(4k)results\";\t[17]: <button> \"More\";\t[19]: \"Python\";\t[20]: \"Jupyter Notebook\";\t[21]: \"MATLAB\";\t[22]: \"C++\";\t[23]: \"Java\";\t[24]: \"JavaScript\";\t[25]: \"C\";\t[26]: <button> \"Sort by: Best match\";\t[27]: <button> \"Open column options\";\t[28]: \"php\";\t[29]: \"gd\";\t[30]: \"PHP\";\t[32]: \"Updated 26 days ago\";\t[33]: \"WZMIAOMIAO/deep-learning-for-image-processing\";\t[34]: \"deep-learning\";\t[35]: \"pytorch\";\t[36]: \"classification\";\t[37]: \"segmentation\";\t[38]: \"bilibili\";\t[39]: \"Python\";\t[40]: \"25.4k\", \"25418 stars\";\t[41]: \"Updated on Jan 11\";\t[42]: \"Star\";\t[43]: \"scikit-image/scikit-image\";\t[44]: \"Star\";\t[45]: <button> \"Sponsor\", \"Sponsor scikit-image/scikit-image\";\t[46]: \"Explore sponsorable projects\";\t[47]: \"Best match\";\t[48]: \"Most stars\";\t[49]: \"Fewest stars\";\t[50]: \"Most forks\";\t[51]: \"Fewest forks\";\t[52]: \"Recently updated\";\t[53]: \"Least recently updated\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The sorting options are displayed. To find the most popular (in terms of stars) image processing tool, I should select the \"Most stars\" sorting option [48].\nAction: Click [48]\nConfidence: 1.0\nCompletion: 0.6",
+    "token": ": Click [48",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Platform\";\t[2]: <button> \"Solutions\";\t[3]: <button> \"Resources\";\t[4]: <button> \"Open Source\";\t[5]: <button> \"Enterprise\";\t[6]: \"Pricing\";\t[7]: <button> \"image processing\", \"Search or jump to\u2026\";\t[8]: \"Sign in\";\t[9]: \"Sign up\";\t[10]: <button> \"\";\t[11]: \"Code...\u00a0(...)results\";\t[12]: \"Repositories107k\u00a0(107k)results\";\t[13]: \"Issues397k\u00a0(397k)results\";\t[14]: \"Pull requests872k\u00a0(872k)results\";\t[15]: \"Discussions22k\u00a0(22k)results\";\t[16]: \"Users4k\u00a0(4k)results\";\t[17]: <button> \"More\";\t[19]: \"Python\";\t[20]: \"Jupyter Notebook\";\t[21]: \"MATLAB\";\t[22]: \"C++\";\t[23]: \"Java\";\t[24]: \"JavaScript\";\t[25]: \"C\";\t[26]: <button> \"Sort by: Most stars\";\t[27]: <button> \"Open column options\";\t[28]: \"lovell/sharp\";\t[29]: \"nodejs\";\t[30]: \"javascript\";\t[31]: \"svg\";\t[32]: \"performance\";\t[33]: \"image\";\t[34]: \"JavaScript\";\t[35]: \"31.1k\", \"31141 stars\";\t[36]: \"Updated 4 hours ago\";\t[37]: \"Star\";\t[38]: <button> \"Sponsor\", \"Sponsor lovell/sharp\";\t[39]: \"WZMIAOMIAO/deep-learning-for-image-processing\";\t[40]: \"deep-learning\";\t[41]: \"pytorch\";\t[42]: \"classification\";\t[43]: \"Star\";\t[44]: \"Explore sponsorable projects\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The list is now sorted by \"Most stars.\" The top result is \"lovell/sharp\" with 31.1k stars, which is higher than the previously observed repositories. This makes \"lovell/sharp\" the most popular open-source image processing tool on GitHub based on the current search.\nAction: ANSWER; The most popular open-source image processing tool on GitHub is \"lovell/sharp\" with 31.1k stars.\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; The most popular open-source image processing tool on GitHub is \"lovell/sharp\" with 31.1k stars",
+    "prob": 0.9950914318187887
+  }
+]

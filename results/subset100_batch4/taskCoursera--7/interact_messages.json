@@ -1,0 +1,119 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find a course on Coursera that teaches Reinforcement Learning for Intermediate with a rating of at least 4.5. Provide the name of the course, the institution offering it, and the number of reviews it has received.  Please interact with https://www.coursera.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current screen is showing a promotional offer for Coursera Plus and does not provide access to search or browse courses. I need to scroll down to look for search or course discovery options.\nAction: Scroll WINDOW; down\nConfidence: 1.0\nCompletion: 0.0",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999327988482429
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current screen continues with Coursera's promotional and informational content. I still don't see a search bar or navigation menu to find courses. I need to scroll down further to reach the section where I can search or filter for specific courses.\nAction: Scroll WINDOW; down\nConfidence: 1.0\nCompletion: 0.0",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screen shows a few featured courses and a \"Show 8 more\" button below the career skills section. To view more courses and potentially find one related to Reinforcement Learning with the required criteria, I should click the \"Show 8 more\" button.\nAction: Click [14]\nConfidence: 0.95\nCompletion: 0.1",
+    "token": ": Click [14",
+    "prob": 0.9983225657661507
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The lower portion of the featured courses section is now partially visible and more courses are loading below. However, there still isn't a search bar or a visible way to specify filters for Reinforcement Learning or intermediate level, which are crucial for the task. Scrolling down further may reveal a search or filter option.\nAction: Scroll WINDOW; down\nConfidence: 0.98\nCompletion: 0.1",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: More courses are visible, but none are related to Reinforcement Learning, and all appear to be beginner-level or unrelated fields. There is still no search bar or filter visible. Scrolling down further may reveal a broader navigation menu with search capabilities.\nAction: Scroll WINDOW; down\nConfidence: 0.98\nCompletion: 0.1",
+    "token": ": Scroll WINDOW; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[2]: \"University of Pennsylvania\";\t[3]: \"Introduction to Programming with Python and Java\", \"Introduction to Programming with Python and Java, offered by University of Pennsylvania, SPECIALIZATION\";\t[5]: \"Macquarie University\";\t[6]: \"Excel Skills for Business\", \"Excel Skills for Business, offered by Macquarie University, SPECIALIZATION\";\t[7]: <button> \"Show 8 more\", \"Show 8 more \";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I have reached the bottom of the featured courses section. There is now a heading, \"Search 10,000+ learning programs\", visible at the bottom, which likely indicates that search functionality is coming up. To progress and potentially uncover the search bar needed for the task, I should scroll down further.\nAction: Scroll WINDOW; down\nConfidence: 0.99\nCompletion: 0.1",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[2]: <input> \"Search by keyword\";\t[4]: <button> \"Search\";\t[5]: <button> \"Business\", \"domainName, add to search\";\t[6]: <button> \"Computer Science\", \"domainName, add to search\";\t[7]: <button> \"Data Science\", \"domainName, add to search\";\t[8]: <button> \"Health\", \"domainName, add to search\";\t[9]: <button> \"Information Technology\", \"domainName, add to search\";\t[10]: <button> \"Arts and Humanities\", \"domainName, add to search\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search bar is now visible and labeled \"Search by keyword.\" To find courses on Reinforcement Learning for Intermediate level, I should type \"Reinforcement Learning Intermediate\" in the search bar to get relevant results.\nAction: Type [2]; Reinforcement Learning Intermediate\nConfidence: 0.99\nCompletion: 0.2",
+    "token": ": Type [2]; Reinforcement Learning Intermediate",
+    "prob": 0.9999973659647294
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Save now\";\t[1]: <input> \"Search by keyword\";\t[2]: <button> \"Clear search\";\t[3]: <button> \"Search\";\t[4]: <button> \"Business\", \"domainName, add to search\";\t[5]: <button> \"Computer Science\", \"domainName, add to search\";\t[6]: <button> \"Data Science\", \"domainName, add to search\";\t[7]: <button> \"Health\", \"domainName, add to search\";\t[8]: <button> \"Information Technology\", \"domainName, add to search\";\t[9]: <button> \"Arts and Humanities\", \"domainName, add to search\";\t[10]: \"Reinforcement LearningUniversity of AlbertaSpecializationFilled StarFilled StarFilled StarFilled StarHalf Filled StarRated 4.7 out of five stars. 3554 reviews4.7(3,554)Intermediate LevelIntermediate\", \"Reinforcement Learning\";\t[11]: \"Introduction to Transformer Models for NLPPearsonSpecializationIntermediate LevelIntermediate\", \"Introduction to Transformer Models for NLP\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The first search result matches all the requirements: it teaches Reinforcement Learning, is for the Intermediate level, has a rating of 4.7 (above 4.5), and has 3,554 reviews. The institution offering the course is the University of Alberta.\nAction: ANSWER; Course name: Reinforcement Learning; Institution: University of Alberta; Number of reviews: 3,554\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; Course name: Reinforcement Learning; Institution: University of Alberta; Number of reviews: 3,554",
+    "prob": 0.8885971302929695
+  }
+]

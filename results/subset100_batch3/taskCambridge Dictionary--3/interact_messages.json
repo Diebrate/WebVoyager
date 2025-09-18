@@ -1,0 +1,79 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Look up the definition, pronunciation, and examples of the word \"zeitgeist.\"  Please interact with https://dictionary.cambridge.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I need to search for the word \"zeitgeist\" in the search box to look up its definition, pronunciation, and examples. The textbox for search is labeled [15].\nAction: Type [15]; zeitgeist\nConfidence: 1.0\nCompletion: 0.2",
+    "token": ": Type [15]; zeitgeist",
+    "prob": 0.999869799402877
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: \"Dictionary\";\t[2]: \"Translate\";\t[3]: \"Grammar\";\t[4]: \"Thesaurus\";\t[5]: \"+Plus Cambridge Dictionary +Plus\";\t[10]: \"Log in\";\t[11]: \"Sign up\";\t[13]: \"English (UK)\";\t[14]: <input> \"Search\";\t[16]: <button> \"English\", \"Choose a dictionary\";\t[17]: <button> \"Search\";\t[18]: \"English\u2013French\", \"Set dictionary search to English\u2013French\";\t[19]: \"French\u2013English\", \"Set dictionary search to French\u2013English\";\t[20]: \"Grammar\", \"Set dictionary search to Grammar\";\t[25]: \"[ S ]\";\t[28]: \"general\";\t[29]: \"ideas\";\t[30]: \"beliefs\";\t[31]: \"feelings\";\t[32]: \"typical\";\t[33]: \"particular\";\t[34]: \"period\";\t[35]: \"history\";\t[37]: \"Custom, tradition & conformity\";\t[38]: \"Americanization\";\t[39]: \"ancient wisdom\";\t[40]: \"To top\";\t[43]: \"Contents\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search for \"zeitgeist\" has been completed. The screen shows its definition, pronunciation (UK and US), and partial example context, but the full example sentences might be further down the page. To ensure I get examples, I need to scroll down.\nAction: Scroll [WINDOW]; down\nConfidence: 0.95\nCompletion: 0.5",
+    "token": ": Scroll [WINDOW]; down",
+    "prob": 0.9084731890449529
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: \"Dictionary\";\t[2]: \"Translate\";\t[3]: \"Grammar\";\t[4]: \"Thesaurus\";\t[5]: \"+Plus Cambridge Dictionary +Plus\";\t[10]: \"Log in\";\t[11]: \"Sign up\";\t[13]: \"English (UK)\";\t[15]: \"anti-classical\";\t[16]: \"anti-conventional\";\t[17]: \"anti-institutional\";\t[18]: \"conventionally\";\t[19]: \"costume\";\t[20]: \"counter-tradition\";\t[21]: \"crowd\";\t[22]: \"custom\";\t[23]: \"it is the custom to do something\";\t[24]: \"maverick\";\t[25]: \"moonraker\";\t[26]: \"mores\";\t[27]: \"multicultural\";\t[28]: \"traditionalism\";\t[29]: \"traditionalist\";\t[30]: \"traditionally\";\t[31]: \"ultra-conservatism\";\t[32]: \"ultra-conservative\";\t[33]: \"See more results \u00bb\";\t[35]: \"To top\";\t[38]: \"Contents\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: This section contains related words and phrases, not example sentences for \"zeitgeist.\" To find example sentences, I should look further down the page.\nAction: Scroll [WINDOW]; down\nConfidence: 0.95\nCompletion: 0.6",
+    "token": ": Scroll [WINDOW]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: \"Dictionary\";\t[2]: \"Translate\";\t[3]: \"Grammar\";\t[4]: \"Thesaurus\";\t[5]: \"+Plus Cambridge Dictionary +Plus\";\t[10]: \"Log in\";\t[11]: \"Sign up\";\t[13]: \"English (UK)\";\t[14]: \"Cambridge Advanced Learner's Dictionary & Thesaurus\";\t[15]: \"Cambridge English Corpus\";\t[16]: \"rock bottom\";\t[19]: \"About this\";\t[20]: \"To top\";\t[23]: \"Contents\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"EXAMPLES of zeitgeist\" section is now visible, containing example sentences. All required information\u2014definition, pronunciation, and examples\u2014has now been found from previous and current screens.\nAction: ANSWER; \nDefinition: \"Zeitgeist\" is a noun meaning the general set of ideas, beliefs, and feelings typical of a particular period in history.\nPronunciation: UK: /\u02c8tsa\u026at.\u0261a\u026ast/; US: /\u02c8za\u026at.\u0261a\u026ast/\nExamples: \n1. \"Put in the contemporary context, this change also became part of the overall rebellious zeitgeist of civil society, which continued to witness protests over many issues.\"\n2. \"Prognostications-as-theory do not divine the zeitgeist of any cultural period; they are concerned with what can be substantiated.\"\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; \nDefinition: \"Zeitgeist\" is a noun meaning the general set of ideas, beliefs, and feelings typical of a particular period in history.\nPronunciation: UK: /\\xcb\\x88tsa\\xc9\\xaat.\\xc9\\xa1a\\xc9\\xaast/; US: /\\xcb\\x88za\\xc9\\xaat.\\xc9\\xa1a\\xc9\\xaast/\nExamples: \n1. \"Put in the contemporary context, this change also became part of the overall rebellious zeitgeist of civil society, which continued to witness protests over many issues.\"\n2. \"Prognostications-as-theory do not divine the zeitgeist of any cultural period",
+    "prob": 5.761236846818648e-35
+  }
+]

@@ -1,0 +1,99 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Look up the submission guidelines on ArXiv for submitting a paper and tell me the formats for figures.  Please interact with https://arxiv.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find the figure format submission guidelines for arXiv, it's most efficient to search for keywords such as \"submission guidelines\" or \"figure format\" using the search function.\nAction: Type [4]; submission guidelines\nConfidence: 0.95\nCompletion: 0.2",
+    "token": ": Type [4]; submission guidelines",
+    "prob": 0.9640799810118299
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search has returned papers, not the actual arXiv submission guidelines page. Instead of sifting through papers, I should look for the official \"Help\" or \"submission guidelines\" page, likely accessible via the \"Help\" link in the navigation.\nAction: Click [5]\nConfidence: 0.98\nCompletion: 0.3",
+    "token": ": Click [5",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Submission and Revision\" section in the table of contents and main content likely contains the guidelines for submitting papers, including requirements for figure formats. This is the most relevant section to continue.\nAction: Click [8]\nConfidence: 0.99\nCompletion: 0.5",
+    "token": ": Click [8",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: <input> \"Search\";\t[3]: \"arXiv Help Contents\";\t[4]: \"General Information\";\t[5]: \"Searching and Browsing\";\t[6]: \"User Accounts\";\t[7]: \"Submission and Revision\";\t[8]: \"Miscellaneous\";\t[9]: \"Submit an Article\";\t[10]: \"Submission schedule and cutoff time\";\t[11]: \"Submission terms and agreement\";\t[12]: \"Replace an Article\";\t[13]: \"Withdraw an Article\";\t[14]: \"Add a Journal Reference, DOI or Report Number to an Article\";\t[15]: \"Crosslist an Article\";\t[16]: \"The Moderation System\";\t[17]: \"Oversized Submissions\";\t[18]: \"Text Overlap Detection\";\t[19]: \"Understanding the arXiv Identifier\";\t[20]: \"Understanding the ORCID iD\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find the figure format requirements, the most likely relevant link is \"Submit an Article\" under the \"Submission and Revision\" section, as it should contain detailed submission instructions.\nAction: Click [9]\nConfidence: 0.99\nCompletion: 0.6",
+    "token": ": Click [9",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors.\";\t[3]: <input> \"Search\";\t[4]: \"Submission Guidelines\";\t[5]: \"Submission Preparation\";\t[6]: \"Formats for text of submission\";\t[7]: \"Formats for figures\";\t[8]: \"File names and case sensitivity\";\t[9]: \"Inclusion of ancillary files\";\t[10]: \"Title and abstract preparation\";\t[11]: \"Upload and prepare your submission file\";\t[12]: \"Verify and correct your submission\";\t[13]: \"Edit or replace your submission\";\t[14]: \"Availability of submissions\";\t[16]: \"registered authors\";\t[17]: \"endorsements\";\t[18]: \"moderation process\";\t[19]: \"irrevocable license to distribute\";\t[20]: \"Submittal Agreement\";\t[21]: \"code of conduct\";\t[22]: \"moderation\";\t[23]: \"privacy\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is a clearly labeled link called \"Formats for figures\" both in the table of contents and the main content. This section will likely contain the specific guidelines for figure formats needed for arXiv submissions.\nAction: Click [7]\nConfidence: 1.0\nCompletion: 0.8",
+    "token": ": Click [7",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: <input> \"Search\";\t[3]: \"Submission Guidelines\";\t[4]: \"Submission Preparation\";\t[5]: \"Formats for text of submission\";\t[6]: \"Formats for figures\";\t[7]: \"File names and case sensitivity\";\t[8]: \"Inclusion of ancillary files\";\t[9]: \"Title and abstract preparation\";\t[10]: \"Upload and prepare your submission file\";\t[11]: \"Verify and correct your submission\";\t[12]: \"Edit or replace your submission\";\t[13]: \"Availability of submissions\";\t[14]: \"LaTeX processing\";\t[15]: \"PDFLaTeX processing\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The required figure formats for arXiv submissions are fully visible under \"Formats for figures.\" The acceptable formats are PostScript (PS, EPS) for LaTeX processing, and JPEG, GIF, PNG, or PDF for PDFLaTeX processing.\nAction: ANSWER; The accepted figure formats for arXiv submissions are:\n- PostScript (PS, EPS) for LaTeX processing.\n- JPEG, GIF, PNG, or PDF for PDFLaTeX processing.\nSubmissions must not omit figures or use external links for figures.\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; The accepted figure formats for arXiv submissions are:\n- PostScript (PS, EPS) for LaTeX processing.\n- JPEG, GIF, PNG, or PDF for PDFLaTeX processing.\nSubmissions must not omit figures or use external links for figures",
+    "prob": 0.8226718831172078
+  }
+]

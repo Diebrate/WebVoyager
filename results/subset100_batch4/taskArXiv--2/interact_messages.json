@@ -1,0 +1,99 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Look up the most recent papers related to 'cs.CL', select one and show its abstract.  Please interact with https://arxiv.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I need to locate the section for Computer Science, specifically for the \"Computation and Language (cs.CL)\" category. The list of fields such as Physics, Mathematics, and Computer Science is present. There should be a similar \"new,\" \"recent,\" and \"search\" link for cs.CL under Computer Science. I need to scroll down to see the Computer Science section.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.1",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999995321443933
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I have found the \"Computation and Language\" (cs.CL) category under the Computer Science section. To find the most recent papers in this field, I should look for the \"recent\" link next to \"Computation and Language\".\nAction: Click [115]\nConfidence: 1.0\nCompletion: 0.3",
+    "token": ": Click [115",
+    "prob": 0.9752314988891815
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The page currently shows \"Computational Complexity\" (cs.CC), not \"Computation and Language\" (cs.CL). I need to go back to the previous page and make sure to select \"recent\" for \"Computation and Language\" instead to get the correct set of papers.\nAction: GoBack\nConfidence: 1.0\nCompletion: 0.2",
+    "token": ": GoBack",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"General Relativity and Quantum Cosmology\";\t[1]: \"new\";\t[2]: \"recent\";\t[3]: \"search\";\t[4]: \"High Energy Physics - Experiment\";\t[5]: \"new\";\t[6]: \"recent\";\t[7]: \"search\";\t[8]: \"High Energy Physics - Lattice\";\t[9]: \"new\";\t[10]: \"recent\";\t[11]: \"search\";\t[12]: \"High Energy Physics - Phenomenology\";\t[13]: \"new\";\t[14]: \"recent\";\t[15]: \"search\";\t[16]: \"High Energy Physics - Theory\";\t[17]: \"new\";\t[18]: \"recent\";\t[19]: \"search\";\t[20]: \"Mathematical Physics\";\t[21]: \"new\";\t[22]: \"recent\";\t[23]: \"search\";\t[24]: \"Nonlinear Sciences\";\t[25]: \"new\";\t[26]: \"recent\";\t[27]: \"search\";\t[28]: \"Adaptation and Self-Organizing Systems\";\t[29]: \"Cellular Automata and Lattice Gases\";\t[30]: \"Chaotic Dynamics\";\t[31]: \"Exactly Solvable and Integrable Systems\";\t[32]: \"Pattern Formation and Solitons\";\t[33]: \"Nuclear Experiment\";\t[34]: \"new\";\t[35]: \"recent\";\t[36]: \"search\";\t[37]: \"Nuclear Theory\";\t[38]: \"new\";\t[39]: \"recent\";\t[40]: \"search\";\t[41]: \"Physics\";\t[42]: \"new\";\t[43]: \"recent\";\t[44]: \"search\";\t[45]: \"Accelerator Physics\";\t[46]: \"Applied Physics\";\t[47]: \"Atmospheric and Oceanic Physics\";\t[48]: \"Atomic and Molecular Clusters\";\t[49]: \"Atomic Physics\";\t[50]: \"Biological Physics\";\t[51]: \"Chemical Physics\";\t[52]: \"Classical Physics\";\t[53]: \"Computational Physics\";\t[54]: \"Data Analysis, Statistics and Probability\";\t[55]: \"Fluid Dynamics\";\t[56]: \"General Physics\";\t[57]: \"Geophysics\";\t[58]: \"History and Philosophy of Physics\";\t[59]: \"Instrumentation and Detectors\";\t[60]: \"Medical Physics\";\t[61]: \"Optics\";\t[62]: \"Physics and Society\";\t[63]: \"Physics Education\";\t[64]: \"Plasma Physics\";\t[65]: \"Popular Physics\";\t[66]: \"Space Physics\";\t[67]: \"Quantum Physics\";\t[68]: \"new\";\t[69]: \"recent\";\t[70]: \"search\";\t[71]: \"Mathematics\";\t[72]: \"new\";\t[73]: \"recent\";\t[74]: \"search\";\t[75]: \"detailed description\";\t[76]: \"Algebraic Geometry\";\t[77]: \"Algebraic Topology\";\t[78]: \"Analysis of PDEs\";\t[79]: \"Category Theory\";\t[80]: \"Classical Analysis and ODEs\";\t[81]: \"Combinatorics\";\t[82]: \"Commutative Algebra\";\t[83]: \"Complex Variables\";\t[84]: \"Differential Geometry\";\t[85]: \"Dynamical Systems\";\t[86]: \"Functional Analysis\";\t[87]: \"General Mathematics\";\t[88]: \"General Topology\";\t[89]: \"Geometric Topology\";\t[90]: \"Group Theory\";\t[91]: \"History and Overview\";\t[92]: \"Information Theory\";\t[93]: \"K-Theory and Homology\";\t[94]: \"Logic\";\t[95]: \"Mathematical Physics\";\t[96]: \"Metric Geometry\";\t[97]: \"Number Theory\";\t[98]: \"Numerical Analysis\";\t[99]: \"Operator Algebras\";\t[100]: \"Optimization and Control\";\t[101]: \"Probability\";\t[102]: \"Quantum Algebra\";\t[103]: \"Representation Theory\";\t[104]: \"Rings and Algebras\";\t[105]: \"Spectral Theory\";\t[106]: \"Statistics Theory\";\t[107]: \"Symplectic Geometry\";\t[108]: \"Computing Research Repository\";\t[109]: \"new\";\t[110]: \"recent\";\t[111]: \"search\";\t[112]: \"detailed description\";\t[113]: \"Artificial Intelligence\";\t[114]: \"Computation and Language\";\t[115]: \"Computational Complexity\";\t[116]: \"Computational Engineering, Finance, and Science\";\t[117]: \"Computational Geometry\";\t[118]: \"Computer Science and Game Theory\";\t[119]: \"Computer Vision and Pattern Recognition\";\t[120]: \"Computers and Society\";\t[121]: \"Cryptography and Security\";\t[122]: \"Data Structures and Algorithms\";\t[123]: \"Databases\";\t[124]: \"Digital Libraries\";\t[125]: \"Discrete Mathematics\";\t[126]: \"Distributed, Parallel, and Cluster Computing\";\t[127]: \"Emerging Technologies\";\t[128]: \"Formal Languages and Automata Theory\";\t[129]: \"General Literature\";\t[130]: \"Graphics\";\t[131]: \"Hardware Architecture\";\t[132]: \"Human-Computer Interaction\";\t[133]: \"Information Retrieval\";\t[134]: \"Information Theory\";\t[135]: \"Logic in Computer Science\";\t[136]: \"Machine Learning\";\t[137]: \"Mathematical Software\";\t[138]: \"Multiagent Systems\";\t[139]: \"Multimedia\";\t[140]: \"Networking and Internet Architecture\";\t[141]: \"Neural and Evolutionary Computing\";\t[142]: \"Numerical Analysis\";\t[143]: \"Operating Systems\";\t[144]: \"Other Computer Science\";\t[145]: \"Performance\";\t[146]: \"Programming Languages\";\t[147]: \"Robotics\";\t[148]: \"Social and Information Networks\";\t[149]: \"Software Engineering\";\t[150]: \"Sound\";\t[151]: \"Symbolic Computation\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I see the \"Computation and Language\" (cs.CL) category under Computer Science, and the \"recent\" link is just to its right. To view the most recent papers in cs.CL, I should click the \"recent\" link next to \"Computation and Language.\"\nAction: Click [110]\nConfidence: 1.0\nCompletion: 0.4",
+    "token": ": Click [110",
+    "prob": 0.9998299779452893
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: \"member institutions\";\t[2]: \"Donate\";\t[4]: \"cs\";\t[5]: <input> \"Search term or terms\";\t[6]: \"Help\";\t[7]: \"Advanced Search\";\t[8]: \"All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID arXiv author ID Help pages Full text\", \"Field to search\";\t[9]: <button> \"Search\";\t[10]: \"Thu, 18 Sep 2025\";\t[11]: \"Wed, 17 Sep 2025\";\t[12]: \"Tue, 16 Sep 2025\";\t[13]: \"Mon, 15 Sep 2025\";\t[14]: \"Fri, 12 Sep 2025\";\t[15]: \"new\";\t[16]: \"51-100\";\t[17]: \"101-150\";\t[18]: \"151-200\";\t[19]: \"2851-2861\";\t[20]: \"fewer\";\t[21]: \"more\";\t[22]: \"all\";\t[23]: \"[1]\";\t[24]: \"arXiv:2509.14234\";\t[25]: \"pdf\";\t[26]: \"html\";\t[27]: \"other\";\t[28]: \"Dulhan Jayalath\";\t[29]: \"Shashwat Goel\";\t[30]: \"Thomas Foster\";\t[31]: \"Parag Jain\";\t[32]: \"Suchin Gururangan\";\t[33]: \"Cheng Zhang\";\t[34]: \"Anirudh Goyal\";\t[35]: \"Alan Schelten\";\t[36]: \"[2]\";\t[37]: \"arXiv:2509.14233\";\t[38]: \"pdf\";\t[39]: \"other\";\t[40]: \"Alejandro Hern\u00e1ndez-Cano\";\t[41]: \"Alexander H\u00e4gele\";\t[42]: \"Allen Hao Huang\";\t[43]: \"Angelika Romanou\";\t[44]: \"Antoni-Joan Solergibert\";\t[45]: \"Barna Pasztor\";\t[46]: \"Bettina Messmer\";\t[47]: \"Dhia Garbaya\";\t[48]: \"Eduard Frank \u010eurech\";\t[49]: \"Ido Hakimi\";\t[50]: \"Juan Garc\u00eda Giraldo\";\t[51]: \"Mete Ismayilzada\";\t[52]: \"Negar Foroutan\";\t[53]: \"Skander Moalla\";\t[54]: \"Tiancheng Chen\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The page lists the most recent cs.CL (Computation and Language) submissions, starting with the entry on 18 Sep 2025. The first paper's arXiv ID is arXiv:2509.14234. To show its abstract, I need to click on its arXiv ID link.\nAction: Click [24]\nConfidence: 1.0\nCompletion: 0.8",
+    "token": ": Click [24",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: \"member institutions\";\t[2]: \"Donate\";\t[4]: \"cs\";\t[5]: <input> \"Search term or terms\";\t[6]: \"Help\";\t[7]: \"Advanced Search\";\t[8]: \"All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID arXiv author ID Help pages Full text\", \"Field to search\";\t[9]: <button> \"Search\";\t[10]: \"Dulhan Jayalath\";\t[11]: \"Shashwat Goel\";\t[12]: \"Thomas Foster\";\t[13]: \"Parag Jain\";\t[14]: \"Suchin Gururangan\";\t[15]: \"Cheng Zhang\";\t[16]: \"Anirudh Goyal\";\t[17]: \"Alan Schelten\";\t[18]: \"View PDF\";\t[19]: \"HTML (experimental)\";\t[20]: \"TeX Source\";\t[21]: \"Other Formats\";\t[22]: \"view license\";\t[23]: \"<\u00a0prev\";\t[24]: \"next\u00a0>\";\t[25]: \"new\";\t[26]: \"recent\";\t[27]: \"2025-09\";\t[28]: \"cs\";\t[29]: \"NASA ADS\";\t[30]: \"Google Scholar\";\t[31]: \"Semantic Scholar\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The abstract of the most recent cs.CL paper \"Compute as Teacher: Turning Inference Compute Into Reference-Free Supervision\" is visible in the main content area below the title and authors.\nAction: ANSWER; The most recent cs.CL paper is titled \"Compute as Teacher: Turning Inference Compute Into Reference-Free Supervision.\" \n\nAbstract:\nWhere do learning signals come from when there is no ground truth in post-training? We propose turning exploration into supervision through Compute as Teacher (CaT), which converts the model's own exploration at inference-time into reference-free supervision by synthesizing a single reference from a group of parallel rollouts and then optimizing toward it. Concretely, the current policy produces a group of rollouts; a frozen anchor (the initial policy) reconciles omissions and contradictions to estimate reference, turning extra inference-time compute into a teacher signal. We turn this into three settings: (i) verifiable tasks use programmatic equivalence on final answers; (ii) non-verifiable tasks use proposed rubrics-binary, auditable criteria scored by an independent LLM judge, with reward given to the satisfiable rollouts. Unlike self-supervised methods (best-of-N, majority, perplexity, or judge scores), reward is given for the majority and be correct even when all rollouts are wrong; performance scales with the number of rollouts. As a test-time procedure, CaT improves Gemma 3 4B, Qwen 3 4B, and Llama 3 8B (+27% on MATH-5000; +12% on HealthBench). With reinforcement learning (CaT-RL), we obtain up to +33% and +30%, with the trained policy surpassing the initial teacher signal.\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; The most recent cs.CL paper is titled \"Compute as Teacher: Turning Inference Compute Into Reference-Free Supervision.\" \n\nAbstract:\nWhere do learning signals come from when there is no ground truth in post-training? We propose turning exploration into supervision through Compute as Teacher (CaT), which converts the model's own exploration at inference-time into reference-free supervision by synthesizing a single reference from a group of parallel rollouts and then optimizing toward it. Concretely, the current policy produces a group of rollouts; a frozen anchor (the initial policy) reconciles omissions and contradictions to estimate reference, turning extra inference-time compute into a teacher signal. We turn this into three settings: (i) verifiable tasks use programmatic equivalence on final answers; (ii) non-verifiable tasks use proposed rubrics-binary, auditable criteria scored by an independent LLM judge, with reward given to the satisfiable rollouts. Unlike self-supervised methods (best-of-N, majority, perplexity, or judge scores), reward is given for the majority and be correct even when all rollouts are wrong; performance scales with the number of rollouts. As a test-time procedure, CaT improves Gemma 3 4B, Qwen 3 4B, and Llama 3 8B (+27% on MATH-5000; +12% on HealthBench). With reinforcement learning (CaT-RL), we obtain up to +33% and +30%, with the trained policy surpassing the initial teacher signal",
+    "prob": 0.881384558776512
+  }
+]

@@ -1,0 +1,239 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find 5 beauty salons with ratings greater than 4.8 in Seattle, WA.  Please interact with https://www.google.com/maps/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find beauty salons in Seattle, WA with ratings greater than 4.8, I should first search for \"beauty salons in Seattle, WA\" in the search box.\nAction: Type [0]; beauty salons in Seattle, WA\nConfidence: 1.0\nCompletion: 0.1",
+    "token": ": Type [0]; beauty salons in Seattle, WA",
+    "prob": 0.9999183772751478
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To filter beauty salons with ratings greater than 4.8, I should use the rating filter. There is a \"Rating\" button/filter option available.\nAction: Click [4]\nConfidence: 1.0\nCompletion: 0.2",
+    "token": ": Click [4",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is no visible option above 4.5 in the rating filter. Using the 4.5 filter will show higher-rated salons, but I will still need to manually check for those above 4.8 from the results.\nAction: Click [6]\nConfidence: 0.95\nCompletion: 0.25",
+    "token": ": Click [6",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Salons are filtered to 4.5+ ratings, but the visible results (Robert Leonard Salon & Spa, Fix Salon Seattle, Liana Hair Salon) are all rated 4.7, which isn\u2019t sufficient. I should scroll down to find ones with ratings greater than 4.8.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.3",
+    "token": ": Scroll [17]; down",
+    "prob": 0.9993019777441577
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results list still shows only salons rated 4.7. I need to scroll further down to see if there are any salons rated higher than 4.8.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.35",
+    "token": ": Scroll [17]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The list of salons is still showing only ratings of 4.7 and part of one more result covered at the bottom. I need to scroll further to see additional listings and try to find ratings above 4.8.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.4",
+    "token": ": Scroll [17]; down",
+    "prob": 0.9999999478639471
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The display remains the same, with all visible salons showing a rating of 4.7. I must continue scrolling further to reveal more results and check for salons with ratings greater than 4.8.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.45",
+    "token": ": Scroll [17]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screen is not progressing, and the results have not changed; all visible salons still show a 4.7 rating. There may be more results below. I need to continue scrolling down the list to see additional salons.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.5",
+    "token": ": Scroll [17]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results panel has not changed; only 4.7-rated salons are visible, but the panel is scrollable. I need to keep scrolling to find salons rated greater than 4.8.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.55",
+    "token": ": Scroll [17]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results panel still only shows salons with a 4.7 rating, indicating more scrolling is required to see if any salons with ratings above 4.8 are available further down the list.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.6",
+    "token": ": Scroll [17]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The visible results still only show salons with a 4.7 rating. To see higher-rated salons, I need to continue scrolling the results list further.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.65",
+    "token": ": Scroll [17]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results panel continues to show only 4.7-rated salons. No higher ratings are visible. More scrolling is required in the results panel to check for salons with ratings greater than 4.8.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.7",
+    "token": ": Scroll [17]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results panel still only displays salons rated 4.7 and the position of the scrollbar suggests there are more results below. I need to keep scrolling the results panel to find salons rated greater than 4.8.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.75",
+    "token": ": Scroll [17]; down",
+    "prob": 0.9999999677312256
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results panel has not changed, still displaying only salons rated 4.7. The scroll bar suggests more results below. It's necessary to keep scrolling to locate salons with ratings above 4.8.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.8",
+    "token": ": Scroll [17]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results panel remains unchanged, still only showing salons with a 4.7 rating. Since the scroll bar indicates there are more listings available below, I should continue scrolling to try to find salons with ratings above 4.8.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.85",
+    "token": ": Scroll [17]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results panel is still unchanged, showing salons only rated 4.7, and the scroll bar indicates there may still be more listings. Continuing to scroll is necessary to find salons with ratings above 4.8.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.9",
+    "token": ": Scroll [17]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results panel still hasn\u2019t changed, and only salons with a 4.7 rating are visible. Since the scrollbar suggests that there are more results, I need to scroll again to find any salons with ratings above 4.8.\nAction: Scroll [17]; down\nConfidence: 1.0\nCompletion: 0.95",
+    "token": ": Scroll [17]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <input> \"\";\t[1]: <button> \"\ue8b6\", \"Search\";\t[2]: <button> \"\ue5cd\", \"Close\";\t[3]: <button> \"\ue5ca4.5+\ue838\ue5c5\";\t[4]: <button> \"\ue8b5Hours\ue5c5\";\t[5]: <button> \"\ue429All filters\";\t[6]: <button> \"\ue5cc\", \"Next page\";\t[7]: <button> \"\ue5d2\", \"Menu\";\t[8]: <button> \"\ue866Saved\";\t[9]: <button> \"\ue889Recents\";\t[10]: <button> \"\ue32cGet app\";\t[11]: <button> \"\ue88e\", \"Learn more about legal disclosure regarding public reviews on Google Maps\";\t[12]: <button> \"\ue80dShare\", \"Share\";\t[15]: \"\ue878Book online\";\t[16]: <button> \"\ue835Update results when map moves\";\t[17]: <button> \"\ue5de\", \"Collapse side panel\";\t[19]: \"Sign in\";\t[20]: <button> \"\ue55c\", \"Show Your Location\";\t[21]: <button> \"Zoom in\";\t[22]: <button> \"Zoom out\";\t[23]: <button> \"Browse Street View images\";\t[24]: <button> \"\";\t[25]: <button> \"Canada\";\t[26]: <button> \"Terms\";\t[27]: <button> \"Privacy\";\t[28]: <button> \"Send Product Feedback\";\t[29]: <button> \"2 km\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The results remain unchanged, showing only salons with a 4.7 rating. Since the \"Next page\" button is available, there may be more results on the next page that could have ratings above 4.8. I should try the next page to explore further listings.\nAction: Click [6]\nConfidence: 0.95\nCompletion: 0.97",
+    "token": ": Click [6",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <input> \"\";\t[1]: <button> \"\ue8b6\", \"Search\";\t[2]: <button> \"\ue5cd\", \"Close\";\t[3]: <button> \"\ue5cb\", \"Previous page\";\t[4]: <button> \"\ue5ca4.5+\ue838\ue5c5\";\t[5]: <button> \"\ue8b5Hours\ue5c5\";\t[6]: <button> \"\ue429All filters\";\t[7]: <button> \"\ue5cc\", \"Next page\";\t[8]: <button> \"\ue5d2\", \"Menu\";\t[9]: <button> \"\ue866Saved\";\t[10]: <button> \"\ue889Recents\";\t[11]: <button> \"\ue32cGet app\";\t[12]: <button> \"\ue88e\", \"Learn more about legal disclosure regarding public reviews on Google Maps\";\t[13]: <button> \"\ue80dShare\", \"Share\";\t[16]: \"\ue878Book online\";\t[17]: <button> \"\ue835Update results when map moves\";\t[18]: <button> \"\ue5de\", \"Collapse side panel\";\t[20]: \"Sign in\";\t[21]: <button> \"\ue55c\", \"Show Your Location\";\t[22]: <button> \"Zoom in\";\t[23]: <button> \"Zoom out\";\t[24]: <button> \"Browse Street View images\";\t[25]: <button> \"\";\t[26]: <button> \"Canada\";\t[27]: <button> \"Terms\";\t[28]: <button> \"Privacy\";\t[29]: <button> \"Send Product Feedback\";\t[30]: <button> \"2 km\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Navigating to the next page did not change the visible results; they still all show salons with a 4.7 rating. The results need to be scrolled down on this new page to see if any salons with ratings above 4.8 appear.\nAction: Scroll [18]; down\nConfidence: 1.0\nCompletion: 0.98",
+    "token": ": Scroll [18]; down",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <input> \"\";\t[1]: <button> \"\ue8b6\", \"Search\";\t[2]: <button> \"\ue5cd\", \"Close\";\t[3]: <button> \"\ue5cb\", \"Previous page\";\t[4]: <button> \"\ue5ca4.5+\ue838\ue5c5\";\t[5]: <button> \"\ue8b5Hours\ue5c5\";\t[6]: <button> \"\ue429All filters\";\t[7]: <button> \"\ue5cc\", \"Next page\";\t[8]: <button> \"\ue5d2\", \"Menu\";\t[9]: <button> \"\ue866Saved\";\t[10]: <button> \"\ue889Recents\";\t[11]: <button> \"\ue32cGet app\";\t[12]: <button> \"\ue88e\", \"Learn more about legal disclosure regarding public reviews on Google Maps\";\t[13]: <button> \"\ue80dShare\", \"Share\";\t[16]: \"\ue878Book online\";\t[17]: <button> \"\ue835Update results when map moves\";\t[18]: <button> \"\ue5de\", \"Collapse side panel\";\t[20]: \"Sign in\";\t[21]: <button> \"\ue55c\", \"Show Your Location\";\t[22]: <button> \"Zoom in\";\t[23]: <button> \"Zoom out\";\t[24]: <button> \"Browse Street View images\";\t[25]: <button> \"\";\t[26]: <button> \"Canada\";\t[27]: <button> \"Terms\";\t[28]: <button> \"Privacy\";\t[29]: <button> \"Send Product Feedback\";\t[30]: <button> \"2 km\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The newly loaded page still displays only salons rated 4.7. To check if salons rated higher than 4.8 appear, I need to keep scrolling down the results panel.\nAction: Scroll [18]; down\nConfidence: 1.0\nCompletion: 0.99",
+    "token": ": Scroll [18]; down",
+    "prob": 1.0
+  }
+]

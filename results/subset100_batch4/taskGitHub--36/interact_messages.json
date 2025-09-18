@@ -1,0 +1,109 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Identify a new open-source project on GitHub related to 'AI agriculture' that created in 2022, and note its main programming language and description.  Please interact with https://github.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I need to search for open-source projects related to 'AI agriculture' that were created in 2022. The search or filter functionality is likely found under the search bar. \nAction: Click [10]\nConfidence: 0.95\nCompletion: 0.1",
+    "token": ": Click [10",
+    "prob": 0.9999958092782025
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search textbox is now available. I need to enter the keywords \"AI agriculture\" and will later need to filter for projects created in 2022 after searching.\nAction: Type [3]; AI agriculture\nConfidence: 0.95\nCompletion: 0.2",
+    "token": ": Type [3]; AI agriculture",
+    "prob": 0.9999993997512578
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search has returned results for repositories related to \"AI agriculture.\" Now, I need to filter the repositories to show only those created in 2022. Currently, I do not see the filter for creation year. I should look for an advanced filter or use the sort option.\nAction: Click [26] (Sort by: Best match) to see if there are more filtering options such as sorting or filtering by creation date.\nConfidence: 0.85\nCompletion: 0.3",
+    "token": ": Click [26] (Sort by: Best match) to see if there are more filtering options such as sorting or filtering by creation date",
+    "prob": 0.625876140456922
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The sort options do not include filtering or sorting by creation date, only by stars, forks, and updates. To filter by project creation year, I should look for the \"Advanced search\" or \"More filters\" options, possibly under the \"More\" button on the left sidebar.\nAction: Click [17] (\"More\") to look for additional filter options, possibly including filtering by creation year.\nConfidence: 0.9\nCompletion: 0.35",
+    "token": ": Click [17] (\"More\") to look for additional filter options, possibly including filtering by creation year",
+    "prob": 0.6053848183265682
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Platform\";\t[2]: <button> \"Solutions\";\t[3]: <button> \"Resources\";\t[4]: <button> \"Open Source\";\t[5]: <button> \"Enterprise\";\t[6]: \"Pricing\";\t[7]: <button> \"AI agriculture\", \"Search or jump to\u2026\";\t[8]: \"Sign in\";\t[9]: \"Sign up\";\t[10]: <button> \"\";\t[11]: \"Code...\u00a0(...)results\";\t[12]: \"Repositories2.3k\u00a0(2.3k)results\";\t[13]: \"Issues3k\u00a0(3k)results\";\t[14]: \"Pull requests1k\u00a0(1k)results\";\t[15]: \"Discussions355\u00a0(355)results\";\t[16]: \"Users260\u00a0(260)results\";\t[17]: \"Commits1k\u00a0(1k)results\";\t[18]: \"Packages0\u00a0(0)results\";\t[19]: \"Wikis1k\u00a0(1k)results\";\t[20]: \"Topics5\u00a0(5)results\";\t[21]: \"Marketplace0\u00a0(0)results\";\t[23]: \"Jupyter Notebook\";\t[24]: \"Python\";\t[25]: \"HTML\";\t[26]: <button> \"Sort by: Best match\";\t[27]: <button> \"Open column options\";\t[28]: \"microsoft/farmvibes-ai\";\t[29]: \"weather\";\t[30]: \"sustainability\";\t[31]: \"ai\";\t[32]: \"agriculture\";\t[33]: \"geospatial\";\t[34]: \"Jupyter Notebook\";\t[35]: \"794\", \"794 stars\";\t[36]: \"Updated on Jul 28\";\t[37]: \"Star\";\t[38]: \"SHI-Labs/Agriculture-Vision\";\t[39]: \"239\", \"239 stars\";\t[40]: \"Updated on Jul 27, 2024\";\t[41]: \"Star\";\t[42]: \"Ansikka/KrishiMitra.py\";\t[43]: \"Star\";\t[44]: \"Explore sponsorable projects\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The visible filters do not include an option for filtering by creation date/year. Typically, GitHub supports advanced search queries directly in the search bar (such as using \"created:2022\"). I should enter a new search query that includes the parameter for creation year.\nAction: Type [7]; AI agriculture created:2022\nConfidence: 0.98\nCompletion: 0.45",
+    "token": ": Type [7]; AI agriculture created:202",
+    "prob": 0.9999865919291206
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation:note: The web element you're trying to type may not be a textbox, and its tag name is <button>, type is button. please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Platform\";\t[2]: <button> \"Solutions\";\t[3]: <button> \"Resources\";\t[4]: <button> \"Open Source\";\t[5]: <button> \"Enterprise\";\t[6]: \"Pricing\";\t[7]: <button> \"AI agricultureAI agriculture created:2022\", \"Search or jump to\u2026\";\t[8]: \"Sign in\";\t[9]: \"Sign up\";\t[10]: <button> \"\";\t[11]: \"Code...\u00a0(...)results\";\t[12]: \"Repositories1\u00a0(1)results\";\t[13]: \"Issues0\u00a0(0)results\";\t[14]: \"Pull requests0\u00a0(0)results\";\t[15]: \"Discussions0\u00a0(0)results\";\t[16]: \"Users0\u00a0(0)results\";\t[17]: \"Commits2\u00a0(2)results\";\t[18]: \"Packages0\u00a0(0)results\";\t[19]: \"Wikis0\u00a0(0)results\";\t[20]: \"Topics0\u00a0(0)results\";\t[21]: \"Marketplace0\u00a0(0)results\";\t[22]: <button> \"Owner\";\t[23]: <button> \"Size\";\t[24]: <button> \"Number of followers\";\t[25]: <button> \"Sort by: Best match\";\t[26]: <button> \"Open column options\";\t[27]: \"jagarapusivatanayakash/AgricultureAI_WebApp\";\t[28]: \"Jupyter Notebook\";\t[29]: \"1\", \"1 stars\";\t[30]: \"Updated on Feb 5\";\t[31]: \"Star\";\t[32]: \"Explore sponsorable projects\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is only one search result for repositories matching \"AI agriculture\" created in 2022. The repository is \"jagarapusivatanayakash/AgricultureAI_WebApp\". To get the main programming language and description, I need to click on the repository link to view its detailed page.\nAction: Click [27]\nConfidence: 0.99\nCompletion: 0.7",
+    "token": ": Click [27",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Platform\";\t[2]: <button> \"Solutions\";\t[3]: <button> \"Resources\";\t[4]: <button> \"Open Source\";\t[5]: <button> \"Enterprise\";\t[6]: \"Pricing\";\t[7]: <button> \"Search or jump to...\", \"Search or jump to\u2026\";\t[8]: \"Sign in\";\t[9]: \"Sign up\";\t[10]: <button> \"\";\t[11]: \"jagarapusivatanayakash\";\t[12]: \"AgricultureAI_WebApp\";\t[13]: \"Notifications\", \"You must be signed in to change notification settings\";\t[14]: \"Fork 0\";\t[15]: \"Star 1\", \"You must be signed in to star a repository\";\t[16]: \"Code\";\t[17]: \"Issues 0\";\t[18]: \"Pull requests 0\";\t[19]: \"Actions\";\t[20]: \"Projects 0\";\t[21]: \"Security\";\t[22]: \"Insights\";\t[23]: <button> \"main\", \"main branch\";\t[26]: <input> \"Go to file\";\t[27]: <button> \"Code\";\t[29]: \"jagarapusivatanayakash\", \"commits by jagarapusivatanayakash\";\t[30]: \"latest\";\t[31]: \"2efb74a\", \"Commit 2efb74a\";\t[32]: \"7 Commits\";\t[33]: \"Python Notebooks\", \"Python Notebooks, (Directory)\";\t[34]: \"latest\";\t[35]: \"Feb 5, 2025\";\t[36]: \"static\", \"static, (Directory)\";\t[37]: \"Add files via upload\";\t[38]: \"Nov 13, 2022\";\t[39]: \"templates\", \"templates, (Directory)\";\t[40]: \"Add files via upload\";\t[41]: \"Nov 13, 2022\";\t[42]: \"uploads\", \"uploads, (Directory)\";\t[43]: \"Add files via upload\";\t[44]: \"Nov 13, 2022\";\t[45]: \"utils\", \"utils, (Directory)\";\t[46]: \"Add files via upload\";\t[47]: \"Nov 13, 2022\";\t[48]: \"Procfile\", \"Procfile, (File)\";\t[49]: \"Add files via upload\";\t[50]: \"Nov 13, 2022\";\t[51]: \"README.md\", \"README.md, (File)\";\t[52]: \"Update README.md\";\t[53]: \"Sep 22, 2023\";\t[54]: \"app.py\", \"app.py, (File)\";\t[55]: \"Add files via upload\";\t[56]: \"Nov 13, 2022\";\t[57]: \"Readme\";\t[58]: \"Activity\";\t[59]: \"1 star\";\t[60]: \"1 watching\";\t[61]: \"0 forks\";\t[62]: \"Report repository\";\t[63]: \"Releases\";\t[64]: \"Packages 0\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The main repository page is visible. The main programming language appears to be Python, as seen from the \"Python Notebooks\" directory and the \"app.py\" file. The \"About\" section confirms that there is no description provided for this repository. I now have all needed details: repository name, year of creation, main programming language, and lack of description.\nAction: ANSWER; \nRepository: jagarapusivatanayakash/AgricultureAI_WebApp\nCreated: 2022\nMain Language: Python\nDescription: No description, website, or topics provided.\nConfidence: 1.0\nCompletion: 1.0",
+    "token": ": ANSWER; \nRepository: jagarapusivatanayakash/AgricultureAI_WebApp\nCreated: 2022\nMain Language: Python\nDescription: No description, website, or topics provided",
+    "prob": 0.8196038965570449
+  }
+]

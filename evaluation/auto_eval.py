@@ -38,8 +38,13 @@ def encode_image(image_path):
 def auto_eval_by_gpt4v(process_dir, openai_client, api_model, img_num):
     print(f'--------------------- {process_dir} ---------------------')
     res_files = sorted(os.listdir(process_dir))
-    with open(os.path.join(process_dir, 'interact_messages.json')) as fr:
-        it_messages = json.load(fr)
+    try:
+        with open(os.path.join(process_dir, 'interact_messages.json')) as fr:
+            it_messages = json.load(fr)
+    except FileNotFoundError:
+        print('Not find interact_messages.json for ' + process_dir)
+        print()
+        return 0
 
     if len(it_messages) == 1:
         print('Not find answer for ' + process_dir + ' only system messages')

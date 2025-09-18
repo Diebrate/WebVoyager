@@ -1,0 +1,239 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find a recipe for a cauliflower pizza crust that has a preparation time of under 30 minutes and a rating of at least 4 stars on Allrecipes. Include the number of calories per serving.  Please interact with https://www.allrecipes.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find a cauliflower pizza crust recipe, I should use the search bar at the top of the page. The textbox for search appears to be element [2], and after typing, I'll likely need to click the search button at [3] to initiate the search.\nAction: Type [2]; cauliflower pizza crust\nConfidence: 0.95\nCompletion: 0.1",
+    "token": ": Type [2]; cauliflower pizza crust",
+    "prob": 0.9970983151307211
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search for \"cauliflower pizza crust\" has returned several recipe options. To continue, I need to find one with a preparation time under 30 minutes and a rating of at least 4 stars, as well as calorie information. I should click into the first recipe listing (element [9], \"Cauliflower Pizza Crust\") to review its details.\nAction: Click [9]\nConfidence: 0.95\nCompletion: 0.2",
+    "token": ": Click [9",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The recipe has a rating of 4.3 stars (element [17]), which meets the rating requirement. Next, I need to find the preparation time and calorie information to confirm if it meets the other criteria (prep time under 30 minutes and calories per serving). This information is typically found further down the recipe page.\nAction: Scroll WINDOW; down\nConfidence: 0.95\nCompletion: 0.6",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9998580243534191
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The section displaying \"Prep Time\", \"Cook Time\", and \"Total Time\" is now visible at the bottom of the screenshot, but the actual timing details are not fully in view yet. Scrolling down slightly will help reveal the specific preparation time and possibly more nutritional details like calories per serving.\nAction: Scroll WINDOW; down\nConfidence: 0.98\nCompletion: 0.7",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999997705516342
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Jump to Nutrition Facts\" button (element [11]) is visible, and this can quickly navigate to the nutrition information section, where the calorie content per serving should be presented. This will efficiently help find the calories detail required in the task.\nAction: Click [11]\nConfidence: 0.98\nCompletion: 0.8",
+    "token": ": Click [11",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The nutrition section reveals the recipe contains 59 calories per serving. Since previous steps confirmed a rating of over 4 stars, the last missing piece is the preparation time. I need to ensure the actual prep time for this recipe is under 30 minutes; thus, it's necessary to scroll up to the \"Prep Time\" section for final verification.\nAction: Scroll WINDOW; up\nConfidence: 0.97\nCompletion: 0.9",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The prep time and overview typically appear further up the page, and are not visible yet in this screenshot. I need to continue scrolling up to reach that section for confirmation on the prep time.\nAction: Scroll WINDOW; up\nConfidence: 0.95\nCompletion: 0.9",
+    "token": ": Scroll WINDOW; up",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The prep time section is still not visible, as this screenshot mainly displays images and video content. I need to continue scrolling up further to reach the area that provides the preparation time information.\nAction: Scroll WINDOW; up\nConfidence: 0.95\nCompletion: 0.9",
+    "token": ": Scroll WINDOW; up",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot still shows steps of the recipe and images, but not the prep time or overview section. I need to continue scrolling up to reach the recipe overview with time information.\nAction: Scroll WINDOW; up\nConfidence: 0.95\nCompletion: 0.9",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot now shows step 5 of the recipe, but still not the overview or prep time section, which is likely higher up. I need to keep scrolling up to find the prep time for this recipe.\nAction: Scroll WINDOW; up\nConfidence: 0.95\nCompletion: 0.9",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999997705516342
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot continues to show images and instructions related to the recipe steps\u2014and not the summary area containing prep time or the main recipe overview. I still need to scroll up for the overview and timing information.\nAction: Scroll WINDOW; up\nConfidence: 0.95\nCompletion: 0.9",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot now shows Step 4 of the recipe as well as more images, which still means I haven't reached the prep time information yet. The prep time will be located further up in the main recipe summary area.\nAction: Scroll WINDOW; up\nConfidence: 0.95\nCompletion: 0.9",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot primarily displays images related to the recipe steps and still has not reached the summary or overview section with the prep time. Scrolling up further should bring me closer to the top where the prep time is typically shown.\nAction: Scroll WINDOW; up\nConfidence: 0.95\nCompletion: 0.9",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999998510327512
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot now shows Step 2 of the recipe and some images, indicating I am getting closer to the recipe's main introduction and prep time, but it is not yet visible. I need to keep scrolling up to reach the overview section with prep time details.\nAction: Scroll WINDOW; up\nConfidence: 0.95\nCompletion: 0.92",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999999612774708
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot now shows the beginning of the \"Directions\" section (Step 1), indicating that the overview with prep time is likely just above this. Scrolling up a bit more should reveal the prep time section.\nAction: Scroll WINDOW; up\nConfidence: 0.96\nCompletion: 0.93",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999998182330894
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot shows the \"Ingredients\" section, indicating the prep time area is still a bit further above, usually located just above the ingredients list or near the recipe title. Scrolling up should finally reveal the prep time.\nAction: Scroll WINDOW; up\nConfidence: 0.97\nCompletion: 0.94",
+    "token": ": Scroll WINDOW; up",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Prep Time\", \"Cook Time\", and \"Additional Time\" section is now visible at the bottom of the screenshot, but the actual timing details are cut off. Scrolling slightly down will reveal the times to confirm if the prep time is under 30 minutes.\nAction: Scroll WINDOW; down\nConfidence: 0.97\nCompletion: 0.97",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999995649440572
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Main menu for Allrecipes\";\t[1]: \"Allrecipes\", \"Visit Allrecipes' homepage\";\t[2]: <button> \"Save\", \"Save Recipe\";\t[3]: <button> \"Rate\", \"Rate It\";\t[4]: \"Log In\";\t[6]: \"Join for free: Use MyRecipes to save 100K+ recipes from Allrecipes and more\";\t[7]: <button> \"Close\";\t[14]: <button> \"Jump to Nutrition Facts\";\t[15]: <button> \"Toggle Cook Mode\";\t[16]: \"(Keep screen awake)\";\t[17]: \"1/2x\";\t[19]: \"1x\";\t[20]: \"2x\";\t[21]: <button> \"\";\t[22]: \"\u00bd head cauliflower, coarsely chopped\";\t[23]: \"\u00bd cup shredded Italian cheese blend\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The prep time section is not visible in this screenshot; instead, it has returned to the ingredients list. I need to scroll up again slightly to refocus on the section that displayed \"Prep Time,\" \"Cook Time,\" and \"Additional Time\" to capture the exact prep time.\nAction: Scroll WINDOW; up\nConfidence: 0.95\nCompletion: 0.97",
+    "token": ": Scroll WINDOW; up",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Main menu for Allrecipes\";\t[1]: \"Allrecipes\", \"Visit Allrecipes' homepage\";\t[2]: <button> \"Save\", \"Save Recipe\";\t[3]: <button> \"Rate\", \"Rate It\";\t[4]: \"Log In\";\t[6]: \"Join for free: Use MyRecipes to save 100K+ recipes from Allrecipes and more\";\t[7]: <button> \"Close\";\t[13]: <button> \"Add Photo\";\t[15]: \"147\";\t[16]: \"147\";\t[17]: \"147\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Prep Time,\" \"Cook Time,\" and \"Additional Time\" section is now clearly visible, but the actual time values are still cut off at the bottom. Scrolling slightly down will reveal the times so I can verify if the prep time is under 30 minutes.\nAction: Scroll WINDOW; down\nConfidence: 0.98\nCompletion: 0.98",
+    "token": ": Scroll WINDOW; down",
+    "prob": 0.9999989927668664
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Main menu for Allrecipes\";\t[1]: \"Allrecipes\", \"Visit Allrecipes' homepage\";\t[2]: <button> \"Save\", \"Save Recipe\";\t[3]: <button> \"Rate\", \"Rate It\";\t[4]: \"Log In\";\t[6]: \"Join for free: Use MyRecipes to save 100K+ recipes from Allrecipes and more\";\t[7]: <button> \"Close\";\t[11]: <button> \"Jump to Nutrition Facts\";\t[12]: <button> \"Toggle Cook Mode\";\t[13]: \"(Keep screen awake)\";\t[14]: \"1/2x\";\t[16]: \"1x\";\t[17]: \"2x\";\t[18]: <button> \"\";\t[19]: \"\u00bd head cauliflower, coarsely chopped\";\t[20]: \"\u00bd cup shredded Italian cheese blend\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The \"Prep Time,\" \"Cook Time,\" and \"Additional Time\" section is no longer visible; the screenshot has jumped back to the ingredients section. I need to scroll up again to see the prep time section so I can confirm if the prep time is under 30 minutes.\nAction: Scroll WINDOW; up\nConfidence: 0.97\nCompletion: 0.97",
+    "token": ": Scroll WINDOW; up",
+    "prob": 0.9999999612774708
+  }
+]

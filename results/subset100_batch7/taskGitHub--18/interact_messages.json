@@ -1,0 +1,109 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\nConfidence: {A float between 0 and 1 indicating your confidence level in the action. A higher value means greater confidence.}\nCompletion: {A float between 0 and 1 indicating how much of the task has been completed until now. Zero means no progress has been made and one means full completion.}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Identify and report the most popular (in terms of stars) open-source image processing tool on GitHub.  Please interact with https://github.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find the most popular open-source image processing tool on GitHub, I need to perform a search for \"image processing\" repositories and sort them by stars. The search bar/button (\"Search or jump to\u2026\") at [10] will let me enter my search query.\nAction: Click [10]\nConfidence: 0.95\nCompletion: 0.15",
+    "token": ": Click [10",
+    "prob": 0.999381276822055
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search textbox ([3]) is now visible and ready for input. I need to type my search query \"image processing\" to find relevant repositories.\nAction: Type [3]; image processing\nConfidence: 0.98\nCompletion: 0.30",
+    "token": ": Type [3]; image processing",
+    "prob": 0.9999999276530062
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The repositories are listed by best match. The second repository, \"WZMIAOMIAO/deep-learning-for-image-processing,\" has 25.4k stars ([46]). This appears to be more than the first repository, which has 14.2k stars ([35]). I need to check if there are repositories with even more stars by sorting with \"Sort by: Best match\" ([26]) and selecting stars as the sorting criteria.\nAction: Click [26]\nConfidence: 0.97\nCompletion: 0.50",
+    "token": ": Click [26",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The sorting menu is now open, and \"Most stars\" ([48]) is one of the available options. Selecting this will reorder the search results to show the most popular repositories by star count at the top.\nAction: Click [48]\nConfidence: 0.99\nCompletion: 0.60",
+    "token": ": Click [48",
+    "prob": 1.0
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"Platform\";\t[2]: <button> \"Solutions\";\t[3]: <button> \"Resources\";\t[4]: <button> \"Open Source\";\t[5]: <button> \"Enterprise\";\t[6]: \"Pricing\";\t[7]: <button> \"Search or jump to...\", \"Search or jump to\u2026\";\t[8]: \"Sign in\";\t[9]: \"Sign up\";\t[10]: <button> \"\";\t[11]: \"Error429{\"resolvedServerColorMode\":\"day\"}\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The page has encountered an Error 429, indicating too many requests. I am unable to proceed further or retrieve updated results from GitHub at this moment.\nAction: Google\nConfidence: 0.97\nCompletion: 0.65",
+    "token": ": Google",
+    "prob": 0.9759708297702759
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"About\";\t[1]: \"Store\";\t[2]: \"Gmail\", \"Gmail \";\t[3]: \"Images\", \"Search for Images \";\t[5]: \"Sign in\";\t[6]: <textarea> \"Search\";\t[13]: \"Fran\u00e7ais\";\t[14]: \"Advertising\";\t[15]: \"Business\";\t[16]: \"How Search works\";\t[17]: \"Privacy\";\t[18]: \"Terms\";\t[19]: \"Settings\";\t[20]: \"Stay signed out\";\t[21]: \"Sign in\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: I am on the Google homepage. To find the most popular open-source image processing tool on GitHub, I should search for \"most starred image processing GitHub\" or a similar query in the search textbox.\nAction: Type [6]; most starred image processing GitHub\nConfidence: 0.99\nCompletion: 0.70",
+    "token": ": Type [6]; most starred image processing GitHub",
+    "prob": 0.8413481208039227
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: \"Why did this happen?\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Google has presented a CAPTCHA page, blocking access due to unusual traffic. I am unable to proceed with the Google search or access the results for the query right now.\nAction: ANSWER; Unable to complete the task due to being rate-limited by both GitHub and Google. I am temporarily blocked from retrieving the most popular open-source image processing tool on GitHub. Please try again later.\nConfidence: 0.99\nCompletion: 1.0",
+    "token": ": ANSWER; Unable to complete the task due to being rate-limited by both GitHub and Google. I am temporarily blocked from retrieving the most popular open-source image processing tool on GitHub. Please try again later",
+    "prob": 0.6388636873016582
+  }
+]
