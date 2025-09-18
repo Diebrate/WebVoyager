@@ -2,7 +2,7 @@
 for i in {1..10}
 do
     nohup python -u auto_eval.py \
-        --process_dir ../results/subset_batch${i} \
+        --process_dir ../results/subset100_batch${i} \
         --api_model gpt-4.1-2025-04-14\
-        --max_attached_imgs 15 > subset_batch${i}_evaluation.log &
+        --max_attached_imgs 15 > subset100_batch${i}_evaluation.log &
 done

@@ -32,7 +32,7 @@ def save_jsonl(data, file_name):
 
 def sample_jsonl(input_file, output_file, sample_size):
     data = load_jsonl(input_file)
-    sampled_data = np.random.choice(data, size=sample_size, replace=False)
+    sampled_data = np.random.choice(np.array(data, dtype=object), size=sample_size, replace=False).tolist()
     save_jsonl(sampled_data, output_file)
 
 def parse_evaluation_log_to_jsonl(log_path, output_jsonl_path, return_results=False):
